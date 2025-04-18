@@ -7,6 +7,7 @@ A Connect Four AI learning system using reinforcement learning.
 - Create reinforcement learning agent that improves through self-play
 - Develop web interface to visualize learning and play against the AI
 - Ensure compatibility with both Raspberry Pi and desktop platforms
+- This is a work in progress project for now.
 
 ## Technologies
 - Python

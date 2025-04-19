@@ -3,3 +3,4 @@
 /stats/*
 models/*
 stats/*
+__pycache__/

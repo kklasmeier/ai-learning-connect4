@@ -26,36 +26,181 @@ except ImportError as e:
 
 def main():
     """Main entry point for the Connect Four AI Learning System."""
-    parser = argparse.ArgumentParser(description='Connect Four AI Learning System')
     
+
+    # Main parser
+    parser = argparse.ArgumentParser(
+        description='Connect Four AI Learning System',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+    Examples:
+
+    GAME COMPONENT:
+    ---------------
+    # Play Connect Four against a random AI
+    python run.py game play
+    
+    # Play Connect Four with two human players
+    python run.py game play --ai none
+    
+    # Run tests on a specific board position
+    python run.py game test --position 0,0,0,0,1,1,1,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    
+    # Run all validation tests
+    python run.py game test_all
+    
+    # Benchmark performance with 5000 iterations
+    python run.py game benchmark --iterations 5000
+
+    AI COMPONENT - MODEL MANAGEMENT:
+    --------------------------------
+    # Initialize a new model with default settings (128 hidden size)
+    python run.py ai init
+    
+    # Initialize a model with a larger hidden layer
+    python run.py ai init --hidden_size 256
+    
+    # Play against a trained model
+    python run.py ai play --model models/final_model_TIMESTAMP
+    
+    # Play with debug information shown
+    python run.py ai play --model models/final_model_TIMESTAMP --debug_level info
+
+    AI COMPONENT - TRAINING:
+    ------------------------
+    # Train the AI for 1000 episodes
+    python run.py ai train --episodes 1000
+    
+    # Train with a specific log interval
+    python run.py ai train --episodes 500 --log_interval 10
+    
+    # Train with a larger hidden layer size
+    python run.py ai train --episodes 1000 --hidden_size 256
+    
+    # Continue training from an existing model
+    python run.py ai train --episodes 2000 --model models/final_model_TIMESTAMP
+    
+    # Train with detailed logging
+    python run.py ai train --episodes 100 --debug_level debug
+
+    AI COMPONENT - JOB MANAGEMENT:
+    ------------------------------
+    # View all training jobs
+    python run.py ai jobs
+    
+    # View details of a specific job
+    python run.py ai jobs --job_id 1
+    
+    # Purge all data (requires confirmation)
+    python run.py ai purge --confirm
+
+    AI COMPONENT - GAME REPLAY:
+    ---------------------------
+    # List all saved games
+    python run.py ai games --list
+    
+    # List games for a specific job
+    python run.py ai games --list --job_id 1
+    
+    # Replay a specific game
+    python run.py ai games --replay 0
+    
+    # Replay a game with slower movement
+    python run.py ai games --replay 5 --delay 1.0
+    """
+    )
+
     # Add subparsers for different components
     subparsers = parser.add_subparsers(dest='component', help='Component to run')
     
+
     # Game component
-    game_parser = subparsers.add_parser('game', help='Run the Connect Four game')
-    game_parser.add_argument('command', choices=['play', 'test', 'test_all', 'benchmark'],
-                           help='Command to run for the game component')
-    game_parser.add_argument('--debug', action='store_true', help='Enable debug mode')
-    game_parser.add_argument('--position', type=str, help='Board position to test (for test command)')
-    game_parser.add_argument('--iterations', type=int, default=1000, 
-                          help='Number of iterations for benchmarking')
-    game_parser.add_argument('--ai', choices=['random', 'none'], default='random',
-                          help='AI opponent type for play mode')
+    game_parser = subparsers.add_parser('game', 
+        help='Run the Connect Four game',
+        description='Play Connect Four or run game tests')
+    game_parser.add_argument('command', 
+        choices=['play', 'test', 'test_all', 'benchmark'],
+        help='Game command: play (interactive game), test (test specific position), '
+            'test_all (run all validation tests), benchmark (performance testing)')
+    game_parser.add_argument('--debug', 
+        action='store_true', 
+        help='Enable debug mode with detailed logging')
+    game_parser.add_argument('--position', 
+        type=str, 
+        help='Board position to test (comma-separated values for test command)')
+    game_parser.add_argument('--iterations', 
+        type=int, 
+        default=1000, 
+        help='Number of iterations for benchmarking')
+    game_parser.add_argument('--ai', 
+        choices=['random', 'none'], 
+        default='random',
+        help='AI opponent type: random (makes random moves), none (two human players)')
+
     # AI component
-    ai_parser = subparsers.add_parser('ai', help='Run AI components')
-    ai_parser.add_argument('command', choices=['init', 'play', 'train', 'jobs', 'purge'],
-                        help='Command to run for the AI component')
-    ai_parser.add_argument('--debug', action='store_true', help='Enable debug mode')
-    ai_parser.add_argument('--debug_level', choices=['none', 'error', 'warning', 'info', 'debug', 'trace'],
-                        default='error', help='Set debug level')
-    ai_parser.add_argument('--hidden_size', type=int, default=128, 
-                        help='Hidden layer size for neural network')
-    ai_parser.add_argument('--model', type=str, help='Path to model file')
-    ai_parser.add_argument('--episodes', type=int, default=1000,
-                        help='Number of episodes for training')    
-    ai_parser.add_argument('--job_id', type=int, help='Job ID for job command')
-    ai_parser.add_argument('--confirm', action='store_true', 
-                        help='Confirm dangerous operations like purge')
+    ai_parser = subparsers.add_parser('ai', 
+        help='Run AI components',
+        description='Train, play against, or evaluate Connect Four AI')
+    ai_parser.add_argument('command', 
+        choices=['init', 'play', 'train', 'jobs', 'purge', 'games'],
+        help="""AI commands:
+        init: Initialize a new model
+        play: Play against a trained model
+        train: Train a model through self-play
+        jobs: View training job information
+        purge: Clear all data (jobs, logs, games)
+        games: List and replay saved games""")
+
+    # Common AI arguments
+    ai_parser.add_argument('--debug', 
+        action='store_true', 
+        help='Enable debug mode (equivalent to --debug_level debug)')
+    ai_parser.add_argument('--debug_level', 
+        choices=['none', 'error', 'warning', 'info', 'debug', 'trace'],
+        default='error', 
+        help='Set debug level: none (silent), error, warning, info, debug, trace (most verbose)')
+
+    # Model arguments
+    model_group = ai_parser.add_argument_group('Model options')
+    model_group.add_argument('--hidden_size', 
+        type=int, 
+        default=128, 
+        help='Hidden layer size for neural network (larger = more capacity but slower training)')
+    model_group.add_argument('--model', 
+        type=str, 
+        help='Path to saved model file for loading (used with play and train commands)')
+
+    # Training arguments
+    training_group = ai_parser.add_argument_group('Training options')
+    training_group.add_argument('--episodes', 
+        type=int, 
+        default=1000,
+        help='Number of episodes for training (more = better learning but longer time)')
+    training_group.add_argument('--log_interval', 
+        type=int, 
+        default=None,
+        help='Interval between training log updates (default: episodes/100)')
+
+    # Job and games arguments
+    data_group = ai_parser.add_argument_group('Data options')
+    data_group.add_argument('--job_id', 
+        type=int, 
+        help='Job ID for commands that need it (jobs, games)')
+    data_group.add_argument('--list', 
+        action='store_true', 
+        help='List saved games (used with games command)')
+    data_group.add_argument('--replay', 
+        type=int, 
+        help='Replay a specific game by ID (used with games command)')
+    data_group.add_argument('--delay', 
+        type=float, 
+        default=0.5, 
+        help='Delay between moves during replay in seconds (used with games --replay)')
+    data_group.add_argument('--confirm', 
+        action='store_true', 
+        help='Confirm dangerous operations like purge (required for purge command)')
+
+
     # Parse arguments
     args = parser.parse_args()
     if args.component == 'game':
@@ -271,12 +416,13 @@ def main():
                         print(f"Job {job['job_id']}: {status}, Progress: {progress}")
                         
                     print("\nUse 'python run.py ai jobs --job_id <id>' to view job details")
+
             elif args.command == 'purge':
                 import shutil
                 import os
                 
                 if not args.confirm:
-                    print("WARNING: This will delete all jobs, logs, and models data.")
+                    print("WARNING: This will delete all jobs, logs, games, and training data.")
                     print("To confirm, run: python run.py ai purge --confirm")
                     return
                 
@@ -300,17 +446,84 @@ def main():
                         os.remove(os.path.join('data/logs', file))
                     print(f"Removed {len(log_files)} log files")
                 
-                # Optionally, also remove model files (careful with this!)
-                delete_models = True  # Set to True if you want to delete model files too
-                if delete_models and args.confirm:
-                    if os.path.exists('models'):
-                        model_files = os.listdir('models')
-                        for file in model_files:
-                            if file.endswith('.pt'):
-                                os.remove(os.path.join('models', file))
-                        print(f"Removed model files")
+                # Remove game files
+                if os.path.exists('data/games'):
+                    game_files = os.listdir('data/games')
+                    for file in game_files:
+                        os.remove(os.path.join('data/games', file))
+                    print(f"Removed {len(game_files)} game files")
                 
                 print("Purge completed")            
+
+            elif args.command == 'games':
+                from connect4.data.data_manager import get_saved_games
+                from connect4.game.rules import ConnectFourGame
+                import time
+                
+                if args.replay is not None:
+                    # Replay a specific game
+                    all_games = get_saved_games(args.job_id)
+                    game_id = args.replay
+                    
+                    if 0 <= game_id < len(all_games):
+                        game_data = all_games[game_id]
+                        print(f"Replaying game {game_id}: Job {game_data['job_id']}, Episode {game_data['episode']}")
+                        print(f"Winner: {game_data['winner'] or 'Draw'}, Length: {game_data['game_length']}")
+                        
+                        # Create a game and replay the moves
+                        game = ConnectFourGame()
+                        print("\nInitial board:")
+                        print(game.render())
+                        time.sleep(args.delay)
+                        
+                        for i, move in enumerate(game_data['moves']):
+                            current_player = "X" if game.get_current_player() == Player.ONE else "O"
+                            print(f"\nMove {i+1}: Player {current_player} plays column {move}")
+                            game.make_move(move)
+                            print(game.render())
+                            time.sleep(args.delay)
+                        
+                        # Show final result
+                        winner = game.get_winner()
+                        if winner:
+                            winner_str = "X" if winner == Player.ONE else "O"
+                            print(f"\nGame over! {winner_str} wins!")
+                        else:
+                            print("\nGame over! It's a draw!")
+                    else:
+                        print(f"Error: Game ID {game_id} not found")
+                        print(f"Available game IDs: 0-{len(all_games)-1}")
+                elif args.list:
+                    # List available games
+                    job_id = args.job_id
+                    all_games = get_saved_games(job_id)
+                    
+                    if not all_games:
+                        print("No saved games found")
+                        if job_id is not None:
+                            print(f"No games found for job {job_id}")
+                        return
+                    
+                    print(f"Found {len(all_games)} saved games:")
+                    print("\nID | Job | Episode | Winner | Moves | Timestamp")
+                    print("-" * 60)
+                    
+                    for i, game in enumerate(all_games):
+                        winner = game['winner'] or "Draw"
+                        timestamp = game['timestamp'].split('T')[0] if 'timestamp' in game else "Unknown"
+                        print(f"{i:2d} | {game['job_id']:3d} | {game['episode']:7d} | {winner:6s} | {game['game_length']:5d} | {timestamp}")
+                    
+                    print("\nTo replay a game: python run.py ai games --replay GAME_ID")
+                    if job_id is not None:
+                        print(f"Currently showing games for job {job_id} only")
+                        print("To see all games: python run.py ai games --list")
+                    else:
+                        print("To filter by job: python run.py ai games --list --job_id JOB_ID")
+                else:
+                    print("Please specify an action: --list or --replay")
+                    print("Example: python run.py ai games --list")
+                    print("Example: python run.py ai games --replay 0 --delay 1.0")
+
         except ImportError as e:
             print(f"Error importing AI modules: {e}")
             print("Make sure all AI components are implemented before using this command")

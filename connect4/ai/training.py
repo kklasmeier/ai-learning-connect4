@@ -168,8 +168,6 @@ class TrainingStats:
         debug.info(f"Saved training statistics to {path}", "training")
         
         return path
-
-
 class SelfPlayTrainer:
     """
     Train Connect Four AI through self-play.
@@ -196,7 +194,10 @@ class SelfPlayTrainer:
             target_update_freq: How often to update target network
         """
         debug.debug("Initializing SelfPlayTrainer", "training")
-        
+
+        # Initialize total_episodes
+        self.total_episodes = 0
+
         # Create directory for models
         self.model_dir = model_dir
         os.makedirs(model_dir, exist_ok=True)
@@ -249,7 +250,10 @@ class SelfPlayTrainer:
         
         # Keep track of states and actions for rewarding after game completion
         history = []
-        
+
+        # Track moves for saving
+        moves = []
+
         while not done:
             current_player = game.get_current_player()
             
@@ -269,7 +273,10 @@ class SelfPlayTrainer:
             # Make the move
             game.make_move(action)
             episode_length += 1
-            
+
+            # Record the move
+            moves.append(action)
+
             # Get reward and check if game is over
             reward = 0
             if game.is_game_over():
@@ -317,6 +324,23 @@ class SelfPlayTrainer:
                     self.replay_buffer.add(state, action, reward, next_state, False)
         
         winner = game.get_winner()
+        winner_str = "X" if winner == Player.ONE else "O" if winner == Player.TWO else None
+        
+        should_save_game = (
+            self.episode_count == 0 or                      # First game
+            self.episode_count == self.total_episodes - 1 or # Last game
+            self.episode_count % 50 == 0 or                 # Regular milestone
+            random.random() < 0.05 or                       # Random 5% sample
+            episode_length > 30 or                          # Long games
+            episode_length < 15                             # Short games
+        )
+        
+        if should_save_game:
+            from connect4.data.data_manager import save_game_moves
+            save_game_moves(self.job_id, self.episode_count + 1, moves, winner_str, episode_length)
+            debug.info(f"Saved game moves for episode {self.episode_count + 1}", "training")
+
+
         return total_reward, episode_length, winner, losses
     
     def train(self, episodes: int = 1000, 
@@ -335,7 +359,10 @@ class SelfPlayTrainer:
         debug.info(f"Starting self-play training for {episodes} episodes", "training")
         
         start_time = time.time()
-        
+
+        # Set total episodes for the current training run
+        self.total_episodes = episodes
+
         # Update the job with total episodes
         job_params = {
             'episodes': episodes,
@@ -447,13 +474,14 @@ class SelfPlayTrainer:
                 player_one_wins += 1
             elif winner == Player.TWO:
                 wins += 1  # Count as win for the agent regardless of which player
+                player_two_wins += 1
             else:
                 draws += 1
         
-        win_rate = wins / num_games
-        draw_rate = draws / num_games
         p1_win_rate = player_one_wins / num_games
+        draw_rate = draws / num_games
+        p2_win_rate = player_two_wins / num_games
         
-        print(f"Evaluation: Win Rate: {win_rate:.2f}, "
+        print(f"P1 Win Rate: {p1_win_rate:.2f}, "
              f"Draw Rate: {draw_rate:.2f}, "
-             f"P1 Win Rate: {p1_win_rate:.2f}")
+             f"P2 Win Rate: {p2_win_rate:.2f}")

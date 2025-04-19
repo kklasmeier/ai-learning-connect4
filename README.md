@@ -5,6 +5,8 @@ A Connect Four AI learning system using reinforcement learning. This project imp
 ## Project Goals
 - Implement Connect Four game environment ✓
 - Create reinforcement learning agent that improves through self-play ✓
+- Track and analyze training progress ✓
+- Observe and replay AI games ✓
 - Develop web interface to visualize learning and play against the AI (planned)
 - Ensure compatibility with both Raspberry Pi and desktop platforms ✓
 
@@ -24,6 +26,7 @@ ai-learning-connect4/
 ├── data/                       # Data storage directory
 │   ├── jobs.json               # Training jobs tracking
 │   ├── models.json             # Model registry
+│   ├── games/                  # Saved games for replay
 │   └── logs/                   # Episode logs directory
 ├── connect4/                   # Core package
 │   ├── __init__.py
@@ -67,51 +70,91 @@ Or install from requirements.txt:
 pip install -r requirements.txt
 ```
 
-## Usage
+## Command-Line Interface
 
-The project provides a command-line interface through `run.py` for interacting with the Connect Four game and AI.
+The project provides a comprehensive command-line interface through `run.py` for interacting with the Connect Four game and AI.
 
-### Playing the Game
+### Game Component
 
-To play Connect Four against a random AI:
+#### Play the Game
 
+Play Connect Four against a random AI:
 ```bash
-python run.py game play --ai random
+python run.py game play
 ```
 
-### AI Commands
+Play with two human players:
+```bash
+python run.py game play --ai none
+```
 
-#### Initialize a new DQN model
+#### Test Game Logic
 
+Test a specific board position:
+```bash
+python run.py game test --position 0,0,0,0,1,1,1,0,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+```
+
+Run all validation tests:
+```bash
+python run.py game test_all
+```
+
+#### Benchmark Performance
+
+Run performance tests:
+```bash
+python run.py game benchmark --iterations 5000
+```
+
+### AI Component
+
+#### Model Management
+
+Initialize a new model:
 ```bash
 python run.py ai init --hidden_size 128
 ```
 
-This creates a new model and saves it to the `models` directory.
+The `--hidden_size` parameter determines the neural network complexity:
+- Higher values (256, 512) give more learning capacity but train slower
+- Lower values (64, 128) train faster but may have less potential
+- Default is 128, which works well for Connect Four
 
-#### Train the AI through self-play
-
-```bash
-python run.py ai train --episodes 1000 --debug_level info
-```
-
-Optional parameters:
-- `--model models/model_name`: Continue training from an existing model
-- `--hidden_size 128`: Specify hidden layer size for new models
-- `--debug_level`: Control logging verbosity
-- `--log_interval`: Specify how often to print updates (default: episodes/100)
-
-#### Play against a trained AI model
-
+Play against a trained model:
 ```bash
 python run.py ai play --model models/final_model_TIMESTAMP
 ```
 
 Replace `TIMESTAMP` with the actual timestamp from your saved model.
 
-#### View training jobs
+#### Training
 
-List all training jobs:
+Train the AI through self-play:
+```bash
+python run.py ai train --episodes 1000 --debug_level info
+```
+
+Training options:
+- `--episodes`: Number of games to play (higher = better learning but more time)
+- `--model`: Continue training from an existing model
+- `--hidden_size`: Neural network size if creating a new model
+- `--log_interval`: How often to print updates (default: episodes/100)
+- `--debug_level`: Control logging verbosity
+
+Training guidance:
+- 1,000-5,000 episodes: Basic learning (beginner level)
+- 10,000-50,000 episodes: Intermediate strategies
+- 100,000+ episodes: Advanced play (significant training time)
+
+Continue training from an existing model:
+```bash
+python run.py ai train --episodes 2000 --model models/final_model_TIMESTAMP
+```
+
+#### Job Management
+
+View all training jobs:
 ```bash
 python run.py ai jobs
 ```
@@ -121,28 +164,32 @@ View details of a specific job:
 python run.py ai jobs --job_id 1
 ```
 
-This shows job parameters, progress, and recent episode results.
-
-#### Purge all data
-
-Reset all jobs, logs, and training data (requires confirmation):
+Purge all data (requires confirmation):
 ```bash
 python run.py ai purge --confirm
 ```
 
-This resets all tracking data while preserving code and model files.
+#### Game Replay
 
-### Data Management
+List all saved games:
+```bash
+python run.py ai games --list
+```
 
-The system tracks training data in JSON files:
+List games for a specific job:
+```bash
+python run.py ai games --list --job_id 1
+```
 
-1. **Jobs**: Each training run is tracked as a job with parameters and progress
-2. **Episode Logs**: Detailed logs of training episodes are stored in two formats:
-   - Recent logs: Full details for the last 1000 episodes
-   - Historical logs: Sampled data (1 in 50) for older episodes
-3. **Model Registry**: Tracks all saved model checkpoints
+Replay a specific game:
+```bash
+python run.py ai games --replay 0
+```
 
-All data is stored in the `data` directory, making it portable and human-readable.
+Control playback speed:
+```bash
+python run.py ai games --replay 5 --delay 1.0
+```
 
 ### Debug Levels
 
@@ -168,23 +215,47 @@ python run.py ai train --debug
 
 This enables full debug output (equivalent to `--debug_level debug`).
 
+## Data Management
+
+The system tracks training data in JSON files:
+
+1. **Jobs**: Each training run is tracked as a job with parameters and progress
+2. **Episode Logs**: Training progress is stored in two formats:
+   - Recent logs: Full details for the last 1000 episodes
+   - Historical logs: Sampled data (1 in 50) for older episodes
+3. **Game Replays**: Move sequences from interesting games are saved for replay
+4. **Model Registry**: Tracks all saved model checkpoints
+
+All data is stored in the `data` directory, making it portable and human-readable.
+
 ### Training Statistics
 
-During training, statistics are automatically saved in the following locations:
-- `data/jobs.json`: Overall job information
-- `data/logs/job_X_recent.json`: Detailed logs for recent episodes
-- `data/logs/job_X_history.json`: Sampled logs for older episodes
-
-Statistics include:
+During training, the system tracks:
 - Win rates for Player 1 and Player 2
 - Draw rates
 - Average game length
 - Exploration rate (epsilon)
 - Training loss values
 
+These metrics help evaluate when the model has reached diminishing returns, which typically occurs when:
+- Win rates stabilize over many episodes
+- Draw rates increase and plateau
+- Loss values flatten at a low level
+
+### Game Replay System
+
+The system intelligently saves game replays for:
+- First and last games of training
+- Regular milestone games (every 50 episodes)
+- Random sampling (~5% of games)
+- Unusually short or long games
+- Games with interesting patterns
+
+This allows you to observe how the AI's strategy evolves throughout training without excessive storage requirements.
+
 ### Managing Models
 
-Models are saved to the `models` directory with timestamps in their filenames. The system creates:
+Models are saved to the `models` directory with timestamps in their filenames:
 - Periodic checkpoints during training (e.g., `model_TIMESTAMP_ep100.pt`)
 - Final model after training completes (e.g., `final_model_TIMESTAMP.pt`)
 
@@ -196,22 +267,31 @@ python run.py ai init --hidden_size 128
 python run.py ai train --episodes 1000
 ```
 
-### Reinforcement Learning Approach
+## Reinforcement Learning Approach
 
-The AI uses the following reinforcement learning components:
+The AI uses a Deep Q-Network (DQN) approach for reinforcement learning:
 
-1. **Deep Q-Network (DQN)**: A neural network that predicts the value of each possible move
-2. **Experience Replay**: Stores game states and outcomes for efficient learning
-3. **Self-Play**: The agent plays against itself to continuously improve
-4. **Epsilon-Greedy Exploration**: Balance between exploration and exploitation during training
+1. **Neural Network Architecture**:
+   - Input: 3-channel representation of the board state
+   - Convolutional layers to capture spatial patterns
+   - Fully connected hidden layer (configurable size)
+   - Output: Q-values for each possible column
 
-### Reward System
+2. **Training Components**:
+   - Experience Replay: Stores and randomly samples past experiences
+   - Target Network: Stabilizes learning with delayed updates
+   - Epsilon-Greedy Strategy: Balances exploration vs. exploitation
 
-The AI learns through a reward system:
-- +1.0 for winning a game
-- -1.0 for losing a game
-- +0.1 for a draw
-- -0.01 small penalty per move to encourage efficient play
+3. **Self-Play Training Loop**:
+   - Agent plays against itself, improving with each game
+   - Both sides share the same neural network
+   - Learning from wins, losses, and draws
+
+4. **Reward System**:
+   - +1.0 for winning a game
+   - -1.0 for losing a game
+   - +0.1 for a draw
+   - -0.01 small penalty per move to encourage efficient play
 
 ## Future Work
 
@@ -219,6 +299,8 @@ The AI learns through a reward system:
 - Configurable neural network architecture
 - Advanced opponent models for improved training
 - Model evaluation and comparison tools
+- Training visualization and analysis
+- Neural network architecture exploration
 
 ## Troubleshooting
 
@@ -235,6 +317,8 @@ The AI learns through a reward system:
 5. **File permission errors**: Ensure the data directory has write permissions
 
 6. **Empty job listings**: Make sure at least one training job has been run
+
+7. **Model loading errors**: Verify you're using the correct model path
 
 ## License
 

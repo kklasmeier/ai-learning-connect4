@@ -21,6 +21,8 @@ DATA_DIR = os.path.join(BASE_DIR, 'data')
 JOBS_FILE = os.path.join(DATA_DIR, 'jobs.json')
 MODELS_FILE = os.path.join(DATA_DIR, 'models.json')
 LOGS_DIR = os.path.join(DATA_DIR, 'logs')
+GAMES_DIR = os.path.join(DATA_DIR, 'games')
+os.makedirs(GAMES_DIR, exist_ok=True)
 
 # Constants
 MAX_RECENT_LOGS = 1000  # Maximum number of recent episode logs to keep
@@ -390,3 +392,67 @@ def get_registered_models(job_id: Optional[int] = None) -> List[Dict]:
         return models
     
     return [model for model in models if model['job_id'] == job_id]
+
+def save_game_moves(job_id: int, episode: int, moves: List[int], winner: Optional[str], 
+                   game_length: int) -> bool:
+    """
+    Save a game's move history for later replay.
+    
+    Args:
+        job_id: Training job ID
+        episode: Episode number in training
+        moves: List of column indices for each move
+        winner: Winner of the game ('X', 'O', or None for draw)
+        game_length: Number of moves in the game
+        
+    Returns:
+        True if successful, False otherwise
+    """
+    game_data = {
+        "job_id": job_id,
+        "episode": episode,
+        "moves": moves,
+        "winner": winner,
+        "game_length": game_length,
+        "timestamp": datetime.datetime.now().isoformat()
+    }
+    
+    # File to store the game data
+    games_file = os.path.join(GAMES_DIR, f"job_{job_id}_games.json")
+    
+    # Read existing games
+    games = safe_read_json(games_file)
+    games.append(game_data)
+    
+    # Save updated games
+    if safe_write_json(games_file, games):
+        debug.trace(f"Saved moves for job {job_id}, episode {episode}", "data")
+        return True
+    else:
+        debug.error(f"Failed to save moves for job {job_id}, episode {episode}", "data")
+        return False
+
+def get_saved_games(job_id: Optional[int] = None) -> List[Dict]:
+    """
+    Get saved games for replay.
+    
+    Args:
+        job_id: Optional job ID to filter games
+        
+    Returns:
+        List of game data
+    """
+    if job_id is not None:
+        # Get games for specific job
+        games_file = os.path.join(GAMES_DIR, f"job_{job_id}_games.json")
+        if os.path.exists(games_file):
+            return safe_read_json(games_file)
+        return []
+    else:
+        # Get all games from all jobs
+        all_games = []
+        for file in os.listdir(GAMES_DIR):
+            if file.startswith("job_") and file.endswith("_games.json"):
+                games_file = os.path.join(GAMES_DIR, file)
+                all_games.extend(safe_read_json(games_file))
+        return all_games

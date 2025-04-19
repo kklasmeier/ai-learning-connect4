@@ -1,0 +1,28 @@
+Starting a new Connect Four game!
+Enter column number (0-6) to make a move.
+Other commands: 'q' to quit, 'u' to undo, 'r' to restart.
+17:09:46 - connect4 - DEBUG - [game] Resetting game
+17:09:46 - connect4 - DEBUG - [board] Resetting board
+|-------------|
+|             |
+|             |
+|             |
+|             |
+|             |
+|             |
+|-------------|
+|0 1 2 3 4 5 6|
+Your move (columns 0-6, q/u/r): Traceback (most recent call last):
+  File "/home/pi/Programming/ai-learning-connect4/run.py", line 68, in <module>
+    main()
+  File "/home/pi/Programming/ai-learning-connect4/run.py", line 63, in main
+    cli.run()
+  File "/home/pi/Programming/ai-learning-connect4/connect4/cli.py", line 69, in run
+    self.play_game()
+  File "/home/pi/Programming/ai-learning-connect4/connect4/cli.py", line 94, in play_game
+    move = self.get_human_move()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/pi/Programming/ai-learning-connect4/connect4/cli.py", line 147, in get_human_move
+    user_input = input(f"Your move (columns 0-6, q/u/r): ").strip().lower()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

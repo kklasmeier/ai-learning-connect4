@@ -21,10 +21,10 @@ if ! echo "$repo_url" | grep -q "ai-learning-connect4"; then
     fi
 fi
 
-# Ensure .gitignore includes models/* and stats/* but keeps the directories
-if ! grep -Fx "models/*" .gitignore >/dev/null 2>&1 || ! grep -Fx "stats/*" .gitignore >/dev/null 2>&1; then
-    echo "Updating .gitignore to include models/* and stats/*"
-    echo -e "models/*\nstats/*" >> .gitignore
+# Ensure .gitignore includes models/*, stats/*, and __pycache__/
+if ! grep -Fx "models/*" .gitignore >/dev/null 2>&1 || ! grep -Fx "stats/*" .gitignore >/dev/null 2>&1 || ! grep -Fx "__pycache__/" .gitignore >/dev/null 2>&1; then
+    echo "Updating .gitignore to include models/*, stats/*, and __pycache__/"
+    echo -e "models/*\nstats/*\n__pycache__/" >> .gitignore
     # Stage .gitignore if it was modified
     git add .gitignore
 fi

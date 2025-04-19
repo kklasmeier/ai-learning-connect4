@@ -8,5 +8,6 @@ setup(
         "numpy",
         "gymnasium",
         "torch",  # PyTorch for neural networks
+        "filelock",  # For file locking
     ],
 )

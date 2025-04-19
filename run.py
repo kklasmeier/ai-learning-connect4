@@ -43,7 +43,7 @@ def main():
                           help='AI opponent type for play mode')
     # AI component
     ai_parser = subparsers.add_parser('ai', help='Run AI components')
-    ai_parser.add_argument('command', choices=['init', 'play', 'train'],
+    ai_parser.add_argument('command', choices=['init', 'play', 'train', 'jobs', 'purge'],
                         help='Command to run for the AI component')
     ai_parser.add_argument('--debug', action='store_true', help='Enable debug mode')
     ai_parser.add_argument('--debug_level', choices=['none', 'error', 'warning', 'info', 'debug', 'trace'],
@@ -53,10 +53,11 @@ def main():
     ai_parser.add_argument('--model', type=str, help='Path to model file')
     ai_parser.add_argument('--episodes', type=int, default=1000,
                         help='Number of episodes for training')    
-
+    ai_parser.add_argument('--job_id', type=int, help='Job ID for job command')
+    ai_parser.add_argument('--confirm', action='store_true', 
+                        help='Confirm dangerous operations like purge')
     # Parse arguments
     args = parser.parse_args()
-    
     if args.component == 'game':
         # Run the game CLI with the parsed arguments
         cli = SimpleCLI()
@@ -152,8 +153,48 @@ def main():
                     print("AI wins!")
                 else:
                     print("It's a draw!")
-                    
+
             elif args.command == 'train':
+                # Import the training module
+                from connect4.ai.training import SelfPlayTrainer
+                
+                print(f"Starting training with {args.episodes} episodes")
+                
+                # Create or load an agent
+                if args.model:
+                    print(f"Loading model from {args.model}")
+                    agent = DQNAgent.load(args.model)
+                else:
+                    print(f"Creating new agent with hidden size {args.hidden_size}")
+                    agent = DQNAgent(hidden_size=args.hidden_size)
+                
+                # Create trainer and start training
+                trainer = SelfPlayTrainer(agent=agent)
+                
+                # Show job ID information
+                print(f"Created training job with ID: {trainer.job_id}")
+                print(f"You can check status with: python run.py ai jobs --job_id {trainer.job_id}")
+                
+                # Set training parameters
+                log_interval = args.log_interval if hasattr(args, 'log_interval') and args.log_interval is not None else max(1, args.episodes // 100)
+                save_interval = max(1, args.episodes // 10)  # Save ~10 checkpoints
+                
+                try:
+                    print("Starting self-play training...")
+                    trainer.train(
+                        episodes=args.episodes,
+                        log_interval=log_interval,
+                        save_interval=save_interval
+                    )
+                    print("Training completed successfully")
+                except KeyboardInterrupt:
+                    print("\nTraining interrupted. Saving current model...")
+                    trainer._save_checkpoint(trainer.episode_count, final=True)
+                    print("Model saved. Exiting.")
+
+
+
+
                 print("Training functionality will be implemented in the next phase")
                 # Import the training module
                 from connect4.ai.training import SelfPlayTrainer
@@ -187,18 +228,92 @@ def main():
                     print("\nTraining interrupted. Saving current model...")
                     trainer._save_checkpoint(trainer.episode_count, final=True)
                     print("Model saved. Exiting.")
-
-
-
-
-
+            elif args.command == 'jobs':
+                # Import the data manager for job listing
+                from connect4.data.data_manager import get_job_data, get_episode_logs
+                
+                # List all jobs or view a specific job
+                job_id = None
+                if hasattr(args, 'job_id') and args.job_id is not None:
+                    job_id = args.job_id
+                    
+                jobs = get_job_data(job_id)
+                
+                if job_id is not None:
+                    # Show details for a specific job
+                    if not jobs:
+                        print(f"Job {job_id} not found")
+                    else:
+                        print(f"Job {job_id} Details:")
+                        print(f"Started: {jobs['start_time']}")
+                        print(f"Status: {jobs['status']}")
+                        print(f"Episodes: {jobs['episodes_completed']}/{jobs['total_episodes']}")
+                        
+                        if jobs['end_time']:
+                            print(f"Completed: {jobs['end_time']}")
+                        
+                        print("\nTraining Parameters:")
+                        for key, value in jobs['parameters'].items():
+                            print(f"  {key}: {value}")
+                            
+                        # Show recent episodes
+                        print("\nRecent Episodes:")
+                        logs = get_episode_logs(job_id)[-5:]  # Last 5 episodes
+                        for log in logs:
+                            print(f"Episode {log['episode']}: Reward={log['reward']:.2f}, "
+                                f"Length={log['length']}, Winner={log['winner']}")
+                else:
+                    # List all jobs
+                    print(f"Found {len(jobs)} training jobs:")
+                    for job in jobs:
+                        status = job['status']
+                        progress = f"{job['episodes_completed']}/{job['total_episodes']}"
+                        print(f"Job {job['job_id']}: {status}, Progress: {progress}")
+                        
+                    print("\nUse 'python run.py ai jobs --job_id <id>' to view job details")
+            elif args.command == 'purge':
+                import shutil
+                import os
+                
+                if not args.confirm:
+                    print("WARNING: This will delete all jobs, logs, and models data.")
+                    print("To confirm, run: python run.py ai purge --confirm")
+                    return
+                
+                print("Purging all data...")
+                
+                # Clear jobs and models JSON files
+                if os.path.exists('data/jobs.json'):
+                    with open('data/jobs.json', 'w') as f:
+                        f.write('[]')
+                    print("Cleared jobs.json")
+                
+                if os.path.exists('data/models.json'):
+                    with open('data/models.json', 'w') as f:
+                        f.write('[]')
+                    print("Cleared models.json")
+                
+                # Remove log files
+                if os.path.exists('data/logs'):
+                    log_files = os.listdir('data/logs')
+                    for file in log_files:
+                        os.remove(os.path.join('data/logs', file))
+                    print(f"Removed {len(log_files)} log files")
+                
+                # Optionally, also remove model files (careful with this!)
+                delete_models = True  # Set to True if you want to delete model files too
+                if delete_models and args.confirm:
+                    if os.path.exists('models'):
+                        model_files = os.listdir('models')
+                        for file in model_files:
+                            if file.endswith('.pt'):
+                                os.remove(os.path.join('models', file))
+                        print(f"Removed model files")
+                
+                print("Purge completed")            
         except ImportError as e:
             print(f"Error importing AI modules: {e}")
             print("Make sure all AI components are implemented before using this command")
-
-
-
-
     else:
         parser.print_help()
 

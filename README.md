@@ -21,6 +21,10 @@ ai-learning-connect4/
 ├── README.md
 ├── run.py                      # Main entry point
 ├── setup.py                    # Installation file
+├── data/                       # Data storage directory
+│   ├── jobs.json               # Training jobs tracking
+│   ├── models.json             # Model registry
+│   └── logs/                   # Episode logs directory
 ├── connect4/                   # Core package
 │   ├── __init__.py
 │   ├── debug.py                # Debug and logging system
@@ -38,10 +42,10 @@ ai-learning-connect4/
 │   ├── interfaces/             # User interfaces
 │   │   ├── __init__.py
 │   │   └── cli.py              # Command-line interface
-│   └── data/                   # Data management (future)
-│       └── __init__.py
+│   └── data/                   # Data management module
+│       ├── __init__.py
+│       └── data_manager.py     # Training data management
 ├── models/                     # Saved model checkpoints
-├── stats/                      # Training statistics
 └── tests/                      # Unit tests
 ```
 
@@ -56,6 +60,11 @@ cd ai-learning-connect4
 2. Install dependencies:
 ```bash
 pip install -e .
+```
+
+Or install from requirements.txt:
+```bash
+pip install -r requirements.txt
 ```
 
 ## Usage
@@ -90,6 +99,7 @@ Optional parameters:
 - `--model models/model_name`: Continue training from an existing model
 - `--hidden_size 128`: Specify hidden layer size for new models
 - `--debug_level`: Control logging verbosity
+- `--log_interval`: Specify how often to print updates (default: episodes/100)
 
 #### Play against a trained AI model
 
@@ -98,6 +108,41 @@ python run.py ai play --model models/final_model_TIMESTAMP
 ```
 
 Replace `TIMESTAMP` with the actual timestamp from your saved model.
+
+#### View training jobs
+
+List all training jobs:
+```bash
+python run.py ai jobs
+```
+
+View details of a specific job:
+```bash
+python run.py ai jobs --job_id 1
+```
+
+This shows job parameters, progress, and recent episode results.
+
+#### Purge all data
+
+Reset all jobs, logs, and training data (requires confirmation):
+```bash
+python run.py ai purge --confirm
+```
+
+This resets all tracking data while preserving code and model files.
+
+### Data Management
+
+The system tracks training data in JSON files:
+
+1. **Jobs**: Each training run is tracked as a job with parameters and progress
+2. **Episode Logs**: Detailed logs of training episodes are stored in two formats:
+   - Recent logs: Full details for the last 1000 episodes
+   - Historical logs: Sampled data (1 in 50) for older episodes
+3. **Model Registry**: Tracks all saved model checkpoints
+
+All data is stored in the `data` directory, making it portable and human-readable.
 
 ### Debug Levels
 
@@ -125,7 +170,12 @@ This enables full debug output (equivalent to `--debug_level debug`).
 
 ### Training Statistics
 
-During training, statistics are automatically saved to the `stats` directory with the same timestamp as the model checkpoints. Statistics include:
+During training, statistics are automatically saved in the following locations:
+- `data/jobs.json`: Overall job information
+- `data/logs/job_X_recent.json`: Detailed logs for recent episodes
+- `data/logs/job_X_history.json`: Sampled logs for older episodes
+
+Statistics include:
 - Win rates for Player 1 and Player 2
 - Draw rates
 - Average game length
@@ -141,7 +191,7 @@ Models are saved to the `models` directory with timestamps in their filenames. T
 To start fresh with no previous models:
 
 ```bash
-rm models/*
+python run.py ai purge --confirm
 python run.py ai init --hidden_size 128
 python run.py ai train --episodes 1000
 ```
@@ -180,7 +230,11 @@ The AI learns through a reward system:
 
 3. **"No module named 'gymnasium'"**: Install the Gymnasium package with `pip install gymnasium`
 
-4. **"No valid moves available"**: This is a normal message during gameplay when the board is full or a winning move was made
+4. **"No module named 'filelock'"**: Install the filelock package with `pip install filelock`
+
+5. **File permission errors**: Ensure the data directory has write permissions
+
+6. **Empty job listings**: Make sure at least one training job has been run
 
 ## License
 

@@ -21,6 +21,11 @@ from connect4.ai.dqn import DQNAgent, DQNModel
 from connect4.ai.replay_buffer import ReplayBuffer
 from connect4.ai.utils import board_to_state, state_to_tensor
 
+from connect4.data.data_manager import (
+    create_job, update_job_progress, add_episode_log,
+    register_model, complete_job
+)
+
 class TrainingStats:
     """Track and save statistics during training."""
     
@@ -47,7 +52,7 @@ class TrainingStats:
         self.timestamps = []
     
     def add_episode(self, reward: float, length: int, winner: Optional[Player], 
-                   loss: float, epsilon: float):
+                loss: float, epsilon: float):
         """
         Add statistics for a completed episode.
         
@@ -66,19 +71,39 @@ class TrainingStats:
             self.win_rates['draw'].append(1)
             self.win_rates['player_one'].append(0)
             self.win_rates['player_two'].append(0)
+            winner_str = None
         elif winner == Player.ONE:
             self.win_rates['player_one'].append(1)
             self.win_rates['player_two'].append(0)
             self.win_rates['draw'].append(0)
+            winner_str = "X"
         else:  # Player.TWO
             self.win_rates['player_two'].append(1)
             self.win_rates['player_one'].append(0)
             self.win_rates['draw'].append(0)
+            winner_str = "O"
         
         self.losses.append(loss)
         self.exploration_rates.append(epsilon)
         self.timestamps.append(time.time())
-    
+        
+        # Prepare episode data for data manager
+        episode_data = {
+            'episode': len(self.episode_rewards),
+            'reward': float(reward),
+            'length': int(length),
+            'winner': winner_str,
+            'p1_win_rate': float(np.mean(self.win_rates['player_one'][-100:])),
+            'p2_win_rate': float(np.mean(self.win_rates['player_two'][-100:])),
+            'draw_rate': float(np.mean(self.win_rates['draw'][-100:])),
+            'epsilon': float(epsilon),
+            'loss': float(loss) if loss is not None else None
+        }
+        
+        # Add to data manager if job_id is available
+        if hasattr(self, 'job_id'):
+            add_episode_log(self.job_id, episode_data)
+
     def get_summary(self, window: int = 100) -> Dict[str, Any]:
         """
         Get a summary of recent statistics.
@@ -152,7 +177,7 @@ class SelfPlayTrainer:
     This class manages the training process where the AI agent plays against
     itself to improve its policy through reinforcement learning.
     """
-    
+
     def __init__(self, agent: Optional[DQNAgent] = None, 
                 model_dir: str = 'models', 
                 batch_size: int = 64,
@@ -193,7 +218,19 @@ class SelfPlayTrainer:
         
         # Timestamp for saving models
         self.start_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-    
+        
+        # Create job entry for tracking
+        training_params = {
+            'episodes': 0,  # Will be updated in train() method
+            'hidden_size': agent.model.fc1.out_features if agent else 128,
+            'batch_size': batch_size,
+            'gamma': gamma,
+            'target_update_freq': target_update_freq,
+            'model_dir': model_dir
+        }
+        self.job_id = create_job(training_params)
+        debug.info(f"Created training job with ID: {self.job_id}", "training")    
+
     def _play_episode(self, training: bool = True) -> Tuple[float, int, Optional[Player], List[float]]:
         """
         Play a complete self-play episode.
@@ -283,9 +320,9 @@ class SelfPlayTrainer:
         return total_reward, episode_length, winner, losses
     
     def train(self, episodes: int = 1000, 
-             log_interval: int = 10, 
-             save_interval: int = 100,
-             evaluation_interval: int = 50):
+            log_interval: int = 10, 
+            save_interval: int = 100,
+            evaluation_interval: int = 50):
         """
         Train the agent through self-play.
         
@@ -299,6 +336,18 @@ class SelfPlayTrainer:
         
         start_time = time.time()
         
+        # Update the job with total episodes
+        job_params = {
+            'episodes': episodes,
+            'log_interval': log_interval, 
+            'save_interval': save_interval,
+            'evaluation_interval': evaluation_interval
+        }
+        update_job_progress(self.job_id, 0)  # Reset progress
+        
+        # Add job_id to stats for episode logging
+        self.stats.job_id = self.job_id
+        
         for episode in range(1, episodes + 1):
             debug.debug(f"Starting episode {episode}/{episodes}", "training")
             
@@ -311,20 +360,23 @@ class SelfPlayTrainer:
                 total_reward, episode_length, winner, avg_loss, self.agent.epsilon
             )
             
+            # Update job progress
+            update_job_progress(self.job_id, episode)
+            
             # Log progress
             if episode % log_interval == 0:
                 stats = self.stats.get_summary()
                 elapsed = time.time() - start_time
                 
                 print(f"Episode {episode}/{episodes} "
-                     f"[{elapsed:.1f}s] - "
-                     f"Reward: {total_reward:.2f}, "
-                     f"Length: {episode_length}, "
-                     f"Winner: {winner}, "
-                     f"P1 Win Rate: {stats['win_rate_p1']:.2f}, "
-                     f"P2 Win Rate: {stats['win_rate_p2']:.2f}, "
-                     f"Draw Rate: {stats['draw_rate']:.2f}, "
-                     f"Epsilon: {self.agent.epsilon:.3f}")
+                    f"[{elapsed:.1f}s] - "
+                    f"Reward: {total_reward:.2f}, "
+                    f"Length: {episode_length}, "
+                    f"Winner: {winner}, "
+                    f"P1 Win Rate: {stats['win_rate_p1']:.2f}, "
+                    f"P2 Win Rate: {stats['win_rate_p2']:.2f}, "
+                    f"Draw Rate: {stats['draw_rate']:.2f}, "
+                    f"Epsilon: {self.agent.epsilon:.3f}")
             
             # Save model periodically
             if episode % save_interval == 0:
@@ -338,6 +390,9 @@ class SelfPlayTrainer:
         
         # Save final model and statistics
         self._save_checkpoint(episodes, final=True)
+        
+        # Mark job as complete
+        complete_job(self.job_id)
         
         debug.info(f"Training completed after {episodes} episodes", "training")
         
@@ -363,8 +418,11 @@ class SelfPlayTrainer:
         # Save stats with the same name
         stats_path = self.stats.save(f"{model_name}_stats.json")
         
+        # Register model in data manager
+        register_model(self.job_id, episode, model_path, is_final=final)
+        
         debug.info(f"Saved checkpoint to {model_path}", "training")
-    
+
     def _evaluate(self, num_games: int = 10):
         """
         Evaluate the current agent by playing against a fixed opponent.

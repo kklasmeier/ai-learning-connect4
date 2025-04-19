@@ -7,5 +7,6 @@ setup(
     install_requires=[
         "numpy",
         "gymnasium",
+        "torch",  # PyTorch for neural networks
     ],
 )

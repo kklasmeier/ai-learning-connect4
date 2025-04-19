@@ -1,9 +1,13 @@
 """
-connect4.ai - Reinforcement learning AI for Connect Four
+connect4/ai/__init__.py - AI module for Connect Four reinforcement learning
 
-This package will contain the neural network models, training loops,
-and AI agents for learning to play Connect Four.
+This module provides reinforcement learning components that enable
+the Connect Four game to learn through self-play.
 """
 
-# Will be populated as AI components are implemented
-__all__ = []
+__all__ = ['DQNAgent', 'DQNModel', 'ReplayBuffer', 'SelfPlayTrainer']
+
+# These imports will be added as we implement the components
+# from connect4.ai.dqn import DQNAgent, DQNModel
+# from connect4.ai.replay_buffer import ReplayBuffer
+# from connect4.ai.training import SelfPlayTrainer

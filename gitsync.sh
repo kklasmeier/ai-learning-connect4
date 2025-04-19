@@ -13,12 +13,25 @@ repo_url=$(git remote -v | grep fetch | awk '{print $2}')
 if ! echo "$repo_url" | grep -q "ai-learning-connect4"; then
     echo "Warning: This script is intended for the ai-learning-connect4 repository."
     echo "Current repository: $repo_url"
-    read -p "Continue anyway? (y/n): " continue_anyway
+    read -p "Continue anyway? [Y/n]: " continue_anyway
+    continue_anyway=${continue_anyway:-Y}
     if [ "$continue_anyway" != "y" ] && [ "$continue_anyway" != "Y" ]; then
         echo "Exiting."
         exit 1
     fi
 fi
+
+# Ensure .gitignore includes models/* and stats/* but keeps the directories
+if ! grep -Fx "models/*" .gitignore >/dev/null 2>&1 || ! grep -Fx "stats/*" .gitignore >/dev/null 2>&1; then
+    echo "Updating .gitignore to include models/* and stats/*"
+    echo -e "models/*\nstats/*" >> .gitignore
+    # Stage .gitignore if it was modified
+    git add .gitignore
+fi
+# Ensure empty directories are tracked
+mkdir -p models stats
+touch models/.gitkeep stats/.gitkeep
+git add models/.gitkeep stats/.gitkeep
 
 echo "=== GitHub Interaction Script for AI Learning Connect4 ==="
 echo "Current directory: $(pwd)"
@@ -33,7 +46,8 @@ echo ""
 
 # Step 2: Stage changes interactively
 echo "=== Staging Changes ==="
-read -p "Do you want to stage all changes? (y/n): " stage_all
+read -p "Do you want to stage all changes? [Y/n]: " stage_all
+stage_all=${stage_all:-Y}
 if [ "$stage_all" = "y" ] || [ "$stage_all" = "Y" ]; then
     echo "Staging all changes..."
     git add .
@@ -82,7 +96,8 @@ current_branch=$(git branch --show-current)
 # Check if the current branch has an upstream branch
 if ! git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1; then
     echo "The current branch '$current_branch' has no upstream branch set."
-    read -p "Set upstream to 'origin/$current_branch' and push? (y/n): " set_upstream
+    read -p "Set upstream to 'origin/$current_branch' and push? [Y/n]: " set_upstream
+    set_upstream=${set_upstream:-Y}
     if [ "$set_upstream" = "y" ] || [ "$set_upstream" = "Y" ]; then
         echo "Setting upstream and pushing to 'origin/$current_branch'..."
         git push --set-upstream origin "$current_branch"
@@ -91,7 +106,8 @@ if ! git rev-parse --abbrev-ref --symbolic-full-name @{u} >/dev/null 2>&1; then
         exit 0
     fi
 else
-    read -p "Push to 'origin/$current_branch'? (y/n): " push_confirm
+    read -p "Push to 'origin/$current_branch'? [Y/n]: " push_confirm
+    push_confirm=${push_confirm:-Y}
     if [ "$push_confirm" = "y" ] || [ "$push_confirm" = "Y" ]; then
         echo "Pushing to 'origin/$current_branch'..."
         git push origin "$current_branch"
@@ -111,7 +127,8 @@ echo ""
 
 # Step 6: Final status check
 echo "=== Final Check ==="
-read -p "Would you like to see the current Git status? (y/n): " status_confirm
+read -p "Would you like to see the current Git status? [Y/n]: " status_confirm
+status_confirm=${status_confirm:-Y}
 if [ "$status_confirm" = "y" ] || [ "$status_confirm" = "Y" ]; then
     echo "Running 'git status'..."
     git status

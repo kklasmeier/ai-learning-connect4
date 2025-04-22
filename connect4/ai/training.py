@@ -15,11 +15,12 @@ from datetime import datetime
 import json
 
 from connect4.debug import debug, DebugLevel
-from connect4.utils import ROWS, COLS, Player, GameResult
+from connect4.utils import ROWS, COLS, Player, GameResult, is_valid_position
 from connect4.game.rules import ConnectFourGame, ConnectFourEnv
 from connect4.ai.dqn import DQNAgent, DQNModel
 from connect4.ai.replay_buffer import ReplayBuffer
-from connect4.ai.utils import board_to_state, state_to_tensor
+from connect4.ai.utils import board_to_state, state_to_tensor, check_connections
+from connect4.ai.reward_calculator import ConnectFourRewardCalculator
 
 from connect4.data.data_manager import (
     create_job, update_job_progress, add_episode_log,
@@ -223,7 +224,8 @@ class SelfPlayTrainer:
         # Create job entry for tracking
         training_params = {
             'episodes': 0,  # Will be updated in train() method
-            'hidden_size': agent.model.fc1.out_features if agent else 128,
+            'layers': len(agent.model.hidden_sizes) if hasattr(agent.model, 'hidden_sizes') else 1,
+            'layer_sizes': agent.model.hidden_sizes if hasattr(agent.model, 'hidden_sizes') else [agent.model.fc1.out_features],
             'batch_size': batch_size,
             'gamma': gamma,
             'target_update_freq': target_update_freq,
@@ -233,15 +235,7 @@ class SelfPlayTrainer:
         debug.info(f"Created training job with ID: {self.job_id}", "training")    
 
     def _play_episode(self, training: bool = True) -> Tuple[float, int, Optional[Player], List[float]]:
-        """
-        Play a complete self-play episode.
-        
-        Args:
-            training: Whether to update the model during play
-            
-        Returns:
-            Tuple of (total_reward, episode_length, winner, losses)
-        """
+        """Play a complete self-play episode."""
         game = ConnectFourGame()
         done = False
         total_reward = 0
@@ -250,10 +244,19 @@ class SelfPlayTrainer:
         
         # Keep track of states and actions for rewarding after game completion
         history = []
-
+        
         # Track moves for saving
         moves = []
-
+        
+        # Track the last column played (to detect stacking)
+        last_column = -1
+        
+        # Initialize stacking counter
+        stacking_count = 0
+        
+        # Initialize reward calculator
+        reward_calculator = ConnectFourRewardCalculator()
+        
         while not done:
             current_player = game.get_current_player()
             
@@ -270,29 +273,30 @@ class SelfPlayTrainer:
             # Get action from agent
             action = self.agent.get_action(game.board, valid_moves, training=training)
             
+            # Update stacking counter
+            if last_column == action:
+                stacking_count += 1
+            else:
+                stacking_count = 1
+            
+            # Update last column
+            last_column = action
+            
             # Make the move
             game.make_move(action)
             episode_length += 1
-
+            
             # Record the move
             moves.append(action)
-
-            # Get reward and check if game is over
-            reward = 0
-            if game.is_game_over():
-                winner = game.get_winner()
-                
-                if winner == Player.ONE:
-                    reward = 1.0  # Player 1 wins
-                elif winner == Player.TWO:
-                    reward = -1.0  # Player 2 wins (loss for Player 1)
-                else:
-                    reward = 0.1  # Draw
-                
-                done = True
-            else:
-                # Small negative reward to encourage faster solving
-                reward = -0.01
+            
+            # Get the position of the last move
+            last_row, last_col = game.board.last_move
+            
+            # Calculate reward using our reward calculator
+            reward = reward_calculator.calculate_reward(
+                game, last_row, last_col, last_column, action, 
+                current_player, stacking_count, valid_moves
+            )
             
             # Store total reward (from player 1's perspective)
             if current_player == Player.ONE:
@@ -315,7 +319,7 @@ class SelfPlayTrainer:
         
         # Process the history to add experiences to replay buffer
         if training:
-            # If the game is over, propagate terminal rewards back through history
+            # If the game is over, process experiences
             for i, (state, action, reward, next_state, is_done, player) in enumerate(history):
                 # For final state, use the outcome reward
                 if i == len(history) - 1:
@@ -323,6 +327,7 @@ class SelfPlayTrainer:
                 else:
                     self.replay_buffer.add(state, action, reward, next_state, False)
         
+        # Determine whether to save this game
         winner = game.get_winner()
         winner_str = "X" if winner == Player.ONE else "O" if winner == Player.TWO else None
         
@@ -339,10 +344,9 @@ class SelfPlayTrainer:
             from connect4.data.data_manager import save_game_moves
             save_game_moves(self.job_id, self.episode_count + 1, moves, winner_str, episode_length)
             debug.info(f"Saved game moves for episode {self.episode_count + 1}", "training")
-
-
+        
         return total_reward, episode_length, winner, losses
-    
+
     def train(self, episodes: int = 1000, 
             log_interval: int = 10, 
             save_interval: int = 100,
@@ -359,10 +363,7 @@ class SelfPlayTrainer:
         debug.info(f"Starting self-play training for {episodes} episodes", "training")
         
         start_time = time.time()
-
-        # Set total episodes for the current training run
-        self.total_episodes = episodes
-
+        
         # Update the job with total episodes
         job_params = {
             'episodes': episodes,
@@ -374,9 +375,20 @@ class SelfPlayTrainer:
         
         # Add job_id to stats for episode logging
         self.stats.job_id = self.job_id
+        self.total_episodes = episodes
+        
+        # Add tracking for dangerous loss values
+        max_loss_threshold = 1000.0  # Set a reasonable threshold
+        high_loss_count = 0
         
         for episode in range(1, episodes + 1):
             debug.debug(f"Starting episode {episode}/{episodes}", "training")
+            
+            # Reset epsilon periodically to encourage exploration
+            if episode % 5000 == 0 and episode > 0:
+                old_epsilon = self.agent.epsilon
+                self.agent.epsilon = max(0.3, self.agent.epsilon)  # Reset to at least 30% exploration
+                debug.info(f"Reset epsilon from {old_epsilon:.3f} to {self.agent.epsilon:.3f} to encourage exploration", "training")
             
             # Play a self-play episode and train
             total_reward, episode_length, winner, losses = self._play_episode(training=True)
@@ -386,7 +398,24 @@ class SelfPlayTrainer:
             self.stats.add_episode(
                 total_reward, episode_length, winner, avg_loss, self.agent.epsilon
             )
-            
+
+            # Monitor for high loss values
+            if losses and avg_loss is not None and avg_loss > max_loss_threshold:
+                high_loss_count += 1
+                debug.warning(f"High loss detected: {avg_loss}, count: {high_loss_count}", "training")
+                
+                # If loss values stay high, take corrective action
+                if high_loss_count > 10:
+                    debug.warning("Persistent high losses! Temporarily reducing learning rate", "training")
+                    current_lr = self.agent.optimizer.param_groups[0]['lr']
+                    reduced_lr = current_lr * 0.5  # Cut learning rate in half
+                    for param_group in self.agent.optimizer.param_groups:
+                        param_group['lr'] = max(reduced_lr, 0.00001)  # Don't go too low
+                    high_loss_count = 0  # Reset counter
+                    
+            else:
+                high_loss_count = max(0, high_loss_count - 1)  # Decrease counter if loss is normal
+
             # Update job progress
             update_job_progress(self.job_id, episode)
             
@@ -425,7 +454,7 @@ class SelfPlayTrainer:
         
         # Return final statistics
         return self.stats.get_summary()
-    
+   
     def _save_checkpoint(self, episode: int, final: bool = False):
         """
         Save a model checkpoint.
@@ -463,7 +492,7 @@ class SelfPlayTrainer:
         wins = 0
         draws = 0
         player_one_wins = 0
-        
+        player_two_wins = 0
         for game_idx in range(num_games):
             # Alternate playing as player 1 and 2
             # Play without training (evaluation mode)

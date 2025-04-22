@@ -59,6 +59,9 @@ def main():
     
     # Initialize a model with a larger hidden layer
     python run.py ai init --hidden_size 256
+
+    # Initialize a model with 3 layers with a decreasing size
+    python run.py ai init --layer_sizes 256,128,64
     
     # Play against a trained model
     python run.py ai play --model models/final_model_TIMESTAMP
@@ -73,6 +76,9 @@ def main():
     
     # Train with a specific log interval
     python run.py ai train --episodes 500 --log_interval 10
+    
+    #This will train an AI for 1000 episodes with a neural network that has three hidden layers of sizes 256, 128, and 64.
+    python run.py ai train --episodes 1000 --layer_sizes 256,128,64
     
     # Train with a larger hidden layer size
     python run.py ai train --episodes 1000 --hidden_size 256
@@ -107,6 +113,16 @@ def main():
     
     # Replay a game with slower movement
     python run.py ai games --replay 5 --delay 1.0
+
+    # Replay the latest game as it becomes available
+    python run.py ai games --watch-latest
+
+    # Watch the latest game with a delay of 1 second
+    python run.py ai games --watch-latest --delay 1.0
+    
+    # Watch the latest game with a delay of 0.5 seconds
+    python run.py ai games --watch-latest --delay 0.5
+
     """
     )
 
@@ -165,7 +181,14 @@ def main():
     model_group.add_argument('--hidden_size', 
         type=int, 
         default=128, 
-        help='Hidden layer size for neural network (larger = more capacity but slower training)')
+        help='Size of each hidden layer for neural network (default: 128)')
+    model_group.add_argument('--layers', 
+        type=int, 
+        default=1, 
+        help='Number of hidden layers in the neural network (default: 1)')
+    model_group.add_argument('--layer_sizes', 
+        type=str, 
+        help='Comma-separated list of layer sizes (e.g., "256,128,64"), overrides --hidden_size and --layers')
     model_group.add_argument('--model', 
         type=str, 
         help='Path to saved model file for loading (used with play and train commands)')
@@ -199,6 +222,9 @@ def main():
     data_group.add_argument('--confirm', 
         action='store_true', 
         help='Confirm dangerous operations like purge (required for purge command)')
+    data_group.add_argument('--watch-latest', 
+        action='store_true', 
+        help='Continuously watch and replay the latest game as it becomes available')
 
 
     # Parse arguments
@@ -240,9 +266,24 @@ def main():
                 debug.configure(level=debug_level)
             
             if args.command == 'init':
+                import os  # Add this line to ensure os is available in this scope
+                
+                # Parse layer sizes if provided
+                hidden_sizes = None
+                if hasattr(args, 'layer_sizes') and args.layer_sizes:
+                    try:
+                        hidden_sizes = [int(size) for size in args.layer_sizes.split(',')]
+                        print(f"Using custom layer architecture: {hidden_sizes}")
+                    except ValueError:
+                        print(f"Error parsing layer sizes '{args.layer_sizes}'. Using default configuration.")
+                
                 # Initialize a new model
-                print(f"Initializing new DQN model with hidden size {args.hidden_size}")
-                agent = DQNAgent(hidden_size=args.hidden_size)
+                if hidden_sizes:
+                    print(f"Initializing new DQN model with architecture: {hidden_sizes}")
+                    agent = DQNAgent(hidden_sizes=hidden_sizes)
+                else:
+                    print(f"Initializing new DQN model with hidden size {args.hidden_size}")
+                    agent = DQNAgent(hidden_size=args.hidden_size)
                 
                 # Save the initialized model
                 os.makedirs('models', exist_ok=True)
@@ -300,18 +341,46 @@ def main():
                     print("It's a draw!")
 
             elif args.command == 'train':
-                # Import the training module
                 from connect4.ai.training import SelfPlayTrainer
+                import os
                 
                 print(f"Starting training with {args.episodes} episodes")
+                
+                # Parse layer sizes if provided through command line
+                hidden_sizes = None
+                if hasattr(args, 'layer_sizes') and args.layer_sizes:
+                    try:
+                        hidden_sizes = [int(size) for size in args.layer_sizes.split(',')]
+                        print(f"Using custom layer architecture from command: {hidden_sizes}")
+                    except ValueError:
+                        print(f"Error parsing layer sizes '{args.layer_sizes}'. Using default configuration.")
                 
                 # Create or load an agent
                 if args.model:
                     print(f"Loading model from {args.model}")
                     agent = DQNAgent.load(args.model)
+                    # Display the loaded model's architecture
+                    if hasattr(agent.model, 'hidden_sizes'):
+                        print(f"Model architecture: {agent.model.hidden_sizes}")
                 else:
-                    print(f"Creating new agent with hidden size {args.hidden_size}")
-                    agent = DQNAgent(hidden_size=args.hidden_size)
+                    # Check if initial_model exists and load it if it does
+                    initial_model_path = os.path.join('models', 'initial_model_model.pt')
+                    if os.path.exists(initial_model_path):
+                        print(f"Loading initial model from {initial_model_path}")
+                        agent = DQNAgent.load('models/initial_model')
+                        # Display the loaded model's architecture
+                        if hasattr(agent.model, 'hidden_sizes'):
+                            print(f"Model architecture: {agent.model.hidden_sizes}")
+                    else:
+                        # Create a new model with the specified architecture
+                        if hidden_sizes:
+                            print(f"Creating new agent with custom architecture: {hidden_sizes}")
+                            agent = DQNAgent(hidden_sizes=hidden_sizes)
+                        else:
+                            layers = args.layers
+                            hidden_size = args.hidden_size
+                            print(f"Creating new agent with {layers} layer(s) of size {hidden_size}")
+                            agent = DQNAgent(hidden_size=hidden_size, layers=layers)
                 
                 # Create trainer and start training
                 trainer = SelfPlayTrainer(agent=agent)
@@ -322,43 +391,6 @@ def main():
                 
                 # Set training parameters
                 log_interval = args.log_interval if hasattr(args, 'log_interval') and args.log_interval is not None else max(1, args.episodes // 100)
-                save_interval = max(1, args.episodes // 10)  # Save ~10 checkpoints
-                
-                try:
-                    print("Starting self-play training...")
-                    trainer.train(
-                        episodes=args.episodes,
-                        log_interval=log_interval,
-                        save_interval=save_interval
-                    )
-                    print("Training completed successfully")
-                except KeyboardInterrupt:
-                    print("\nTraining interrupted. Saving current model...")
-                    trainer._save_checkpoint(trainer.episode_count, final=True)
-                    print("Model saved. Exiting.")
-
-
-
-
-                print("Training functionality will be implemented in the next phase")
-                # Import the training module
-                from connect4.ai.training import SelfPlayTrainer
-                
-                print(f"Starting training with {args.episodes} episodes")
-                
-                # Create or load an agent
-                if args.model:
-                    print(f"Loading model from {args.model}")
-                    agent = DQNAgent.load(args.model)
-                else:
-                    print(f"Creating new agent with hidden size {args.hidden_size}")
-                    agent = DQNAgent(hidden_size=args.hidden_size)
-                
-                # Create trainer and start training
-                trainer = SelfPlayTrainer(agent=agent)
-                
-                # Set training parameters
-                log_interval = max(1, args.episodes // 100)  # Log ~100 times
                 save_interval = max(1, args.episodes // 10)  # Save ~10 checkpoints
                 
                 try:
@@ -456,11 +488,100 @@ def main():
                 print("Purge completed")            
 
             elif args.command == 'games':
-                from connect4.data.data_manager import get_saved_games
+                from connect4.data.data_manager import get_saved_games, get_latest_game_id, get_episode_logs
                 from connect4.game.rules import ConnectFourGame
                 import time
                 
-                if args.replay is not None:
+                if args.watch_latest:
+                    # Continuously watch for new games
+                    print("Watching for new games. Press Ctrl+C to stop.")
+                    last_game_id = None
+                    
+                    try:
+                        while True:
+                            # Get the latest game ID
+                            latest_game_id = get_latest_game_id(args.job_id)
+                            
+                            if latest_game_id is not None and latest_game_id != last_game_id:
+                                # New game found, replay it
+                                last_game_id = latest_game_id
+                                all_games = get_saved_games(args.job_id)
+                                
+                                if 0 <= latest_game_id < len(all_games):
+                                    game_data = all_games[latest_game_id]
+                                    job_id = game_data['job_id']
+                                    episode = game_data['episode']
+                                    
+                                    print(f"\n\nReplaying latest game {latest_game_id}: Job {job_id}, Episode {episode}")
+                                    print(f"Winner: {game_data['winner'] or 'Draw'}, Length: {game_data['game_length']}")
+                                    
+                                    # Get training metrics for this episode if available
+                                    try:
+                                        episode_logs = get_episode_logs(job_id)
+                                        episode_log = next((log for log in episode_logs if log['episode'] == episode), None)
+                                        
+                                        if episode_log:
+                                            print("\nTraining Metrics:")
+                                            print(f"Reward: {episode_log.get('reward', 'N/A')}")
+                                            print(f"Epsilon: {episode_log.get('epsilon', 'N/A')}")  # Exploration rate
+                                            print(f"Loss: {episode_log.get('loss', 'N/A')}")        # Network loss
+                                            
+                                            # Show learning progress
+                                            if 'avg_reward' in episode_log:
+                                                print(f"Average Reward (last 100): {episode_log['avg_reward']}")
+                                            
+                                            # Show prediction information if available
+                                            if 'prediction_accuracy' in episode_log:
+                                                print(f"Prediction Accuracy: {episode_log['prediction_accuracy']:.2f}%")
+                                    except Exception as e:
+                                        print(f"Note: Could not retrieve training metrics: {e}")
+                                    
+                                    time.sleep(5)
+
+                                    # Create a game and replay the moves
+                                    game = ConnectFourGame()
+                                    print("\nInitial board:")
+                                    print(game.render())
+                                    time.sleep(args.delay)
+                                    
+                                    for i, move in enumerate(game_data['moves']):
+                                        current_player = "X" if game.get_current_player() == Player.ONE else "O"
+                                        print(f"\nEpisode {episode}, Move {i+1}: Player {current_player} plays column {move}")
+                                        game.make_move(move)
+                                        print(game.render())
+                                        time.sleep(args.delay)
+                                    
+                                    # Show final result
+                                    winner = game.get_winner()
+                                    if winner:
+                                        winner_str = "X" if winner == Player.ONE else "O"
+                                        print(f"\nGame over! {winner_str} wins!")
+                                    else:
+                                        print("\nGame over! It's a draw!")
+
+                                    if episode_log:
+                                        print("\nTraining Metrics:")
+                                        print(f"Reward: {episode_log.get('reward', 'N/A')}")
+                                        print(f"Epsilon: {episode_log.get('epsilon', 'N/A')}")  # Exploration rate
+                                        print(f"Loss: {episode_log.get('loss', 'N/A')}")        # Network loss
+                                        
+                                        # Show learning progress
+                                        if 'avg_reward' in episode_log:
+                                            print(f"Average Reward (last 100): {episode_log['avg_reward']}")
+                                        
+                                        # Show prediction information if available
+                                        if 'prediction_accuracy' in episode_log:
+                                            print(f"Prediction Accuracy: {episode_log['prediction_accuracy']:.2f}%")
+
+                                    print("\n------------------------------------------------------------------------------")
+
+                            # Sleep for a while before checking again
+                            time.sleep(5)  # Check every 5 seconds
+                            
+                    except KeyboardInterrupt:
+                        print("\nStopped watching for new games.")
+
+                elif args.replay is not None:
                     # Replay a specific game
                     all_games = get_saved_games(args.job_id)
                     game_id = args.replay

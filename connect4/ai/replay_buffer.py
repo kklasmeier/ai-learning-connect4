@@ -32,23 +32,16 @@ class ReplayBuffer:
         debug.debug(f"Initializing ReplayBuffer with capacity {capacity}", "ai")
         self.buffer = deque(maxlen=capacity)
         self.capacity = capacity
-    
-    def add(self, state: np.ndarray, action: int, reward: float, 
-            next_state: np.ndarray, done: bool) -> None:
-        """
-        Add an experience to the buffer.
-        
-        Args:
-            state: Current state (3 x ROWS x COLS)
-            action: Action taken (column index)
-            reward: Reward received
-            next_state: Next state after action
-            done: Whether this is a terminal state
-        """
-        debug.trace(f"Adding experience: action={action}, reward={reward}, done={done}", "ai")
+
+    def add(self, state, action, reward, next_state, done):
+        """Add a new experience to the buffer."""
+        # Hard clip rewards to prevent extreme values
+        reward = max(min(reward, 10.0), -10.0)
         
         self.buffer.append((state, action, reward, next_state, done))
-    
+        if len(self.buffer) > self.capacity:
+            self.buffer.popleft()
+
     def sample(self, batch_size: int) -> List[Tuple]:
         """
         Randomly sample a batch of experiences.

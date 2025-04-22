@@ -26,17 +26,23 @@ class DQNModel(nn.Module):
     The architecture is configurable, allowing for different hidden layer sizes.
     """
     
-    def __init__(self, input_channels: int = 3, hidden_size: int = 128):
+    def __init__(self, input_channels: int = 3, hidden_sizes: List[int] = None, hidden_size: int = 128, layers: int = 1):
         """
         Initialize the neural network model.
         
         Args:
             input_channels: Number of input channels (default 3: empty, player 1, player 2)
-            hidden_size: Size of the hidden layer
+            hidden_sizes: List of sizes for each hidden layer (overrides layers parameter)
+            hidden_size: Size of each hidden layer if hidden_sizes is not provided
+            layers: Number of hidden layers (ignored if hidden_sizes is provided)
         """
         super(DQNModel, self).__init__()
         
-        debug.debug(f"Initializing DQNModel with hidden_size={hidden_size}", "ai")
+        # Determine hidden layers configuration
+        if hidden_sizes is None:
+            hidden_sizes = [hidden_size] * layers
+        
+        debug.debug(f"Initializing DQNModel with {len(hidden_sizes)} layers: {hidden_sizes}", "ai")
         
         # Input layer: takes 3xROWSxCOLS state representation
         self.conv1 = nn.Conv2d(input_channels, 16, kernel_size=3, padding=1)
@@ -45,11 +51,21 @@ class DQNModel(nn.Module):
         # Calculate size after convolutions
         conv_output_size = 32 * ROWS * COLS
         
-        # Hidden layer
-        self.fc1 = nn.Linear(conv_output_size, hidden_size)
+        # Create dynamic fully connected layers
+        self.fc_layers = nn.ModuleList()
+        
+        # Input to first hidden layer
+        self.fc_layers.append(nn.Linear(conv_output_size, hidden_sizes[0]))
+        
+        # Additional hidden layers
+        for i in range(1, len(hidden_sizes)):
+            self.fc_layers.append(nn.Linear(hidden_sizes[i-1], hidden_sizes[i]))
         
         # Output layer: one value per column
-        self.fc2 = nn.Linear(hidden_size, COLS)
+        self.output = nn.Linear(hidden_sizes[-1], COLS)
+        
+        # Store model configuration for later reference
+        self.hidden_sizes = hidden_sizes
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -68,11 +84,12 @@ class DQNModel(nn.Module):
         # Flatten for fully connected layers
         x = x.view(x.size(0), -1)
         
-        # Apply hidden layer with ReLU
-        x = F.relu(self.fc1(x))
+        # Pass through each hidden layer
+        for layer in self.fc_layers:
+            x = F.relu(layer(x))
         
-        # Output layer (no activation - will be used with softmax later)
-        x = self.fc2(x)
+        # Output layer
+        x = self.output(x)
         
         return x
     
@@ -85,7 +102,12 @@ class DQNModel(nn.Module):
         """
         debug.info(f"Saving model to {path}", "ai")
         os.makedirs(os.path.dirname(path), exist_ok=True)
-        torch.save(self.state_dict(), path)
+        
+        # Save model state dict
+        torch.save({
+            'state_dict': self.state_dict(),
+            'hidden_sizes': self.hidden_sizes
+        }, path)
     
     @classmethod
     def load(cls, path: str, **kwargs) -> 'DQNModel':
@@ -100,11 +122,18 @@ class DQNModel(nn.Module):
             Loaded DQNModel instance
         """
         debug.info(f"Loading model from {path}", "ai")
-        model = cls(**kwargs)
-        model.load_state_dict(torch.load(path))
+        
+        # Load saved data
+        saved_data = torch.load(path)
+        
+        # Create model with the same architecture
+        model = cls(hidden_sizes=saved_data.get('hidden_sizes', None), **kwargs)
+        
+        # Load the state dict
+        model.load_state_dict(saved_data['state_dict'])
         model.eval()  # Set to evaluation mode
+        
         return model
-
 
 class DQNAgent:
     """
@@ -116,20 +145,24 @@ class DQNAgent:
     
     def __init__(self, model: Optional[DQNModel] = None, 
                 target_model: Optional[DQNModel] = None,
-                hidden_size: int = 128,
-                learning_rate: float = 0.001,
+                hidden_size: int = 256,
+                hidden_sizes: List[int] = None,
+                layers: int = 1,
+                learning_rate: float = 0.0001,
                 epsilon: float = 1.0,
-                epsilon_decay: float = 0.995,
-                epsilon_min: float = 0.01,
+                epsilon_decay: float = 0.999999,
+                epsilon_min: float = 0.2, #was 0.05, trying 0.9 to see if it helps
                 gamma: float = 0.99,
-                target_update_freq: int = 10):
+                target_update_freq: int = 50):
         """
         Initialize a DQN agent.
         
         Args:
             model: Main DQN model (will create new if None)
             target_model: Target network for stable updates (will create new if None)
-            hidden_size: Size of hidden layer if creating new models
+            hidden_size: Size of hidden layer if creating new model with single layer
+            hidden_sizes: List of sizes for multiple hidden layers (overrides hidden_size and layers)
+            layers: Number of hidden layers if creating new model (all with size hidden_size)
             learning_rate: Learning rate for optimizer
             epsilon: Initial exploration rate
             epsilon_decay: Rate at which epsilon decreases
@@ -141,17 +174,23 @@ class DQNAgent:
         
         # Create models if not provided
         if model is None:
-            debug.debug(f"Creating new model with hidden_size={hidden_size}", "ai")
-            self.model = DQNModel(hidden_size=hidden_size)
+            debug.debug(f"Creating new model with architecture: {hidden_sizes if hidden_sizes else [hidden_size] * layers}", "ai")
+            self.model = DQNModel(hidden_sizes=hidden_sizes, hidden_size=hidden_size, layers=layers)
         else:
             self.model = model
         
         if target_model is None:
             debug.debug("Creating new target model", "ai")
-            self.target_model = DQNModel(hidden_size=hidden_size)
+            # Copy the architecture from the main model
+            if hasattr(self.model, 'hidden_sizes'):
+                self.target_model = DQNModel(hidden_sizes=self.model.hidden_sizes)
+            else:
+                self.target_model = DQNModel(hidden_size=hidden_size, layers=layers)
             self.target_model.load_state_dict(self.model.state_dict())
         else:
             self.target_model = target_model
+        
+        # Rest of the initialization remains the same...
         
         # Set target model to evaluation mode
         self.target_model.eval()
@@ -251,9 +290,11 @@ class DQNAgent:
         # Compute loss
         loss = F.smooth_l1_loss(current_q_values, target_q_values)
         
-        # Optimize
+        # Optimize with gradient clipping
         self.optimizer.zero_grad()
         loss.backward()
+        # Add gradient clipping to prevent exploding gradients
+        torch.nn.utils.clip_grad_value_(self.model.parameters(), 1.0)  # Clip by value instead of norm
         self.optimizer.step()
         
         # Decay epsilon
@@ -268,8 +309,8 @@ class DQNAgent:
             debug.debug("Updating target network", "ai")
             self.target_model.load_state_dict(self.model.state_dict())
         
-        return loss.item()
-    
+        return loss.item()   
+         
     def save(self, path: str) -> None:
         """
         Save the agent's models and parameters.

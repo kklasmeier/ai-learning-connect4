@@ -10,7 +10,7 @@ import torch
 from typing import Tuple, List, Dict, Optional, Any
 
 from connect4.debug import debug, DebugLevel
-from connect4.utils import ROWS, COLS, Player, GameResult
+from connect4.utils import ROWS, COLS, Player, GameResult, is_valid_position
 from connect4.game.board import Board
 
 def board_to_state(board: np.ndarray) -> np.ndarray:
@@ -90,3 +90,60 @@ def preprocess_batch(batch: List[Tuple]) -> Tuple[torch.Tensor, ...]:
     dones_tensor = torch.tensor(dones, dtype=torch.float32).unsqueeze(1)
     
     return states_tensor, actions_tensor, rewards_tensor, next_states_tensor, dones_tensor
+
+def check_connections(grid, row, col, player_value):
+    """
+    Check for 2-in-a-row, 3-in-a-row connections at the given position.
+    
+    Args:
+        grid: The game board grid
+        row, col: Position of the last move
+        player_value: Value of the player (1 or 2)
+        
+    Returns:
+        Dictionary with counts of connections
+    """
+    directions = [
+        (0, 1),  # horizontal
+        (1, 0),  # vertical
+        (1, 1),  # diagonal down
+        (-1, 1)  # diagonal up
+    ]
+    
+    connections = {"two": 0, "three": 0, "blocks_two": 0, "blocks_three": 0}
+    opponent_value = 3 - player_value  # Convert between 1 and 2
+    
+    for dr, dc in directions:
+        # Count consecutive pieces in this direction for both player and opponent
+        for player_type, check_value in [("player", player_value), ("opponent", opponent_value)]:
+            consecutive = 1  # Start with the piece just placed
+            
+            # Check in the positive direction
+            r, c = row + dr, col + dc
+            while is_valid_position(r, c) and grid[r, c] == check_value:
+                consecutive += 1
+                r += dr
+                c += dc
+            
+            # Check in the negative direction
+            r, c = row - dr, col - dc
+            while is_valid_position(r, c) and grid[r, c] == check_value:
+                consecutive += 1
+                r -= dr
+                c -= dc
+            
+            # Record the findings
+            if player_type == "player":
+                if consecutive == 2:
+                    connections["two"] += 1
+                elif consecutive == 3:
+                    connections["three"] += 1
+            else:  # opponent
+                # If we blocked opponent's potential connection
+                # Check if adding one more piece would make a 3 or 4 in a row
+                if consecutive == 2:
+                    connections["blocks_two"] += 1
+                elif consecutive == 3:
+                    connections["blocks_three"] += 1
+    
+    return connections

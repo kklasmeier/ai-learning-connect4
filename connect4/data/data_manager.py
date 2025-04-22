@@ -456,3 +456,20 @@ def get_saved_games(job_id: Optional[int] = None) -> List[Dict]:
                 games_file = os.path.join(GAMES_DIR, file)
                 all_games.extend(safe_read_json(games_file))
         return all_games
+    
+def get_latest_game_id(job_id: Optional[int] = None) -> Optional[int]:
+    """
+    Get the ID of the latest saved game.
+    
+    Args:
+        job_id: Optional job ID to filter games
+        
+    Returns:
+        Latest game ID or None if no games found
+    """
+    games = get_saved_games(job_id)
+    if not games:
+        return None
+    
+    # Return the index of the last game in the list
+    return len(games) - 1

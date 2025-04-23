@@ -245,8 +245,8 @@ class SelfPlayTrainer:
         # Keep track of states and actions for rewarding after game completion
         history = []
         
-        # Track moves for saving
-        moves = []
+        # Track moves and stats for saving
+        move_data = []
         
         # Track the last column played (to detect stacking)
         last_column = -1
@@ -270,8 +270,18 @@ class SelfPlayTrainer:
                 # Game might be over (draw)
                 break
             
-            # Get action from agent
-            action = self.agent.get_action(game.board, valid_moves, training=training)
+            # Get action from agent and track whether it was random
+            state_tensor = state_to_tensor(state)
+            is_random = False
+            with torch.no_grad():
+                q_values = self.agent.model(state_tensor).squeeze(0).tolist()
+            if training and random.random() < self.agent.epsilon:
+                action = random.choice(valid_moves)
+                is_random = True
+                debug.trace(f"Random exploration action: {action}", "ai")
+            else:
+                action = self.agent.get_action(game.board, valid_moves, training=training)
+                debug.trace(f"Model-based action: {action}, Q-values: {q_values}", "ai")
             
             # Update stacking counter
             if last_column == action:
@@ -286,14 +296,11 @@ class SelfPlayTrainer:
             game.make_move(action)
             episode_length += 1
             
-            # Record the move
-            moves.append(action)
-            
             # Get the position of the last move
             last_row, last_col = game.board.last_move
             
-            # Calculate reward using our reward calculator
-            reward = reward_calculator.calculate_reward(
+            # Calculate reward and components
+            reward, reward_components = reward_calculator.calculate_reward(
                 game, last_row, last_col, last_column, action, 
                 current_player, stacking_count, valid_moves
             )
@@ -307,7 +314,19 @@ class SelfPlayTrainer:
             # Get next state
             next_state = board_to_state(game.board.grid)
             
-            # Store the transition
+            # Store the transition and stats
+            move_stats = {
+                'column': action,
+                'player': 'X' if current_player == Player.ONE else 'O',
+                'reward': reward,
+                'reward_components': reward_components,
+                'epsilon': self.agent.epsilon,
+                'q_values': [round(q, 3) for q in q_values],
+                'loss': None,
+                'action_source': 'random' if is_random else 'model'
+            }
+            move_data.append(move_stats)
+            
             if training:
                 history.append((state, action, reward, next_state, done, current_player))
             
@@ -316,6 +335,8 @@ class SelfPlayTrainer:
                 batch = self.replay_buffer.sample(self.batch_size)
                 loss = self.agent.train(batch)
                 losses.append(loss)
+                # Update loss for the last move (approximate, as loss is batch-based)
+                move_data[-1]['loss'] = loss
         
         # Process the history to add experiences to replay buffer
         if training:
@@ -342,7 +363,7 @@ class SelfPlayTrainer:
         
         if should_save_game:
             from connect4.data.data_manager import save_game_moves
-            save_game_moves(self.job_id, self.episode_count + 1, moves, winner_str, episode_length)
+            save_game_moves(self.job_id, self.episode_count + 1, move_data, winner_str, episode_length)
             debug.info(f"Saved game moves for episode {self.episode_count + 1}", "training")
         
         return total_reward, episode_length, winner, losses

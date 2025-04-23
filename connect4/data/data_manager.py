@@ -25,14 +25,13 @@ GAMES_DIR = os.path.join(DATA_DIR, 'games')
 os.makedirs(GAMES_DIR, exist_ok=True)
 
 # Constants
-MAX_RECENT_LOGS = 1000  # Maximum number of recent episode logs to keep
-HISTORY_SAMPLE_RATE = 50  # Keep 1 in every N episodes for historical data
+MAX_RECENT_LOGS = 1000
+HISTORY_SAMPLE_RATE = 50
 
 # Ensure directories exist
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(LOGS_DIR, exist_ok=True)
 
-# File utility functions
 def safe_read_json(file_path: str) -> List[Dict]:
     """
     Safely read a JSON file with file locking.
@@ -69,41 +68,25 @@ def safe_write_json(file_path: str, data: Any) -> bool:
     lock_path = f"{file_path}.lock"
     with filelock.FileLock(lock_path):
         try:
-            # Write to a temporary file first
             temp_file = f"{file_path}.tmp"
             with open(temp_file, 'w') as f:
                 json.dump(data, f, indent=2)
             
-            # Replace the original file (atomic operation)
             shutil.move(temp_file, file_path)
             return True
         except Exception as e:
             debug.error(f"Error writing to {file_path}: {e}", "data")
             return False
 
-# Job management functions
 def get_new_job_id() -> int:
-    """
-    Generate a new unique job ID.
-    
-    Returns:
-        New job ID
-    """
+    """Generate a new unique job ID."""
     jobs = safe_read_json(JOBS_FILE)
     if not jobs:
         return 1
     return max(job['job_id'] for job in jobs) + 1
 
 def create_job(parameters: Dict[str, Any]) -> int:
-    """
-    Create a new job entry.
-    
-    Args:
-        parameters: Training parameters
-        
-    Returns:
-        New job ID
-    """
+    """Create a new job entry."""
     job_id = get_new_job_id()
     start_time = datetime.datetime.now().isoformat()
     
@@ -124,7 +107,6 @@ def create_job(parameters: Dict[str, Any]) -> int:
     if safe_write_json(JOBS_FILE, jobs):
         debug.info(f"Created new job with ID {job_id}", "data")
         
-        # Initialize log files
         recent_log_file = os.path.join(LOGS_DIR, f"job_{job_id}_recent.json")
         history_log_file = os.path.join(LOGS_DIR, f"job_{job_id}_history.json")
         
@@ -137,16 +119,7 @@ def create_job(parameters: Dict[str, Any]) -> int:
         return -1
 
 def update_job_progress(job_id: int, episodes_completed: int) -> bool:
-    """
-    Update job progress.
-    
-    Args:
-        job_id: Job ID
-        episodes_completed: Number of completed episodes
-        
-    Returns:
-        True if successful, False otherwise
-    """
+    """Update job progress."""
     jobs = safe_read_json(JOBS_FILE)
     
     for job in jobs:
@@ -164,15 +137,7 @@ def update_job_progress(job_id: int, episodes_completed: int) -> bool:
     return False
 
 def complete_job(job_id: int) -> bool:
-    """
-    Mark a job as complete.
-    
-    Args:
-        job_id: Job ID
-        
-    Returns:
-        True if successful, False otherwise
-    """
+    """Mark a job as complete."""
     jobs = safe_read_json(JOBS_FILE)
     
     for job in jobs:
@@ -182,10 +147,7 @@ def complete_job(job_id: int) -> bool:
             
             if safe_write_json(JOBS_FILE, jobs):
                 debug.info(f"Marked job {job_id} as completed", "data")
-                
-                # Process historical data
                 process_historical_data(job_id)
-                
                 return True
             else:
                 debug.error(f"Failed to complete job {job_id}", "data")
@@ -194,44 +156,23 @@ def complete_job(job_id: int) -> bool:
     debug.error(f"Job {job_id} not found", "data")
     return False
 
-# Episode log management
 def add_episode_log(job_id: int, episode_data: Dict[str, Any]) -> bool:
-    """
-    Add episode data to log.
-    
-    Args:
-        job_id: Job ID
-        episode_data: Episode data to log
-        
-    Returns:
-        True if successful, False otherwise
-    """
-    # Add timestamp if not present
+    """Add episode data to log."""
     if 'timestamp' not in episode_data:
         episode_data['timestamp'] = datetime.datetime.now().isoformat()
     
-    # Ensure job_id is included
     episode_data['job_id'] = job_id
     
-    # Path to recent logs file
     recent_log_file = os.path.join(LOGS_DIR, f"job_{job_id}_recent.json")
     
-    # Read existing logs
     logs = safe_read_json(recent_log_file)
-    
-    # Add new log
     logs.append(episode_data)
     
-    # Keep only the most recent MAX_RECENT_LOGS
     if len(logs) > MAX_RECENT_LOGS:
-        # Before discarding, check if we should add to history
         if episode_data['episode'] % HISTORY_SAMPLE_RATE == 0:
             add_to_history(job_id, episode_data)
-        
-        # Keep only the most recent logs
         logs = logs[-MAX_RECENT_LOGS:]
     
-    # Save updated logs
     if safe_write_json(recent_log_file, logs):
         debug.trace(f"Added episode {episode_data['episode']} log for job {job_id}", "data")
         return True
@@ -240,16 +181,7 @@ def add_episode_log(job_id: int, episode_data: Dict[str, Any]) -> bool:
         return False
 
 def add_to_history(job_id: int, episode_data: Dict[str, Any]) -> bool:
-    """
-    Add episode data to historical log.
-    
-    Args:
-        job_id: Job ID
-        episode_data: Episode data to log
-        
-    Returns:
-        True if successful, False otherwise
-    """
+    """Add episode data to historical log."""
     history_log_file = os.path.join(LOGS_DIR, f"job_{job_id}_history.json")
     history_logs = safe_read_json(history_log_file)
     
@@ -263,33 +195,21 @@ def add_to_history(job_id: int, episode_data: Dict[str, Any]) -> bool:
         return False
 
 def process_historical_data(job_id: int) -> bool:
-    """
-    Process historical data for a completed job.
-    Ensures that we have proper sampling of historical data.
-    
-    Args:
-        job_id: Job ID
-        
-    Returns:
-        True if successful, False otherwise
-    """
+    """Process historical data for a completed job."""
     recent_log_file = os.path.join(LOGS_DIR, f"job_{job_id}_recent.json")
     history_log_file = os.path.join(LOGS_DIR, f"job_{job_id}_history.json")
     
     recent_logs = safe_read_json(recent_log_file)
     history_logs = safe_read_json(history_log_file)
     
-    # Check which episodes we already have in history
     history_episodes = set(log['episode'] for log in history_logs)
     
-    # Add episodes to history that should be sampled but aren't yet
     for log in recent_logs:
         episode = log['episode']
         if episode % HISTORY_SAMPLE_RATE == 0 and episode not in history_episodes:
             history_logs.append(log)
             history_episodes.add(episode)
     
-    # Sort by episode number
     history_logs.sort(key=lambda x: x['episode'])
     
     if safe_write_json(history_log_file, history_logs):
@@ -299,20 +219,8 @@ def process_historical_data(job_id: int) -> bool:
         debug.error(f"Failed to process historical data for job {job_id}", "data")
         return False
 
-# Model registration
 def register_model(job_id: int, episode: int, path: str, is_final: bool = False) -> bool:
-    """
-    Register a saved model.
-    
-    Args:
-        job_id: Job ID
-        episode: Episode number
-        path: Path to model file
-        is_final: Whether this is the final model
-        
-    Returns:
-        True if successful, False otherwise
-    """
+    """Register a saved model."""
     models = safe_read_json(MODELS_FILE)
     
     model_id = len(models) + 1
@@ -336,17 +244,8 @@ def register_model(job_id: int, episode: int, path: str, is_final: bool = False)
         debug.error(f"Failed to register model for job {job_id}", "data")
         return False
 
-# Data retrieval functions
 def get_job_data(job_id: Optional[int] = None) -> Union[Dict, List[Dict]]:
-    """
-    Get job data.
-    
-    Args:
-        job_id: Specific job ID to get, or None for all jobs
-        
-    Returns:
-        Job data or list of all jobs
-    """
+    """Get job data."""
     jobs = safe_read_json(JOBS_FILE)
     
     if job_id is None:
@@ -360,16 +259,7 @@ def get_job_data(job_id: Optional[int] = None) -> Union[Dict, List[Dict]]:
     return {}
 
 def get_episode_logs(job_id: int, recent: bool = True) -> List[Dict]:
-    """
-    Get episode logs for a job.
-    
-    Args:
-        job_id: Job ID
-        recent: Whether to get recent logs (True) or historical logs (False)
-        
-    Returns:
-        Episode logs
-    """
+    """Get episode logs for a job."""
     log_type = "recent" if recent else "history"
     log_file = os.path.join(LOGS_DIR, f"job_{job_id}_{log_type}.json")
     
@@ -377,15 +267,7 @@ def get_episode_logs(job_id: int, recent: bool = True) -> List[Dict]:
     return logs
 
 def get_registered_models(job_id: Optional[int] = None) -> List[Dict]:
-    """
-    Get registered models.
-    
-    Args:
-        job_id: Specific job ID to filter by, or None for all models
-        
-    Returns:
-        List of registered models
-    """
+    """Get registered models."""
     models = safe_read_json(MODELS_FILE)
     
     if job_id is None:
@@ -393,15 +275,15 @@ def get_registered_models(job_id: Optional[int] = None) -> List[Dict]:
     
     return [model for model in models if model['job_id'] == job_id]
 
-def save_game_moves(job_id: int, episode: int, moves: List[int], winner: Optional[str], 
+def save_game_moves(job_id: int, episode: int, move_data: List[Dict], winner: Optional[str], 
                    game_length: int) -> bool:
     """
-    Save a game's move history for later replay.
+    Save a game's move history and statistics for later replay.
     
     Args:
         job_id: Training job ID
         episode: Episode number in training
-        moves: List of column indices for each move
+        move_data: List of dictionaries with move details and stats
         winner: Winner of the game ('X', 'O', or None for draw)
         game_length: Number of moves in the game
         
@@ -411,20 +293,17 @@ def save_game_moves(job_id: int, episode: int, moves: List[int], winner: Optiona
     game_data = {
         "job_id": job_id,
         "episode": episode,
-        "moves": moves,
+        "moves": move_data,
         "winner": winner,
         "game_length": game_length,
         "timestamp": datetime.datetime.now().isoformat()
     }
     
-    # File to store the game data
     games_file = os.path.join(GAMES_DIR, f"job_{job_id}_games.json")
     
-    # Read existing games
     games = safe_read_json(games_file)
     games.append(game_data)
     
-    # Save updated games
     if safe_write_json(games_file, games):
         debug.trace(f"Saved moves for job {job_id}, episode {episode}", "data")
         return True
@@ -433,23 +312,13 @@ def save_game_moves(job_id: int, episode: int, moves: List[int], winner: Optiona
         return False
 
 def get_saved_games(job_id: Optional[int] = None) -> List[Dict]:
-    """
-    Get saved games for replay.
-    
-    Args:
-        job_id: Optional job ID to filter games
-        
-    Returns:
-        List of game data
-    """
+    """Get saved games for replay."""
     if job_id is not None:
-        # Get games for specific job
         games_file = os.path.join(GAMES_DIR, f"job_{job_id}_games.json")
         if os.path.exists(games_file):
             return safe_read_json(games_file)
         return []
     else:
-        # Get all games from all jobs
         all_games = []
         for file in os.listdir(GAMES_DIR):
             if file.startswith("job_") and file.endswith("_games.json"):
@@ -458,18 +327,9 @@ def get_saved_games(job_id: Optional[int] = None) -> List[Dict]:
         return all_games
     
 def get_latest_game_id(job_id: Optional[int] = None) -> Optional[int]:
-    """
-    Get the ID of the latest saved game.
-    
-    Args:
-        job_id: Optional job ID to filter games
-        
-    Returns:
-        Latest game ID or None if no games found
-    """
+    """Get the ID of the latest saved game."""
     games = get_saved_games(job_id)
     if not games:
         return None
     
-    # Return the index of the last game in the list
     return len(games) - 1

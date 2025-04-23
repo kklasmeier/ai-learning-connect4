@@ -2,9 +2,17 @@
   {
     "model_id": 1,
     "job_id": 1,
-    "episode": 255,
-    "path": "models/final_model_20250422_234414",
-    "timestamp": "2025-04-22T23:48:10.384468",
-    "is_final": true
+    "episode": 5500,
+    "path": "models/model_20250423_002423_ep5500",
+    "timestamp": "2025-04-23T03:08:07.831981",
+    "is_final": false
+  },
+  {
+    "model_id": 2,
+    "job_id": 1,
+    "episode": 11000,
+    "path": "models/model_20250423_002423_ep11000",
+    "timestamp": "2025-04-23T07:48:51.033211",
+    "is_final": false
   }
 ]

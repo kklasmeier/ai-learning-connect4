@@ -8,11 +8,15 @@ import os
 import argparse
 import time
 from connect4.debug import debug, DebugLevel
+import colorama
+from colorama import Fore, Style
+
+# Initialize colorama for cross-platform colored output
+colorama.init()
 
 # Add the project root to Python path to ensure imports work
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# Try importing the CLI module
 try:
     from connect4.interfaces.cli import SimpleCLI
 except ImportError as e:
@@ -24,8 +28,6 @@ except ImportError as e:
     else:
         print("interfaces directory not found")
     sys.exit(1)
-
-# --- Utility Functions ---
 
 def configure_debug(args):
     """Configure debug level based on args.debug or args.debug_level."""
@@ -80,7 +82,7 @@ def create_or_load_agent(args, model_path=None):
     return DQNAgent(hidden_size=hidden_size, layers=layers)
 
 def replay_game(game_data, delay, show_metrics=False, job_id=None):
-    """Replay a game with optional training metrics."""
+    """Replay a game with per-turn statistics."""
     from connect4.game.rules import ConnectFourGame
     from connect4.data.data_manager import get_episode_logs
     from connect4.utils import Player
@@ -88,10 +90,10 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
     episode = game_data['episode']
     print(f"Replaying game: Job {game_data['job_id']}, Episode {episode}")
     print(f"Winner: {game_data['winner'] or 'Draw'}, Length: {game_data['game_length']}")
-    print(f"show_metrics = {show_metrics}, job_id = {job_id}")
+    
+    # Load episode metrics if available
     episode_log = None
-    if show_metrics and job_id is not None:
-        print(f"Attempting to load metrics for job {job_id}, episode {episode}")
+    if job_id is not None:
         try:
             episode_logs = get_episode_logs(job_id)
             if episode_logs is None:
@@ -102,29 +104,136 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
                 print(f"Found {len(episode_logs)} episode logs for job {job_id}")
                 episode_log = next((log for log in episode_logs if log['episode'] == episode), None)
                 if episode_log:
-                    print("\nTraining Metrics:")
+                    print("\nEpisode Metrics:")
                     print(f"Reward: {episode_log.get('reward', 'N/A')}")
                     print(f"Epsilon: {episode_log.get('epsilon', 'N/A')}")
                     print(f"Loss: {episode_log.get('loss', 'N/A')}")
-                    if 'avg_reward' in episode_log:
-                        print(f"Average Reward (last 100): {episode_log['avg_reward']}")
-                    if 'prediction_accuracy' in episode_log:
-                        print(f"Prediction Accuracy: {episode_log['prediction_accuracy']:.2f}%")
                 else:
                     print(f"No log found for episode {episode} in job {job_id}")
         except Exception as e:
-            print(f"Error retrieving training metrics for job {job_id}, episode {episode}: {str(e)}")
+            print(f"Error retrieving episode metrics for job {job_id}, episode {episode}: {str(e)}")
     
     game = ConnectFourGame()
+    board_lines = game.render().split('\n')
     print("\nInitial board:")
-    print(game.render())
+    for line in board_lines:
+        print(line)
     time.sleep(delay)
     
     for i, move in enumerate(game_data['moves']):
         current_player = "X" if game.get_current_player() == Player.ONE else "O"
-        print(f"\nMove {i+1}: Player {current_player} plays column {move}")
-        game.make_move(move)
-        print(game.render())
+        move_info = f"Move {i+1}: Player {current_player} plays column {move['column']}"
+        
+        # Prepare stats
+        stats_lines = []
+        if isinstance(move, dict) and all(key in move for key in ['reward', 'epsilon', 'q_values', 'loss', 'action_source']):
+            # Reward with color and width-based wrapping
+            reward = move['reward']
+            reward_color = Fore.GREEN if reward > 0 else Fore.RED if reward < 0 else Fore.WHITE
+            components = move.get('reward_components', {})
+            components_str = ', '.join(
+                f"{k}: {v:.3f}" for k, v in components.items() if v != 0
+            )
+            reward_prefix = f"{reward_color}Reward: {reward:.3f} ("
+            reward_line = f"{reward_prefix}{components_str}){Style.RESET_ALL}"
+            
+            # Check if reward line needs wrapping (threshold: 50 characters)
+            max_reward_width = 80
+            if len(reward_line) > max_reward_width:
+                # Split components based on width
+                comp_list = components_str.split(', ')
+                current_len = len(reward_prefix)
+                split_idx = 0
+                for j, comp in enumerate(comp_list):
+                    comp_len = len(comp) + (2 if j > 0 else 0)  # +2 for ", "
+                    if current_len + comp_len > max_reward_width - 1:  # -1 for closing parenthesis
+                        break
+                    current_len += comp_len
+                    split_idx = j + 1
+                
+                if split_idx == 0:  # Ensure at least one component on first line if possible
+                    split_idx = 1
+                
+                # Format two lines
+                first_half = ', '.join(comp_list[:split_idx])
+                second_half = ', '.join(comp_list[split_idx:])
+                stats_lines.append(
+                    f"{reward_color}Reward: {reward:.3f} ({first_half}){Style.RESET_ALL}"
+                )
+                if second_half:  # Only add second line if there are remaining components
+                    stats_lines.append(
+                        f"{reward_color}{' ' * len('Reward: ')}({second_half}){Style.RESET_ALL}"
+                    )
+            else:
+                stats_lines.append(reward_line)
+            
+            # Epsilon with color
+            epsilon = move['epsilon']
+            epsilon_color = Fore.YELLOW if epsilon > 0.5 else Fore.BLUE
+            stats_lines.append(
+                f"{epsilon_color}Epsilon: {epsilon:.3f}{Style.RESET_ALL}"
+            )
+            
+            # Q-Values with chosen action highlighted
+            q_values = move['q_values']
+            chosen_action = move['column']
+            q_values_str = '[' + ', '.join(
+                f"{Fore.GREEN}{q:.3f}{Style.RESET_ALL}" if i == chosen_action else f"{q:.3f}"
+                for i, q in enumerate(q_values)
+            ) + ']'
+            stats_lines.append(f"Q-Values: {q_values_str} (Chosen: {q_values[chosen_action]:.3f})")
+            
+            # Loss with color
+            loss = move['loss']
+            if loss is not None:
+                loss_color = Fore.RED if loss > 1.0 else Fore.WHITE
+                stats_lines.append(f"{loss_color}Loss: {loss:.3f}{Style.RESET_ALL}")
+            else:
+                stats_lines.append(f"{Fore.WHITE}Loss: N/A{Style.RESET_ALL}")
+            
+            # Action Source with color
+            action_source = move['action_source']
+            action_color = Fore.GREEN if action_source == 'model' else Fore.RED
+            stats_lines.append(f"{action_color}Action: {action_source.capitalize()}{Style.RESET_ALL}")
+        else:
+            # Fallback for older game files
+            stats_lines = [
+                f"{Fore.WHITE}Reward: N/A{Style.RESET_ALL}",
+                f"{Fore.WHITE}Epsilon: N/A{Style.RESET_ALL}",
+                f"{Fore.WHITE}Q-Values: N/A{Style.RESET_ALL}",
+                f"{Fore.WHITE}Loss: N/A{Style.RESET_ALL}",
+                f"{Fore.WHITE}Action: N/A{Style.RESET_ALL}"
+            ]
+        
+        # Check terminal width
+        try:
+            terminal_width = os.get_terminal_size().columns
+        except OSError:
+            terminal_width = 80
+        
+        max_board_width = max(len(line) for line in board_lines)
+        max_stats_width = max(len(line) for line in stats_lines + [move_info])
+        combined_width = max_board_width + max_stats_width + 2  # 2 for padding
+        
+        # Make move
+        game.make_move(move['column'] if isinstance(move, dict) else move)
+        board_lines = game.render().split('\n')
+        
+        # Display board and stats
+        if combined_width <= terminal_width:
+            # Side-by-side layout
+            print(f"\n{move_info}")
+            for j, board_line in enumerate(board_lines):
+                stats_line = stats_lines[j] if j < len(stats_lines) else ''
+                print(f"{board_line:<{max_board_width}}  {stats_line}")
+        else:
+            # Below-board layout
+            print(f"\n{move_info}")
+            for line in board_lines:
+                print(line)
+            for line in stats_lines:
+                print(line)
+        
         time.sleep(delay)
     
     winner = game.get_winner()
@@ -134,17 +243,12 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
     else:
         print("\nGame over! It's a draw!")
     
-    if show_metrics and job_id is not None and episode_log:
-        print("\nTraining Metrics:")
+    # Optionally show episode metrics again
+    if episode_log:
+        print("\nEpisode Metrics:")
         print(f"Reward: {episode_log.get('reward', 'N/A')}")
         print(f"Epsilon: {episode_log.get('epsilon', 'N/A')}")
         print(f"Loss: {episode_log.get('loss', 'N/A')}")
-        if 'avg_reward' in episode_log:
-            print(f"Average Reward (last 100): {episode_log['avg_reward']}")
-        if 'prediction_accuracy' in episode_log:
-            print(f"Prediction Accuracy: {episode_log['prediction_accuracy']:.2f}%")
-
-# --- Game Command Handler ---
 
 def handle_game_command(args):
     """Handle the 'game' component commands."""
@@ -161,8 +265,6 @@ def handle_game_command(args):
         sys.argv.extend(['--ai', args.ai])
     
     cli.run()
-
-# --- AI Command Handlers ---
 
 def handle_ai_init(args):
     """Handle the 'ai init' command."""
@@ -319,7 +421,6 @@ def handle_ai_games(args):
                     last_game_id = latest_game_id
                     all_games = get_saved_games(args.job_id)
                     if 0 <= latest_game_id < len(all_games):
-                        # Use job_id from game data instead of args.job_id
                         job_id = all_games[latest_game_id]['job_id']
                         replay_game(all_games[latest_game_id], args.delay, show_metrics=True, job_id=job_id)
                         print("\n------------------------------------------------------------------------------")
@@ -379,8 +480,6 @@ def handle_ai_command(args):
     except ImportError as e:
         print(f"Error importing AI modules: {e}")
         print("Make sure all AI components are implemented before using this command")
-
-# --- Main Entry Point ---
 
 def main():
     """Main entry point for the Connect Four AI Learning System."""

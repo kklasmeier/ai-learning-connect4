@@ -1,10 +1,10 @@
 [
   {
     "job_id": 1,
-    "start_time": "2025-04-22T23:44:14.682401",
+    "start_time": "2025-04-23T00:24:23.001909",
     "end_time": null,
     "total_episodes": 0,
-    "episodes_completed": 255,
+    "episodes_completed": 15147,
     "model_dir": "models/job_1",
     "status": "running",
     "parameters": {

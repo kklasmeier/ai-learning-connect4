@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "model_id": 1,
+    "job_id": 1,
+    "episode": 255,
+    "path": "models/final_model_20250422_234414",
+    "timestamp": "2025-04-22T23:48:10.384468",
+    "is_final": true
+  }
+]

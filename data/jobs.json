@@ -1,18 +1,17 @@
 [
   {
     "job_id": 1,
-    "start_time": "2025-04-22T18:13:59.140100",
+    "start_time": "2025-04-22T23:44:14.682401",
     "end_time": null,
     "total_episodes": 0,
-    "episodes_completed": 4937,
+    "episodes_completed": 255,
     "model_dir": "models/job_1",
     "status": "running",
     "parameters": {
       "episodes": 0,
-      "layers": 2,
+      "layers": 1,
       "layer_sizes": [
-        256,
-        128
+        512
       ],
       "batch_size": 64,
       "gamma": 0.99,

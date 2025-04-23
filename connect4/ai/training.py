@@ -24,7 +24,7 @@ from connect4.ai.reward_calculator import ConnectFourRewardCalculator
 
 from connect4.data.data_manager import (
     create_job, update_job_progress, add_episode_log,
-    register_model, complete_job
+    register_model, complete_job, save_game_moves
 )
 
 class TrainingStats:
@@ -178,195 +178,199 @@ class SelfPlayTrainer:
     """
 
     def __init__(self, agent: Optional[DQNAgent] = None, 
-                model_dir: str = 'models', 
-                batch_size: int = 64,
-                replay_buffer_size: int = 10000,
-                gamma: float = 0.99,
-                target_update_freq: int = 10):
-        """
-        Initialize the self-play trainer.
-        
-        Args:
-            agent: Pre-initialized DQN agent (creates new if None)
-            model_dir: Directory to save models
-            batch_size: Batch size for training
-            replay_buffer_size: Size of replay buffer
-            gamma: Discount factor for future rewards
-            target_update_freq: How often to update target network
-        """
-        debug.debug("Initializing SelfPlayTrainer", "training")
+                    model_dir: str = 'models', 
+                    batch_size: int = 64,
+                    replay_buffer_size: int = 10000,
+                    gamma: float = 0.99,
+                    target_update_freq: int = 10):
+            """
+            Initialize the self-play trainer.
+            
+            Args:
+                agent: Pre-initialized DQN agent (creates new if None)
+                model_dir: Directory to save models
+                batch_size: Batch size for training
+                replay_buffer_size: Size of replay buffer
+                gamma: Discount factor for future rewards
+                target_update_freq: How often to update target network
+            """
+            debug.debug("Initializing SelfPlayTrainer", "training")
 
-        # Initialize total_episodes
-        self.total_episodes = 0
+            # Initialize total_episodes
+            self.total_episodes = 0
 
-        # Create directory for models
-        self.model_dir = model_dir
-        os.makedirs(model_dir, exist_ok=True)
-        
-        # Create or use provided agent
-        self.agent = agent if agent is not None else DQNAgent(
-            gamma=gamma, target_update_freq=target_update_freq
-        )
-        
-        # Replay buffer for experience
-        self.replay_buffer = ReplayBuffer(capacity=replay_buffer_size)
-        
-        # Training parameters
-        self.batch_size = batch_size
-        
-        # Statistics tracking
-        self.stats = TrainingStats()
-        self.episode_count = 0
-        
-        # Timestamp for saving models
-        self.start_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        # Create job entry for tracking
-        training_params = {
-            'episodes': 0,  # Will be updated in train() method
-            'layers': len(agent.model.hidden_sizes) if hasattr(agent.model, 'hidden_sizes') else 1,
-            'layer_sizes': agent.model.hidden_sizes if hasattr(agent.model, 'hidden_sizes') else [agent.model.fc1.out_features],
-            'batch_size': batch_size,
-            'gamma': gamma,
-            'target_update_freq': target_update_freq,
-            'model_dir': model_dir
-        }
-        self.job_id = create_job(training_params)
-        debug.info(f"Created training job with ID: {self.job_id}", "training")    
-
-    def _play_episode(self, training: bool = True) -> Tuple[float, int, Optional[Player], List[float]]:
-        """Play a complete self-play episode."""
-        game = ConnectFourGame()
-        done = False
-        total_reward = 0
-        episode_length = 0
-        losses = []
-        
-        # Keep track of states and actions for rewarding after game completion
-        history = []
-        
-        # Track moves and stats for saving
-        move_data = []
-        
-        # Track the last column played (to detect stacking)
-        last_column = -1
-        
-        # Initialize stacking counter
-        stacking_count = 0
-        
-        # Initialize reward calculator
-        reward_calculator = ConnectFourRewardCalculator()
-        
-        while not done:
-            current_player = game.get_current_player()
+            # Create directory for models
+            self.model_dir = model_dir
+            os.makedirs(model_dir, exist_ok=True)
             
-            # Get board state
-            state = board_to_state(game.board.grid)
-            
-            # Get valid moves
-            valid_moves = game.get_valid_moves()
-            
-            if not valid_moves:
-                # Game might be over (draw)
-                break
-            
-            # Get action from agent and track whether it was random
-            state_tensor = state_to_tensor(state)
-            is_random = False
-            with torch.no_grad():
-                q_values = self.agent.model(state_tensor).squeeze(0).tolist()
-            if training and random.random() < self.agent.epsilon:
-                action = random.choice(valid_moves)
-                is_random = True
-                debug.trace(f"Random exploration action: {action}", "ai")
-            else:
-                action = self.agent.get_action(game.board, valid_moves, training=training)
-                debug.trace(f"Model-based action: {action}, Q-values: {q_values}", "ai")
-            
-            # Update stacking counter
-            if last_column == action:
-                stacking_count += 1
-            else:
-                stacking_count = 1
-            
-            # Update last column
-            last_column = action
-            
-            # Make the move
-            game.make_move(action)
-            episode_length += 1
-            
-            # Get the position of the last move
-            last_row, last_col = game.board.last_move
-            
-            # Calculate reward and components
-            reward, reward_components = reward_calculator.calculate_reward(
-                game, last_row, last_col, last_column, action, 
-                current_player, stacking_count, valid_moves
+            # Create or use provided agent
+            self.agent = agent if agent is not None else DQNAgent(
+                gamma=gamma, target_update_freq=target_update_freq
             )
             
-            # Store total reward (from player 1's perspective)
-            if current_player == Player.ONE:
-                total_reward += reward
-            else:
-                total_reward -= reward  # Negate reward for player 2
+            # Replay buffer for experience
+            self.replay_buffer = ReplayBuffer(capacity=replay_buffer_size)
             
-            # Get next state
-            next_state = board_to_state(game.board.grid)
+            # Training parameters
+            self.batch_size = batch_size
             
-            # Store the transition and stats
-            move_stats = {
-                'column': action,
-                'player': 'X' if current_player == Player.ONE else 'O',
-                'reward': reward,
-                'reward_components': reward_components,
-                'epsilon': self.agent.epsilon,
-                'q_values': [round(q, 3) for q in q_values],
-                'loss': None,
-                'action_source': 'random' if is_random else 'model'
+            # Statistics tracking
+            self.stats = TrainingStats()
+            self.episode_count = 0
+            
+            # Timestamp for saving models
+            self.start_time = datetime.now().strftime("%Y%m%d_%H%M%S")
+            
+            # Create job entry for tracking
+            training_params = {
+                'episodes': 0,  # Will be updated in train() method
+                'layers': len(agent.model.hidden_sizes) if hasattr(agent.model, 'hidden_sizes') else 1,
+                'layer_sizes': agent.model.hidden_sizes if hasattr(agent.model, 'hidden_sizes') else [agent.model.fc1.out_features],
+                'batch_size': batch_size,
+                'gamma': gamma,
+                'target_update_freq': target_update_freq,
+                'model_dir': model_dir
             }
-            move_data.append(move_stats)
+            self.job_id = create_job(training_params)
+            debug.info(f"Created training job with ID: {self.job_id}", "training")
+
+    def _play_episode(self, training: bool = True) -> Tuple[float, int, Optional[Player], List[float]]:
+            """Play a complete self-play episode."""
+            game = ConnectFourGame()
+            done = False
+            total_reward = 0
+            episode_length = 0
+            losses = []
             
-            if training:
-                history.append((state, action, reward, next_state, done, current_player))
+            # Keep track of states and actions for rewarding
+            history = []
             
-            # If game is not over and we're training, train on a batch from replay buffer
-            if training and not done and len(self.replay_buffer) > self.batch_size:
-                batch = self.replay_buffer.sample(self.batch_size)
-                loss = self.agent.train(batch)
-                losses.append(loss)
-                # Update loss for the last move (approximate, as loss is batch-based)
-                move_data[-1]['loss'] = loss
-        
-        # Process the history to add experiences to replay buffer
-        if training:
-            # If the game is over, process experiences
-            for i, (state, action, reward, next_state, is_done, player) in enumerate(history):
-                # For final state, use the outcome reward
-                if i == len(history) - 1:
-                    self.replay_buffer.add(state, action, reward, next_state, True)
+            # Track moves and stats for saving
+            move_data = []
+            
+            # Track the last column played (to detect stacking)
+            last_column = -1
+            
+            # Initialize stacking counter
+            stacking_count = 0
+            
+            # Initialize reward calculator
+            reward_calculator = ConnectFourRewardCalculator()
+            
+            # Decide upfront whether to save the game (static criteria)
+            save_game = (
+                self.episode_count == 0 or
+                self.episode_count == self.total_episodes - 1 or
+                self.episode_count % 50 == 0 or
+                random.random() < 0.05
+            )
+            
+            while not done:
+                current_player = game.get_current_player()
+                
+                # Get board state
+                state = board_to_state(game.board.grid)
+                
+                # Get valid moves
+                valid_moves = game.get_valid_moves()
+                
+                if not valid_moves:
+                    break
+                
+                # Get action and Q-values (only for saved games)
+                state_tensor = state_to_tensor(state)
+                q_values = None
+                is_random = False
+                if save_game:
+                    with torch.no_grad():
+                        q_values = self.agent.model(state_tensor).squeeze(0).tolist()
+                if training and random.random() < self.agent.epsilon:
+                    action = random.choice(valid_moves)
+                    is_random = True
+                    debug.trace(f"Random exploration action: {action}", "ai")
                 else:
-                    self.replay_buffer.add(state, action, reward, next_state, False)
-        
-        # Determine whether to save this game
-        winner = game.get_winner()
-        winner_str = "X" if winner == Player.ONE else "O" if winner == Player.TWO else None
-        
-        should_save_game = (
-            self.episode_count == 0 or                      # First game
-            self.episode_count == self.total_episodes - 1 or # Last game
-            self.episode_count % 50 == 0 or                 # Regular milestone
-            random.random() < 0.05 or                       # Random 5% sample
-            episode_length > 30 or                          # Long games
-            episode_length < 15                             # Short games
-        )
-        
-        if should_save_game:
-            from connect4.data.data_manager import save_game_moves
-            save_game_moves(self.job_id, self.episode_count + 1, move_data, winner_str, episode_length)
-            debug.info(f"Saved game moves for episode {self.episode_count + 1}", "training")
-        
-        return total_reward, episode_length, winner, losses
+                    action = self.agent.get_action(game.board, valid_moves, training=training)
+                    if save_game:
+                        debug.trace(f"Model-based action: {action}, Q-values: {q_values}", "ai")
+                
+                # Update stacking counter
+                if last_column == action:
+                    stacking_count += 1
+                else:
+                    stacking_count = 1
+                
+                # Update last column
+                last_column = action
+                
+                # Make the move
+                game.make_move(action)
+                episode_length += 1
+                
+                # Get the position of the last move
+                last_row, last_col = game.board.last_move
+                
+                # Calculate reward and components (components only stored for saved games)
+                reward, reward_components = reward_calculator.calculate_reward(
+                    game, last_row, last_col, last_column, action, 
+                    current_player, stacking_count, valid_moves
+                )
+                
+                # Store total reward (from player 1's perspective)
+                if current_player == Player.ONE:
+                    total_reward += reward
+                else:
+                    total_reward -= reward
+                
+                # Get next state
+                next_state = board_to_state(game.board.grid)
+                
+                # Store move stats for saved games
+                if save_game:
+                    move_stats = {
+                        'column': action,
+                        'player': 'X' if current_player == Player.ONE else 'O',
+                        'reward': reward,
+                        'reward_components': reward_components,
+                        'epsilon': self.agent.epsilon,
+                        'q_values': [round(q, 3) for q in q_values] if q_values else [],
+                        'loss': None,
+                        'action_source': 'random' if is_random else 'model'
+                    }
+                    move_data.append(move_stats)
+                
+                # Store transition
+                if training:
+                    history.append((state, action, reward, next_state, done, current_player))
+                
+                # Train if buffer is large enough
+                if training and len(self.replay_buffer) > self.batch_size:
+                    batch = self.replay_buffer.sample(self.batch_size)
+                    loss = self.agent.train(batch)
+                    losses.append(loss)
+                    if save_game:
+                        move_data[-1]['loss'] = loss
+                
+                done = game.is_game_over()
+            
+            # Process history for replay buffer
+            if training:
+                for i, (state, action, reward, next_state, done, player) in enumerate(history):
+                    self.replay_buffer.add(state, action, reward, next_state, done)
+            
+            # Save game if flagged
+            if save_game:
+                winner = game.get_winner()
+                winner_str = "X" if winner == Player.ONE else "O" if winner == Player.TWO else None
+                save_game_moves(self.job_id, self.episode_count + 1, move_data, winner_str, episode_length)
+                debug.info(f"Saved game moves for episode {self.episode_count + 1}", "training")
+            
+            # Update stats
+            avg_loss = np.mean(losses) if losses else None
+            winner = game.get_winner()
+            self.stats.add_episode(total_reward, episode_length, winner, avg_loss, self.agent.epsilon)
+            
+            self.episode_count += 1
+            return total_reward, episode_length, winner, losses
 
     def train(self, episodes: int = 1000, 
             log_interval: int = 10, 

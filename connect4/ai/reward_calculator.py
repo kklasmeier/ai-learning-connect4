@@ -10,13 +10,13 @@ class ConnectFourRewardCalculator:
     
     def __init__(self):
         # Core game outcome rewards
-        self.reward_win = 20.0
+        self.reward_win = 5.0  # Changed from 20.0
         self.reward_draw = 0.1
         self.reward_loss = -1.0
         
         # Offensive rewards
         self.reward_two_in_row_open_ends = 0.15
-        self.reward_three_in_row_open_end = 0.65
+        self.reward_three_in_row_open_end = 1.0  # Changed from 0.65
         self.reward_fork = 0.35
         self.penalty_missed_win = -0.5
         
@@ -25,9 +25,9 @@ class ConnectFourRewardCalculator:
         self.reward_block_two_open = 0.1
         
         # Anti-stacking penalties
-        self.penalty_stack_one = -2.0
-        self.penalty_stack_two = -5.0
-        self.penalty_stack_three_plus = -10.0
+        self.penalty_stack_one = -0.2  # Changed from -2.0
+        self.penalty_stack_two = -0.4  # Changed from -5.0
+        self.penalty_stack_three_plus = -0.6  # Changed from -10.0
         
         # Positional rewards
         self.reward_center_column = 0.05
@@ -41,7 +41,7 @@ class ConnectFourRewardCalculator:
         # Direction multipliers
         self.multiplier_horizontal = 3.0
         self.multiplier_diagonal = 2.5
-        self.multiplier_vertical = 0.3
+        self.multiplier_vertical = 1.0  # Changed from 0.3
         
         # Base move reward
         self.reward_base_move = -0.01
@@ -348,10 +348,12 @@ class ConnectFourRewardCalculator:
                     break
         
         if alternating_pattern and is_isolated:
-            return -15.0
+            return -0.6  # Changed from -15.0
         elif alternating_pattern:
-            return -10.0
+            return -0.4  # Changed from -10.0
         elif is_isolated and len(column_pieces) >= 4:
-            return -8.0
+            return -0.3  # Changed from -8.0
+        elif len(column_pieces) >= 3:
+            return -0.2  # Added mild penalty for non-alternating stacks
         
         return 0.0

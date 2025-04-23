@@ -145,15 +145,15 @@ class DQNAgent:
     
     def __init__(self, model: Optional[DQNModel] = None, 
                 target_model: Optional[DQNModel] = None,
-                hidden_size: int = 256,
+                hidden_size: int = 128,  # Changed from 256
                 hidden_sizes: List[int] = None,
-                layers: int = 1,
-                learning_rate: float = 0.0001,
+                layers: int = 2,  # Changed from 1
+                learning_rate: float = 0.00005,  # Changed from 0.0001
                 epsilon: float = 1.0,
-                epsilon_decay: float = 0.999999,
-                epsilon_min: float = 0.2, #was 0.05, trying 0.9 to see if it helps
+                epsilon_decay: float = 0.999919,  # Changed from 0.999999
+                epsilon_min: float = 0.1,  # Changed from 0.2
                 gamma: float = 0.99,
-                target_update_freq: int = 50):
+                target_update_freq: int = 100):  # Changed from 50
         """
         Initialize a DQN agent.
         

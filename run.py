@@ -122,7 +122,7 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
     
     for i, move in enumerate(game_data['moves']):
         current_player = "X" if game.get_current_player() == Player.ONE else "O"
-        move_info = f"Move {i+1}: Player {current_player} plays column {move['column']}"
+        move_info = f"Episode: {episode}, Move {i+1}: Player {current_player} plays column {move['column']}"
         
         # Prepare stats
         stats_lines = []
@@ -138,7 +138,7 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
             reward_line = f"{reward_prefix}{components_str}){Style.RESET_ALL}"
             
             # Check if reward line needs wrapping (threshold: 50 characters)
-            max_reward_width = 80
+            max_reward_width = 95
             if len(reward_line) > max_reward_width:
                 # Split components based on width
                 comp_list = components_str.split(', ')

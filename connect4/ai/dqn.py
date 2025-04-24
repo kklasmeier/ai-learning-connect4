@@ -150,7 +150,7 @@ class DQNAgent:
                 layers: int = 2,  # Changed from 1
                 learning_rate: float = 0.00005,  # Changed from 0.0001
                 epsilon: float = 1.0,
-                epsilon_decay: float = 0.999919,  # Changed from 0.999999
+                epsilon_decay: float = 0.99999,  # Changed from 0.999919
                 epsilon_min: float = 0.1,  # Changed from 0.2
                 gamma: float = 0.99,
                 target_update_freq: int = 100):  # Changed from 50

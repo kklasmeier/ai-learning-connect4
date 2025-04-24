@@ -381,7 +381,7 @@ def handle_ai_purge(args):
     """Handle the 'ai purge' command."""
     configure_debug(args)
     if not args.confirm:
-        print("WARNING: This will delete all jobs, logs, games, and training data.")
+        print("WARNING: This will delete all jobs, logs, games, models, and training data.")
         print("To confirm, run: python run.py ai purge --confirm")
         return
     
@@ -404,6 +404,11 @@ def handle_ai_purge(args):
         for file in game_files:
             os.remove(os.path.join('data/games', file))
         print(f"Removed {len(game_files)} game files")
+    if os.path.exists('models'):
+        model_files = [f for f in os.listdir('models') if f.endswith('.pt')]
+        for file in model_files:
+            os.remove(os.path.join('models', file))
+        print(f"Removed {len(model_files)} model files")
     print("Purge completed")
 
 def handle_ai_games(args):

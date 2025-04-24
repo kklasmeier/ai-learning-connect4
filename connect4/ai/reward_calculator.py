@@ -10,13 +10,13 @@ class ConnectFourRewardCalculator:
     
     def __init__(self):
         # Core game outcome rewards
-        self.reward_win = 5.0  # Changed from 20.0
+        self.reward_win = 2.0  # Was 5.0
         self.reward_draw = 0.1
         self.reward_loss = -1.0
         
         # Offensive rewards
         self.reward_two_in_row_open_ends = 0.15
-        self.reward_three_in_row_open_end = 1.0  # Changed from 0.65
+        self.reward_three_in_row_open_end = 0.5  # Was 1.0
         self.reward_fork = 0.35
         self.penalty_missed_win = -0.5
         
@@ -39,50 +39,67 @@ class ConnectFourRewardCalculator:
         self.reward_bottom_rows = 0.03
         
         # Direction multipliers
-        self.multiplier_horizontal = 3.0
-        self.multiplier_diagonal = 2.5
+        self.multiplier_horizontal = 2.0  # Was 3.0
+        self.multiplier_diagonal = 1.5  # Was 2.5
         self.multiplier_vertical = 1.0  # Changed from 0.3
         
         # Base move reward
         self.reward_base_move = -0.01
     
     def calculate_reward(self, game, last_row, last_col, last_column, action, 
-                         current_player, stacking_count, valid_moves) -> Tuple[float, Dict[str, float]]:
-        """
-        Calculate the reward for the current game state after a move.
-        
-        Args:
-            game: The Connect Four game instance
-            last_row, last_col: Position of the last move
-            last_column: Previous column played
-            action: Current column played
-            current_player: Current player (Player.ONE or Player.TWO)
-            stacking_count: Counter for consecutive plays in same column
-            valid_moves: List of valid move columns
-            
-        Returns:
-            Tuple of (total reward, dictionary of reward components)
-        """
+                        current_player, stacking_count, valid_moves):
         reward_components = {}
         reward = self.reward_base_move
         reward_components['base_move'] = self.reward_base_move
         
-        # Convert player enum to grid value
         player_value = 1 if current_player == Player.ONE else 2
-        opponent_value = 3 - player_value
         
-        # Check if game is over
-        if game.is_game_over():
-            winner = game.get_winner()
-            if winner == Player.ONE:
-                reward_components['win'] = self.reward_win
-                return self.reward_win, reward_components
-            elif winner == Player.TWO:
-                reward_components['loss'] = self.reward_loss
-                return self.reward_loss, reward_components
-            else:
-                reward_components['draw'] = self.reward_draw
-                return self.reward_draw, reward_components
+        # Check connections first to determine if move is strategic
+        two_in_row_detected = False
+        three_in_row_detected = False
+        directions = [
+            ((0, 1), self.multiplier_horizontal, 'horizontal'),
+            ((1, 0), self.multiplier_vertical, 'vertical'),
+            ((1, 1), self.multiplier_diagonal, 'diagonal_down'),
+            ((-1, 1), self.multiplier_diagonal, 'diagonal_up')
+        ]
+        for (dr, dc), direction_multiplier, direction_name in directions:
+            consecutive, open_ends = self._count_consecutive(
+                game.board.grid, last_row, last_col, dr, dc, player_value
+            )
+            if consecutive == 2 and open_ends >= 1:
+                two_in_row_detected = True
+                reward_value = self.reward_two_in_row_open_ends * direction_multiplier
+                reward_components[f'two_in_row_{direction_name}'] = reward_value
+                reward += reward_value
+            elif consecutive == 3 and open_ends >= 1:
+                three_in_row_detected = True
+                reward_value = self.reward_three_in_row_open_end * direction_multiplier
+                reward_components[f'three_in_row_{direction_name}'] = reward_value
+                reward += reward_value
+        
+        # Apply stacking count penalties only for non-strategic consecutive plays
+        debug.info(f"Stacking check: action={action}, last_column={last_column}, "
+                f"stacking_count={stacking_count}, two_in_row={two_in_row_detected}, "
+                f"three_in_row={three_in_row_detected}", "training")
+        if (action == last_column and stacking_count > 0 and 
+            not two_in_row_detected and not three_in_row_detected and 
+            last_column is not None):  # Explicitly check last_column
+            if stacking_count == 1:
+                reward += self.penalty_stack_one
+                reward_components['stacking_count'] = self.penalty_stack_one
+                debug.warning(f"Applied stacking_count penalty: {self.penalty_stack_one} "
+                            f"for stacking_count=1 in column {action}", "training")
+            elif stacking_count == 2:
+                reward += self.penalty_stack_two
+                reward_components['stacking_count'] = self.penalty_stack_two
+                debug.warning(f"Applied stacking_count penalty: {self.penalty_stack_two} "
+                            f"for stacking_count=2 in column {action}", "training")
+            elif stacking_count >= 3:
+                reward += self.penalty_stack_three_plus
+                reward_components['stacking_count'] = self.penalty_stack_three_plus
+                debug.warning(f"Applied stacking_count penalty: {self.penalty_stack_three_plus} "
+                            f"for stacking_count>=3 in column {action}", "training")
         
         # Check for problematic stacking
         alternating_stack_penalty = self._check_alternating_stack(
@@ -94,10 +111,10 @@ class ConnectFourRewardCalculator:
             debug.warning(f"Problematic stacking detected in column {action}! Applied penalty: {alternating_stack_penalty}", "training")
         
         # Positional rewards
-        if last_col == 3:  # Center column
+        if last_col == 3:
             reward_components['center_column'] = self.reward_center_column
             reward += self.reward_center_column
-        elif last_col in [2, 4]:  # Adjacent to center
+        elif last_col in [2, 4]:
             reward_components['adjacent_center'] = self.reward_adjacent_center
             reward += self.reward_adjacent_center
         
@@ -108,55 +125,19 @@ class ConnectFourRewardCalculator:
         
         # Early game rewards
         if len(game.board.moves_made) <= 4:
-            # Check if playing in different quadrants
             if game.board.moves_made.count(action) == 0:
                 reward_components['different_quadrants'] = self.reward_different_quadrants
                 reward += self.reward_different_quadrants
-            
-            # Reward for playing in bottom rows
             if last_row >= ROWS - 2:
                 reward_components['bottom_rows'] = self.reward_bottom_rows
                 reward += self.reward_bottom_rows
         
-        # Direction-based checks for connections and blocks
-        directions = [
-            ((0, 1), self.multiplier_horizontal, 'horizontal'),
-            ((1, 0), self.multiplier_vertical, 'vertical'),
-            ((1, 1), self.multiplier_diagonal, 'diagonal_down'),
-            ((-1, 1), self.multiplier_diagonal, 'diagonal_up')
-        ]
-        
+        # Blocking and missed win checks
         missed_win_detected = False
-        
         for (dr, dc), direction_multiplier, direction_name in directions:
-            # Analyze connections in this direction
-            consecutive, open_ends = self._count_consecutive(
-                game.board.grid, last_row, last_col, dr, dc, player_value
-            )
-            
-            # Apply direction-specific rewards
-            if consecutive == 2 and open_ends == 2:
-                reward_value = self.reward_two_in_row_open_ends * direction_multiplier
-                reward_components[f'two_in_row_{direction_name}'] = reward_value
-                reward += reward_value
-            elif consecutive == 3 and open_ends >= 1:
-                reward_value = self.reward_three_in_row_open_end * direction_multiplier
-                reward_components[f'three_in_row_{direction_name}'] = reward_value
-                reward += reward_value
-            
-            # Check for missed win
-            if consecutive == 3 and open_ends >= 1:
-                if not self._check_if_winning_move_taken(
-                    game.board.grid, last_row, last_col, dr, dc, 
-                    player_value, valid_moves
-                ):
-                    missed_win_detected = True
-            
-            # Check if we blocked opponent
             opponent_consecutive, opponent_open_ends = self._check_blocking(
-                game.board.grid, last_row, last_col, dr, dc, opponent_value
+                game.board.grid, last_row, last_col, dr, dc, 3 - player_value
             )
-            
             if opponent_consecutive == 3:
                 reward_value = self.reward_block_three * direction_multiplier
                 reward_components[f'block_three_{direction_name}'] = reward_value
@@ -165,6 +146,16 @@ class ConnectFourRewardCalculator:
                 reward_value = self.reward_block_two_open * direction_multiplier
                 reward_components[f'block_two_open_{direction_name}'] = reward_value
                 reward += reward_value
+            
+            # Check for missed win
+            consecutive, open_ends = self._count_consecutive(
+                game.board.grid, last_row, last_col, dr, dc, player_value
+            )
+            if consecutive == 3 and open_ends >= 1:
+                if not self._check_if_winning_move_taken(
+                    game.board.grid, last_row, last_col, dr, dc, player_value, valid_moves
+                ):
+                    missed_win_detected = True
         
         # Apply fork detection
         threats = self._count_threats(game.board.grid, player_value)
@@ -178,10 +169,10 @@ class ConnectFourRewardCalculator:
             reward += self.penalty_missed_win
         
         return reward, reward_components
-    
+           
     def _count_consecutive(self, grid, row, col, dr, dc, player_value):
         """Count consecutive pieces and open ends in a direction."""
-        consecutive = 1
+        consecutive = 1  # Include the placed piece
         open_ends = 0
         
         # Check in the positive direction
@@ -190,9 +181,12 @@ class ConnectFourRewardCalculator:
             consecutive += 1
             r += dr
             c += dc
-        
-        # Check if this end is open
+        # Check if this end is open (empty or above/below board for vertical)
         if is_valid_position(r, c) and grid[r, c] == 0:
+            open_ends += 1
+        elif dr == 1 and r < 0:  # Vertical, above board
+            open_ends += 1
+        elif dr == -1 and r >= ROWS:  # Vertical, below board
             open_ends += 1
         
         # Check in the negative direction
@@ -200,11 +194,18 @@ class ConnectFourRewardCalculator:
         while is_valid_position(r, c) and grid[r, c] == player_value:
             consecutive += 1
             r -= dr
-            c -= dc
-        
+            c += dc
         # Check if this end is open
         if is_valid_position(r, c) and grid[r, c] == 0:
             open_ends += 1
+        elif dr == 1 and r >= ROWS:  # Vertical, below board
+            open_ends += 1
+        elif dr == -1 and r < 0:  # Vertical, above board
+            open_ends += 1
+        
+        # Debug logging
+        debug.info(f"Count consecutive: row={row}, col={col}, direction=({dr},{dc}), "
+                f"player={player_value}, consecutive={consecutive}, open_ends={open_ends}", "training")
         
         return consecutive, open_ends
     
@@ -246,53 +247,88 @@ class ConnectFourRewardCalculator:
         """Check if there was a winning move available but not taken."""
         positions = [(row, col)]
         
+        # Collect consecutive pieces
         r, c = row + dr, col + dc
         while is_valid_position(r, c) and grid[r, c] == player_value:
             positions.append((r, c))
             r += dr
             c += dc
-        
         r, c = row - dr, col - dc
         while is_valid_position(r, c) and grid[r, c] == player_value:
             positions.append((r, c))
             r -= dr
-            c -= dc
+            c += dc
         
+        # Check for winning move in open ends
         for direction_mult in [1, -1]:
             for base_r, base_c in positions:
                 next_r = base_r + (dr * direction_mult)
                 next_c = base_c + (dc * direction_mult)
                 
-                if (is_valid_position(next_r, next_c) and grid[next_r, next_c] == 0 and
+                # Ensure the position is valid, empty, and playable
+                if (is_valid_position(next_r, next_c) and 
+                    grid[next_r, next_c] == 0 and 
                     next_c in valid_moves):
-                    
+                    # Check if the piece can be placed (bottom or supported)
                     if next_r == ROWS - 1 or (next_r + 1 < ROWS and grid[next_r + 1, next_c] != 0):
-                        return False
-        
+                        # Simulate placing the piece
+                        temp_grid = grid.copy()
+                        temp_grid[next_r, next_c] = player_value
+                        # Verify four-in-a-row
+                        count = 1
+                        for i in range(1, 4):
+                            r, c = next_r + (dr * i), next_c + (dc * i)
+                            if is_valid_position(r, c) and temp_grid[r, c] == player_value:
+                                count += 1
+                            else:
+                                break
+                        for i in range(1, 4):
+                            r, c = next_r - (dr * i), next_c - (dc * i)
+                            if is_valid_position(r, c) and temp_grid[r, c] == player_value:
+                                count += 1
+                            else:
+                                break
+                        if count >= 4:
+                            debug.warning(f"Missed win detected: could win in col {next_c}, chose col {col}", "training")
+                            return False
         return True
     
     def _count_threats(self, grid, player_value):
-        """Count number of threatening positions."""
+        """Count number of threatening positions (two-in-a-row with two empty)."""
         threats = 0
         
+        # Horizontal threats
         for r in range(ROWS):
             for c in range(COLS - 3):
                 window = grid[r, c:c+4]
-                if np.count_nonzero(window == player_value) == 2 and np.count_nonzero(window == 0) == 2:
-                    threats += 1
+                if (np.count_nonzero(window == player_value) == 2 and 
+                    np.count_nonzero(window == 0) == 2):
+                    # Verify at least one empty slot is playable
+                    playable = False
+                    for i in range(4):
+                        if window[i] == 0 and (r == ROWS - 1 or grid[r + 1, c + i] != 0):
+                            playable = True
+                            break
+                    if playable:
+                        threats += 1
+                        debug.info(f"Horizontal threat: row={r}, cols={c}:{c+3}, window={window}", "training")
         
+        # Vertical threats
         for c in range(COLS):
             for r in range(ROWS - 3):
                 window = grid[r:r+4, c]
-                if np.count_nonzero(window == player_value) == 2 and np.count_nonzero(window == 0) == 2:
-                    threats += 1
+                if (np.count_nonzero(window == player_value) == 2 and 
+                    np.count_nonzero(window == 0) == 2):
+                    # Verify top empty slot is playable
+                    for i in range(4):
+                        if window[i] == 0 and (r + i == 0 or grid[r + i - 1, c] != 0):
+                            threats += 1
+                            debug.info(f"Vertical threat: col={c}, rows={r}:{r+3}, window={window}", "training")
+                            break
         
         return threats
     
     def _check_alternating_stack(self, grid, col, last_row, player_value):
-        """
-        Check for problematic stacking patterns while allowing strategic blocking.
-        """
         column_pieces = []
         for r in range(ROWS-1, -1, -1):
             if grid[r, col] != 0:
@@ -314,14 +350,12 @@ class ConnectFourRewardCalculator:
                     count += 1
                 else:
                     break
-            
             for i in range(1, 4):
                 r, c = last_row - (dr * i), col - (dc * i)
                 if is_valid_position(r, c) and grid[r, c] == opponent_value:
                     count += 1
                 else:
                     break
-            
             if count >= 2:
                 was_blocking_move = True
                 break
@@ -348,12 +382,12 @@ class ConnectFourRewardCalculator:
                     break
         
         if alternating_pattern and is_isolated:
-            return -0.6  # Changed from -15.0
+            return -2.0
         elif alternating_pattern:
-            return -0.4  # Changed from -10.0
+            return -1.5
         elif is_isolated and len(column_pieces) >= 4:
-            return -0.3  # Changed from -8.0
-        elif len(column_pieces) >= 3:
-            return -0.2  # Added mild penalty for non-alternating stacks
+            return -1.0
+        elif len(column_pieces) >= 4:  # Was >= 3
+            return -0.5
+        return 0.0    
         
-        return 0.0

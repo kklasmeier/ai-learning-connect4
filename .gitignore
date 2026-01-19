@@ -1,6 +1,79 @@
-# Ignore contents of models and stats directories, but keep the directories themselves
-/models/*
-/stats/*
+############################
+# Python / Runtime
+############################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.python-version
+.pytest_cache/
+.mypy_cache/
+
+############################
+# Virtual environments
+############################
+venv/
+.venv/
+python_venv/
+
+############################
+# OS / Editor noise
+############################
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.bak
+*.tmp
+
+############################
+# Logs
+############################
+*.log
+logs/
+data/logs/
+data/logs/**
+
+############################
+# Training / Generated Data
+############################
+data/games/
+data/games/**
+data/jobs.json.lock
+data/models.json.lock
+*.lock
+
+############################
+# Models / Artifacts
+############################
 models/*
 stats/*
-__pycache__/
+!models/.gitkeep
+!stats/.gitkeep
+
+# Common ML artifacts
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.npz
+*.npy
+*.pkl
+
+############################
+# Experiment outputs
+############################
+runs/
+checkpoints/
+tensorboard/
+wandb/
+
+############################
+# Safety net (never commit)
+############################
+*.zip
+*.tar
+*.tar.gz
+*.7z
+

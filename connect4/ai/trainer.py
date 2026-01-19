@@ -1,10 +1,8 @@
 """
 trainer.py - Unified training framework for Connect Four AI
-
 This module provides a flexible trainer that can train the DQN agent against
 different types of opponents: minimax, self-play, or other saved models.
 """
-
 import os
 import time
 import random
@@ -13,22 +11,60 @@ import torch
 from typing import Dict, List, Tuple, Optional, Any, Union
 from datetime import datetime
 from enum import Enum
-
 from connect4.debug import debug, DebugLevel
 from connect4.utils import ROWS, COLS, Player, GameResult
 from connect4.game.rules import ConnectFourGame
 from connect4.game.board import Board
 from connect4.ai.dqn import DQNAgent, DQNModel
 from connect4.ai.replay_buffer import ReplayBuffer
+# --- Curriculum helpers ---
+def wilson_lower_bound(successes: int, trials: int, z: float = 1.96) -> float:
+    """Conservative lower bound of a binomial proportion (Wilson score interval)."""
+    if trials <= 0:
+        return 0.0
+    phat = successes / trials
+    denom = 1.0 + (z*z)/trials
+    center = phat + (z*z)/(2.0*trials)
+    margin = z * ((phat*(1.0-phat) + (z*z)/(4.0*trials)) / trials) ** 0.5
+    return max(0.0, (center - margin) / denom)
+class DualReplayBuffer:
+    """A replay buffer wrapper that mixes recent and global experience.
+    This is useful in curriculum training: global prevents forgetting, recent
+    helps adapt quickly to the current stage distribution.
+    """
+    def __init__(self, global_buffer: ReplayBuffer, recent_capacity: int = 10000, recent_fraction: float = 0.5):
+        self.global_buffer = global_buffer
+        self.recent_buffer = ReplayBuffer(capacity=max(1000, int(recent_capacity)))
+        self.recent_fraction = float(max(0.0, min(1.0, recent_fraction)))
+    def add(self, *args, **kwargs):
+        self.global_buffer.add(*args, **kwargs)
+        self.recent_buffer.add(*args, **kwargs)
+    def sample(self, batch_size: int):
+        batch_size = int(batch_size)
+        if batch_size <= 0:
+            return []
+        n_recent = int(round(batch_size * self.recent_fraction))
+        n_global = batch_size - n_recent
+        out = []
+        # Guard: if a buffer is too small, fall back to the other.
+        if n_recent > 0 and len(self.recent_buffer) >= n_recent:
+            out.extend(self.recent_buffer.sample(n_recent))
+        else:
+            n_global += n_recent
+            n_recent = 0
+        if n_global > 0 and len(self.global_buffer) >= n_global:
+            out.extend(self.global_buffer.sample(n_global))
+        elif n_global > 0 and len(self.recent_buffer) >= n_global:
+            out.extend(self.recent_buffer.sample(n_global))
+        return out
+    def __len__(self):
+        return len(self.global_buffer)
 from connect4.ai.minimax import MinimaxPlayer
 from connect4.ai.utils import board_to_state, state_to_tensor
-
 from connect4.data.data_manager import (
     create_job, update_job_progress, add_episode_log,
     register_model, complete_job, save_game_moves
 )
-
-
 class OpponentType(Enum):
     """Types of opponents the agent can train against."""
     MINIMAX = "minimax"
@@ -36,8 +72,6 @@ class OpponentType(Enum):
     MODEL = "model"
     RANDOM = "random"
     MIXED = "mixed"  # Mix of random and minimax for curriculum transition
-
-
 class Trainer:
     """
     Unified trainer for Connect Four AI.
@@ -48,7 +82,6 @@ class Trainer:
     - model: Play against a saved model
     - random: Play against random moves (for baseline testing)
     """
-
     def __init__(
         self,
         agent: Optional[DQNAgent] = None,
@@ -221,7 +254,6 @@ class Trainer:
             self.agent.epsilon = self.epsilon_start - progress * (self.epsilon_start - self.epsilon_end)
         else:
             self.agent.epsilon = self.epsilon_end
-
     def _play_episode(
         self,
         training: bool = True,
@@ -556,7 +588,6 @@ class Trainer:
         loss_rate = losses / num_games
         
         print(f"  [EVAL] {num_games} games: Win {win_rate:.1%}, Draw {draw_rate:.1%}, Loss {loss_rate:.1%}")
-
         return {
             'win_rate': win_rate,
             'draw_rate': draw_rate,
@@ -575,8 +606,6 @@ class Trainer:
             'avg_episode_length': np.mean(self.stats['episode_lengths'][-window:]) if self.stats['episode_lengths'] else 0,
             'final_epsilon': self.agent.epsilon
         }
-
-
 def train_against_minimax(
     agent: Optional[DQNAgent] = None,
     episodes: int = 1000,
@@ -604,8 +633,6 @@ def train_against_minimax(
         **kwargs
     )
     return trainer.train(episodes=episodes, log_interval=log_interval)
-
-
 def train_self_play(
     agent: Optional[DQNAgent] = None,
     episodes: int = 1000,
@@ -630,8 +657,6 @@ def train_self_play(
         **kwargs
     )
     return trainer.train(episodes=episodes, log_interval=log_interval)
-
-
 class CurriculumStage:
     """Defines a stage in curriculum training."""
     
@@ -667,8 +692,6 @@ class CurriculumStage:
         self.promotion_win_rate = promotion_win_rate
         self.promotion_window = promotion_window
         self.max_attempts = max_attempts
-
-
 class CurriculumTrainer:
     """
     Curriculum-based trainer that progressively increases opponent difficulty.
@@ -830,23 +853,32 @@ class CurriculumTrainer:
         save_interval: int = 500,
         eval_interval: int = 250,
         eval_games: int = 20,
-        verbose: bool = True
+        verbose: bool = True,
+        # New controls
+        patience: int = 5,
+        backoff_factor: float = 0.5,
+        promotion_strategy: str = 'hybrid',  # '2of3', 'wilson', 'hybrid'
+        promotion_batches: int = 3,
+        promotion_eval_games: int = 120,
+        wilson_z: float = 1.96,
+        dual_replay: bool = False,
+        dual_recent_capacity: int = 10000,
+        dual_recent_fraction: float = 0.5,
     ) -> Dict[str, Any]:
-        """
-        Run the full curriculum training.
-        
-        Args:
-            log_interval: How often to log progress within each stage
-            save_interval: How often to save checkpoints
-            eval_interval: How often to run evaluation
-            eval_games: Number of games for evaluation
-            verbose: Whether to print progress messages
-            
-        Returns:
-            Dictionary with training results for all stages
+        """Run curriculum training forever.
+        - Infinite curriculum loop (never stops).
+        - Patience/backoff for MIXED stages by relaxing toward previous stage.
+        - For MINIMAX depth stages, backoff trains on the previous stage for a few attempts,
+          then retries the harder stage.
+        - Promotion stabilized via 2-of-3 batches and/or Wilson lower bound.
+        - Optional dual replay sampling (recent+global) while keeping persistence across stages.
         """
         start_time = time.time()
-        
+        patience = max(1, int(patience))
+        backoff_factor = float(max(0.01, min(0.99, backoff_factor)))
+        promotion_strategy = str(promotion_strategy).lower().strip()
+        promotion_batches = max(1, int(promotion_batches))
+        promotion_eval_games = max(30, int(promotion_eval_games))
         if verbose:
             print("=" * 60)
             print("CURRICULUM TRAINING")
@@ -854,149 +886,209 @@ class CurriculumTrainer:
             print(f"Stages: {len(self.stages)}")
             for i, stage in enumerate(self.stages):
                 depth_str = f" (depth {stage.minimax_depth})" if stage.opponent_type == OpponentType.MINIMAX else ""
-                print(f"  {i+1}. {stage.name}{depth_str}: {stage.episodes} episodes, "
-                      f"promotion at {stage.promotion_win_rate:.0%} win rate")
+                print(
+                    f"  {i+1}. {stage.name}{depth_str}: {stage.episodes} episodes, "
+                    f"promotion at {stage.promotion_win_rate:.0%} win rate"
+                )
             print("=" * 60)
             print()
-        
-        # Shared replay buffer across all curriculum stages.
-        # This prevents catastrophic forgetting when the opponent distribution changes.
         shared_replay_buffer = ReplayBuffer(capacity=self.replay_buffer_size)
-        
+        training_replay = shared_replay_buffer
+        if dual_replay:
+            training_replay = DualReplayBuffer(
+                global_buffer=shared_replay_buffer,
+                recent_capacity=dual_recent_capacity,
+                recent_fraction=dual_recent_fraction,
+            )
+        # Adaptive difficulty state
+        mixed_effective_prob = {}  # stage_index -> current random prob
+        failures_since_backoff = {}  # stage_index -> count
+        # Recovery mode for depth stages
+        recovery_target = None  # (hard_stage_index)
+        recovery_attempts_left = 0
         total_episodes = 0
-        
-        for stage_index, stage in enumerate(self.stages):
-            self.current_stage_index = stage_index
-            attempts = 0
-            promoted = False
-            
-            while attempts < stage.max_attempts and not promoted:
-                attempts += 1
-                self.stage_attempts[stage_index] = attempts
-                
+        stage_index = 0
+        def run_promotion_eval(trainer: Trainer, threshold: float):
+            """Return (promoted:bool, details:dict)."""
+            per_batch = max(20, promotion_eval_games // promotion_batches)
+            batch_rates = []
+            wins_total = 0
+            games_total = 0
+            passed_batches = 0
+            for _ in range(promotion_batches):
+                ev = trainer._evaluate(per_batch)
+                wr = float(ev.get('win_rate', 0.0))
+                batch_rates.append(wr)
+                # Convert to wins conservatively
+                wins = int(round(wr * per_batch))
+                wins_total += wins
+                games_total += per_batch
+                if wr >= threshold:
+                    passed_batches += 1
+            overall_wr = (wins_total / games_total) if games_total else 0.0
+            wlb = wilson_lower_bound(wins_total, games_total, z=wilson_z)
+            pass_2of3 = passed_batches >= max(1, (promotion_batches * 2 + 2) // 3)  # ceil(2/3)
+            pass_wilson = wlb >= threshold
+            if promotion_strategy == '2of3':
+                promoted = pass_2of3
+            elif promotion_strategy == 'wilson':
+                promoted = pass_wilson
+            else:
+                promoted = pass_2of3 or pass_wilson
+            return promoted, {
+                'batch_win_rates': batch_rates,
+                'passed_batches': passed_batches,
+                'promotion_eval_games': games_total,
+                'promotion_win_rate': overall_wr,
+                'wilson_lb': wlb,
+                'strategy': promotion_strategy,
+            }
+        while True:
+            stage = self.stages[stage_index]
+            # Determine effective opponent parameters
+            eff_opponent_type = stage.opponent_type
+            eff_minimax_depth = stage.minimax_depth
+            eff_mixed_prob = stage.mixed_random_prob
+            if stage.opponent_type == OpponentType.MIXED:
+                if stage_index not in mixed_effective_prob:
+                    mixed_effective_prob[stage_index] = float(stage.mixed_random_prob)
+                eff_mixed_prob = mixed_effective_prob[stage_index]
+            # If we're in recovery mode, train on the previous stage instead
+            if recovery_target is not None and recovery_attempts_left > 0:
+                recover_idx = max(0, recovery_target - 1)
+                stage = self.stages[recover_idx]
+                eff_opponent_type = stage.opponent_type
+                eff_minimax_depth = stage.minimax_depth
+                eff_mixed_prob = stage.mixed_random_prob
+                stage_index_effective = recover_idx
+                recovery_attempts_left -= 1
+            else:
+                stage_index_effective = stage_index
+                if recovery_target is not None and recovery_attempts_left <= 0:
+                    # Recovery done; go back to hard stage
+                    stage_index_effective = recovery_target
+                    stage = self.stages[stage_index_effective]
+                    eff_opponent_type = stage.opponent_type
+                    eff_minimax_depth = stage.minimax_depth
+                    eff_mixed_prob = stage.mixed_random_prob
+                    recovery_target = None
+            # Accounting
+            self.current_stage_index = stage_index_effective
+            attempts = self.stage_attempts.get(stage_index_effective, 0) + 1
+            self.stage_attempts[stage_index_effective] = attempts
+            if verbose:
+                print()
+                print('-' * 60)
+                print(f"STAGE {stage_index_effective + 1}/{len(self.stages)}: {stage.name}")
+                if dual_replay and attempts == 1 and stage_index_effective == 0:
+                    print(f"  Using dual replay sampling (recent_capacity={dual_recent_capacity}, recent_fraction={dual_recent_fraction:.2f})")
+                print('-' * 60)
+            # Epsilon scheduling
+            eps_start, eps_end = self._calculate_stage_epsilon(stage_index_effective)
+            if stage_index_effective == 0 and attempts == 1:
+                self.agent.epsilon = eps_start
+            elif attempts == 1:
+                self.agent.epsilon = min(self.agent.epsilon + 0.1, eps_start * 0.5)
+            if verbose:
+                print(f"  Epsilon: {self.agent.epsilon:.3f} -> {eps_end:.3f}")
+            trainer = Trainer(
+                agent=self.agent,
+                opponent_type=eff_opponent_type,
+                minimax_depth=eff_minimax_depth,
+                mixed_random_prob=eff_mixed_prob,
+                model_dir=self.model_dir,
+                batch_size=self.batch_size,
+                replay_buffer_size=self.replay_buffer_size,
+                replay_buffer=training_replay,
+                epsilon_start=self.agent.epsilon,
+                epsilon_end=eps_end,
+                epsilon_decay_episodes=int(stage.episodes * 0.5),
+            )
+            trainer.curriculum_stage = stage_index_effective
+            trainer.curriculum_total_stages = len(self.stages)
+            trainer.curriculum_stage_name = stage.name
+            stats = trainer.train(
+                episodes=stage.episodes,
+                log_interval=log_interval,
+                save_interval=save_interval,
+                eval_interval=eval_interval,
+                eval_games=eval_games,
+            )
+            total_episodes += stage.episodes
+            promoted, promo = run_promotion_eval(trainer, stage.promotion_win_rate)
+            self.stage_results.append({
+                'stage': stage_index_effective,
+                'name': stage.name,
+                'attempt': attempts,
+                'episodes': stage.episodes,
+                'final_win_rate': stats.get('final_win_rate', 0),
+                **promo,
+                'promoted': bool(promoted),
+            })
+            if verbose:
+                bw = ", ".join([f"{w:.1%}" for w in promo.get('batch_win_rates', [])])
+                print(f"  [PROMO] batches=[{bw}] passed={promo.get('passed_batches',0)}/{promotion_batches} overall={promo.get('promotion_win_rate',0.0):.1%} wilson_lb={promo.get('wilson_lb',0.0):.1%}")
+            if promoted:
                 if verbose:
-                    print()
-                    print("-" * 60)
-                    print(f"STAGE {stage_index + 1}/{len(self.stages)}: {stage.name}")
-                    if attempts > 1:
-                        print(f"  (Attempt {attempts}/{stage.max_attempts} - keeping learned policy)")
-                    print("-" * 60)
-                
-                # Calculate epsilon for this stage
-                eps_start, eps_end = self._calculate_stage_epsilon(stage_index)
-                
-                # Epsilon handling:
-                # - First stage, first attempt: start fresh with high epsilon
-                # - New stage (not retry): slight epsilon bump for new opponent type
-                # - Retry of same stage: keep current epsilon (don't reset!)
-                if stage_index == 0 and attempts == 1:
-                    # Very first stage - start with full exploration
-                    self.agent.epsilon = eps_start
-                    if verbose:
-                        print(f"  Starting epsilon: {self.agent.epsilon:.3f}")
-                elif attempts == 1:
-                    # New stage (not a retry) - small epsilon bump for new challenge
-                    # But don't go too high - agent has learned something
-                    new_eps = min(self.agent.epsilon + 0.1, eps_start * 0.5)
-                    self.agent.epsilon = new_eps
-                    if verbose:
-                        print(f"  Epsilon bumped to {self.agent.epsilon:.3f} for new stage")
-                else:
-                    # Retry - keep current epsilon, don't reset!
-                    if verbose:
-                        print(f"  Keeping epsilon at {self.agent.epsilon:.3f} (no reset on retry)")
-                
-                # Create trainer for this stage (persistent replay buffer across curriculum)
-                trainer = Trainer(
-                    agent=self.agent,
-                    opponent_type=stage.opponent_type,
-                    minimax_depth=stage.minimax_depth,
-                    mixed_random_prob=stage.mixed_random_prob,
-                    model_dir=self.model_dir,
-                    batch_size=self.batch_size,
-                    replay_buffer_size=self.replay_buffer_size,
-                    replay_buffer=shared_replay_buffer,
-                    epsilon_start=self.agent.epsilon,
-                    epsilon_end=eps_end,
-                    epsilon_decay_episodes=int(stage.episodes * 0.5)  # Slower decay
-                )
-                
-                # Note: We intentionally reuse the same replay buffer across stages
-                # so the agent doesn't catastrophically forget earlier patterns.
-                if verbose and attempts == 1:
-                    print(f"  Using persistent replay buffer across curriculum")
-                
-                # Set curriculum tracking info for logging
-                trainer.curriculum_stage = stage_index
-                trainer.curriculum_total_stages = len(self.stages)
-                trainer.curriculum_stage_name = stage.name
-                
-                # Train for this stage
-                stats = trainer.train(
-                    episodes=stage.episodes,
-                    log_interval=log_interval,
-                    save_interval=save_interval,
-                    eval_interval=eval_interval,
-                    eval_games=eval_games
-                )
-                
-                total_episodes += stage.episodes
-                
-                # Promotion gating should use evaluation games, not training win-rate.
-                # Training win-rate is very noisy early on (especially with exploration) and can
-                # disagree with actual strength. Evaluation is also noisy with small N, so we use
-                # a larger sample specifically for promotion decisions.
-                promotion_eval_games = max(int(eval_games), 100)
-                promotion_eval = trainer._evaluate(promotion_eval_games)
-                promotion_win_rate = float(promotion_eval.get('win_rate', 0.0))
-                
-                self.stage_results.append({
-                    'stage': stage_index,
-                    'name': stage.name,
-                    'attempt': attempts,
-                    'episodes': stage.episodes,
-                    'final_win_rate': stats.get('final_win_rate', 0),
-                    'promotion_eval_games': promotion_eval_games,
-                    'promotion_win_rate': promotion_win_rate,
-                    'promoted': promotion_win_rate >= stage.promotion_win_rate
-                })
-                
-                if promotion_win_rate >= stage.promotion_win_rate:
-                    promoted = True
-                    if verbose:
-                        print(
-                            f"\n✓ PROMOTED! Promotion eval win rate {promotion_win_rate:.1%} "
-                            f">= {stage.promotion_win_rate:.0%} "
-                            f"({promotion_eval_games} eval games)"
-                        )
-                        
-                        # Save a checkpoint for this stage completion
-                        stage_model_name = f"curriculum_stage{stage_index + 1}_{stage.name.replace(' ', '_').lower()}"
-                        stage_model_path = os.path.join(self.model_dir, stage_model_name)
-                        self.agent.save(stage_model_path)
-                        print(f"  Saved stage checkpoint: {stage_model_path}")
-                else:
-                    if verbose:
-                        print(
-                            f"\n✗ Not promoted. Promotion eval win rate {promotion_win_rate:.1%} "
-                            f"< {stage.promotion_win_rate:.0%} "
-                            f"({promotion_eval_games} eval games)"
-                        )
-                        if attempts < stage.max_attempts:
-                            print(f"  Retrying stage ({attempts + 1}/{stage.max_attempts})...")
-            
-            # Curriculum gating: do NOT advance if the agent failed the stage.
-            # The whole point of curriculum is that later stages assume earlier competencies.
-            if not promoted:
-                if verbose:
+                    thr = float(stage.promotion_win_rate)
+                    passed = int(promo.get('passed_batches', 0))
+                    wilson_lb = float(promo.get('wilson_lb', 0.0))
+                    overall = float(promo.get('promotion_win_rate', 0.0))
+                    need_batches = (promotion_batches * 2 + 2) // 3  # ceil(2/3 * promotion_batches)
+
+                    strategy = promo.get('strategy', 'hybrid')
+                    # Determine which criterion actually triggered promotion (for accurate logs)
+                    if strategy == '2of3':
+                        via = '2-of-3 batches'
+                    elif strategy == 'wilson':
+                        via = 'Wilson lower bound'
+                    else:
+                        if passed >= need_batches:
+                            via = '2-of-3 batches'
+                        elif wilson_lb >= thr:
+                            via = 'Wilson lower bound'
+                        else:
+                            via = 'hybrid'
+
                     print(
-                        f"\n✗ Curriculum STOPPED at stage {stage_index + 1}/{len(self.stages)} "
-                        f"({stage.name}). Promotion threshold not reached after {stage.max_attempts} attempts."
+                        f"\n✓ PROMOTED! (strategy={strategy}, via={via}) "
+                        f"overall {overall:.1%}; "
+                        f"batches {passed}/{promotion_batches} (need {need_batches} at >= {thr:.0%}); "
+                        f"wilson_lb {wilson_lb:.1%} (need {thr:.0%})"
                     )
-                break
-        
-        elapsed = time.time() - start_time
-        
+                failures_since_backoff[stage_index_effective] = 0
+                stage_model_name = f"curriculum_stage{stage_index_effective + 1}_{stage.name.replace(' ', '_').lower()}"
+                stage_model_path = os.path.join(self.model_dir, stage_model_name)
+                self.agent.save(stage_model_path)
+                if verbose:
+                    print(f"  Saved stage checkpoint: {stage_model_path}")
+                # Advance if we were training the main track
+                if stage_index_effective == stage_index:
+                    stage_index = min(stage_index + 1, len(self.stages) - 1)
+                continue
+            # Not promoted
+            failures_since_backoff[stage_index_effective] = failures_since_backoff.get(stage_index_effective, 0) + 1
+            if verbose:
+                print(f"\n✗ Not promoted. failures_since_backoff={failures_since_backoff[stage_index_effective]}/{patience}")
+            if failures_since_backoff[stage_index_effective] >= patience:
+                failures_since_backoff[stage_index_effective] = 0
+                # Mixed stages: relax toward previous stage by backoff_factor
+                if stage.opponent_type == OpponentType.MIXED and stage_index_effective > 0:
+                    prev = self.stages[stage_index_effective - 1]
+                    prev_p = float(getattr(prev, 'mixed_random_prob', 1.0))
+                    cur_p = float(mixed_effective_prob.get(stage_index_effective, stage.mixed_random_prob))
+                    new_p = cur_p + backoff_factor * (prev_p - cur_p)
+                    mixed_effective_prob[stage_index_effective] = max(0.0, min(prev_p, new_p))
+                    if verbose:
+                        print(f"  [BACKOFF] Mixed stage random_prob -> {mixed_effective_prob[stage_index_effective]:.3f} (toward prev {prev_p:.3f})")
+                # Depth stages: temporarily recover on previous stage for `patience` attempts
+                elif stage.opponent_type == OpponentType.MINIMAX and stage_index_effective > 0:
+                    recovery_target = stage_index_effective
+                    recovery_attempts_left = patience
+                    if verbose:
+                        print(f"  [BACKOFF] Depth stage: training previous stage for {patience} attempts, then retry")
+            # Keep looping forever
+            continue
         # Final summary
         if verbose:
             print()
@@ -1025,7 +1117,6 @@ class CurriculumTrainer:
             print(f"Final model saved: {final_model_path}")
         
         stages_completed = sum(1 for r in self.stage_results if r.get('promoted'))
-
         return {
             'total_episodes': total_episodes,
             'total_time': elapsed,
@@ -1033,8 +1124,6 @@ class CurriculumTrainer:
             'stage_results': self.stage_results,
             'final_model_path': final_model_path
         }
-
-
 def train_curriculum(
     agent: Optional[DQNAgent] = None,
     log_interval: int = 100,
@@ -1053,8 +1142,6 @@ def train_curriculum(
     """
     trainer = CurriculumTrainer(agent=agent, **kwargs)
     return trainer.train(log_interval=log_interval)
-
-
 if __name__ == "__main__":
     # Quick test
     from connect4.debug import debug, DebugLevel

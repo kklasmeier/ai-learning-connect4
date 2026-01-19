@@ -82,3 +82,137 @@ connect4-game/
 ├── 📁 models/                             # Trained Models
 │   └── (*.pth, *.pkl files)               # Neural network weights & 
 
+Absolutely — here’s a **clean, hand-off–ready project summary** you can drop straight into a new chat and continue without loss of context.
+
+---
+
+## Project Summary — Connect-4 Deep RL with Infinite Adaptive Curriculum
+
+### Goal
+
+Train a **DQN-based Connect-4 agent** that can reliably learn to defeat increasingly strong opponents (Random → Minimax depth 5) **without stalling, regressing, or falsely promoting**, by using an **infinite, adaptive curriculum** instead of rigid stage gating.
+
+---
+
+## Core Architecture
+
+* **Environment**: Connect-4, alternating turns, reward shaping on win/loss/draw.
+* **Agent**: Deep Q-Network (customizable layer sizes, e.g. `[256, 128]`)
+* **Opponents**:
+
+  * Random
+  * Mixed Random + Minimax(depth N)
+  * Pure Minimax(depth 1–5)
+
+---
+
+## Major Problems Identified (and Fixed)
+
+### 1. Catastrophic Forgetting Across Curriculum
+
+**Fix**
+
+* Single **persistent replay buffer** shared across all curriculum stages.
+* (Optional) **Dual replay sampling**: recent transitions + global memory.
+
+---
+
+### 2. Premature / Noisy Promotion Decisions
+
+**Fix**
+
+* Promotion based on **evaluation stability**, not single noisy runs:
+
+  * **2-of-3 evaluation batches** must pass, OR
+  * **Wilson lower bound** must exceed threshold.
+* Promotion logic stabilized; misleading logs fixed.
+
+---
+
+### 3. Curriculum Dead-Ends (Agent Gets Stuck)
+
+**Fix**
+
+* Curriculum no longer stops.
+* Introduced **infinite curriculum loop** with **patience & backoff**:
+
+  * Each stage has `patience` (e.g. 5 failed promotions).
+  * On patience exhaustion:
+
+    * **Mixed stages** soften opponent ratio (e.g. 70/30 → 60/40 → 55/45).
+    * **Depth stages** fall back to previous depth (e.g. Depth-2 → mostly Depth-1).
+  * After backoff, retry indefinitely.
+* Agent never resets weights unless explicitly restarted.
+
+---
+
+### 4. Exploration Collapse at Hard Stages
+
+**Fix**
+
+* **Epsilon bumps** when entering a new stage.
+* No epsilon reset on retries, but exploration is preserved.
+
+---
+
+### 5. Misleading Promotion Logging (Bug)
+
+**Fix**
+
+* Promotion logs now accurately report:
+
+  * Threshold
+  * Eval batches
+  * Wilson LB
+  * **Which criterion actually triggered promotion**
+
+---
+
+## Current Curriculum Behavior
+
+* Runs **forever**
+* Automatically:
+
+  * Advances when ready
+  * Softens difficulty when stuck
+  * Re-hardens after recovery
+* Uses **stable evaluation gates**
+* Produces **checkpoints per stage** + rolling final model
+
+---
+
+## What “Success” Looks Like
+
+* Agent:
+
+  * Cruises through early random/mixed stages
+  * Struggles but adapts at Minimax depth 2–4
+  * Eventually learns non-trivial defensive and tactical play
+* Training logs show:
+
+  * Backoff events
+  * Recovery
+  * Eventual promotion
+* No manual babysitting required.
+
+---
+
+## Open / Optional Future Enhancements
+
+* Prioritized experience replay
+* Self-play insertion at higher stages
+* Dynamic reward shaping by stage
+* Separate value heads for offense/defense
+* Model size scaling per depth
+
+---
+
+## One-Sentence Hand-Off Summary
+
+> *This project implements a DQN-based Connect-4 agent trained via an infinite, adaptive curriculum that dynamically adjusts opponent difficulty using backoff, stable promotion gates, and persistent replay to ensure continuous learning all the way to strong Minimax opponents.*
+
+If you want, in the next chat I can:
+
+* review learning curves,
+* tune patience/backoff constants,
+* or help you add **self-play at depth ≥3**, which is the natural next step.

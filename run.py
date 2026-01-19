@@ -29,6 +29,21 @@ except ImportError as e:
         print("interfaces directory not found")
     sys.exit(1)
 
+def swap_board_symbols(board_str):
+    """
+    Swap X and O symbols in the rendered board.
+    Used when agent played second so agent is always displayed as X.
+    
+    Args:
+        board_str: The rendered board string from game.render()
+    
+    Returns:
+        Board string with X and O swapped
+    """
+    # Use placeholder to avoid double-swap
+    result = board_str.replace('X', '_TEMP_').replace('O', 'X').replace('_TEMP_', 'O')
+    return result
+
 def highlight_last_move(board_str, column, player_symbol):
     """
     Highlight the most recently played piece on the board.
@@ -153,9 +168,18 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
     for line in board_lines:
         print(line)
     time.sleep(delay)
-    
+
+    # Determine if we need to swap symbols (agent went second)
+    # If first move is from opponent, agent played second
+    swap_symbols = False
+    if game_data['moves']:
+        first_move = game_data['moves'][0]
+        first_source = first_move.get('action_source', '')
+        if first_source.startswith('opponent_') or first_source == 'random_opening':
+            swap_symbols = True
+
     for i, move in enumerate(game_data['moves']):
-        current_player = "X" if game.get_current_player() == Player.ONE else "O"
+        current_player = move.get('player', 'X' if game.get_current_player() == Player.ONE else 'O')
         move_info = f"Episode: {episode}, Move {i+1}: Player {current_player} plays column {move['column']}"
         
         # Prepare stats - handle both old and new formats
@@ -330,7 +354,11 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
         column_played = move['column'] if isinstance(move, dict) else move
         game.make_move(column_played)
         board_rendered = game.render()
-        
+
+        # Swap symbols if agent played second (so agent is always X visually)
+        if swap_symbols:
+            board_rendered = swap_board_symbols(board_rendered)
+
         # Highlight the last played piece
         board_rendered = highlight_last_move(board_rendered, column_played, current_player)
         board_lines = board_rendered.split('\n')
@@ -789,17 +817,28 @@ def main():
     # Continue curriculum training from an existing model
     python run.py ai train --opponent curriculum --model models/existing_model
     
-    # Curriculum stages (default - with mixed transition stages):
-    #   1. Random opponent                    - 1000 episodes, promote at 75%
-    #   2. Mixed (70% Random, 30% Minimax D1) - 1500 episodes, promote at 65%
-    #   3. Mixed (50% Random, 50% Minimax D1) - 1500 episodes, promote at 55%
-    #   4. Mixed (30% Random, 70% Minimax D1) - 1500 episodes, promote at 50%
-    #   5. Minimax depth 1                    - 2000 episodes, promote at 45%
-    #   6. Minimax depth 2                    - 2500 episodes, promote at 35%
-    #   7. Minimax depth 3                    - 3000 episodes, promote at 25%
-    #   8. Minimax depth 4                    - 4000 episodes, promote at 15%
-    #   9. Minimax depth 5                    - 5000 episodes, promote at 10%
-    # Total: ~22,000 episodes across all stages (smoother progression)
+    # ============================================================
+    # CURRICULUM TRAINING
+    # ============================================================
+    # Stages: 17
+    #   1. Random Opponent: 1000 episodes, promotion at 75% win rate
+    #   2. Mixed (70% Random, 30% Minimax D1): 1500 episodes, promotion at 65% win rate
+    #   3. Mixed (50% Random, 50% Minimax D1): 1500 episodes, promotion at 55% win rate
+    #   4. Mixed (30% Random, 70% Minimax D1): 1500 episodes, promotion at 50% win rate
+    #   5. Minimax Depth 1 (depth 1): 2000 episodes, promotion at 45% win rate
+    #   6. Mixed Depth (70% D1, 30% D2) (depths 1/2): 2000 episodes, promotion at 40% win rate
+    #   7. Mixed Depth (50% D1, 50% D2) (depths 1/2): 2000 episodes, promotion at 38% win rate
+    #   8. Minimax Depth 2 (depth 2): 2500 episodes, promotion at 35% win rate
+    #   9. Mixed Depth (70% D2, 30% D3) (depths 2/3): 2500 episodes, promotion at 30% win rate
+    #   10. Mixed Depth (50% D2, 50% D3) (depths 2/3): 2500 episodes, promotion at 28% win rate
+    #   11. Minimax Depth 3 (depth 3): 3000 episodes, promotion at 25% win rate
+    #   12. Mixed Depth (70% D3, 30% D4) (depths 3/4): 3000 episodes, promotion at 20% win rate
+    #   13. Mixed Depth (50% D3, 50% D4) (depths 3/4): 3000 episodes, promotion at 18% win rate
+    #   14. Minimax Depth 4 (depth 4): 4000 episodes, promotion at 15% win rate
+    #   15. Mixed Depth (70% D4, 30% D5) (depths 4/5): 4000 episodes, promotion at 12% win rate
+    #   16. Mixed Depth (50% D4, 50% D5) (depths 4/5): 4000 episodes, promotion at 11% win rate
+    #   17. Minimax Depth 5 (depth 5): 5000 episodes, promotion at 10% win rate
+    # ============================================================
 
     AI COMPONENT - JOB MANAGEMENT:
     ------------------------------

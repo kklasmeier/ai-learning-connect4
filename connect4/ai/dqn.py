@@ -26,7 +26,7 @@ class DQNModel(nn.Module):
     The architecture is configurable, allowing for different hidden layer sizes.
     """
     
-    def __init__(self, input_channels: int = 4, hidden_sizes: List[int] = None, hidden_size: int = 128, layers: int = 1):
+    def __init__(self, input_channels: int = 4, hidden_sizes: Optional[List[int]] = None, hidden_size: int = 128, layers: int = 1):
         """
         Initialize the neural network model.
         
@@ -152,7 +152,7 @@ class DQNAgent:
     def __init__(self, model: Optional[DQNModel] = None, 
                 target_model: Optional[DQNModel] = None,
                 hidden_size: int = 128,  # Changed from 256
-                hidden_sizes: List[int] = None,
+                hidden_sizes: Optional[List[int]] = None,
                 layers: int = 2,  # Changed from 1
                 learning_rate: float = 0.00005,  # Changed from 0.0001
                 epsilon: float = 1.0,
@@ -251,7 +251,7 @@ class DQNAgent:
         
         # Apply mask and get best action
         masked_q_values = q_values + mask
-        action = torch.argmax(masked_q_values).item()
+        action = int(torch.argmax(masked_q_values).item())
         
         debug.trace(f"Model-based action: {action}, Q-values: {q_values.tolist()}", "ai")
         

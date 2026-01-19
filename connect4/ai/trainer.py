@@ -72,6 +72,7 @@ class OpponentType(Enum):
     MODEL = "model"
     RANDOM = "random"
     MIXED = "mixed"  # Mix of random and minimax for curriculum transition
+    MIXED_DEPTH = "mixed_depth"  # Mix of two different minimax depths
 class Trainer:
     """
     Unified trainer for Connect Four AI.
@@ -81,6 +82,7 @@ class Trainer:
     - self: Self-play where agent plays both sides
     - model: Play against a saved model
     - random: Play against random moves (for baseline testing)
+    - mixed_depth: Mix of two different minimax depths for transitions
     """
     def __init__(
         self,
@@ -88,7 +90,9 @@ class Trainer:
         opponent_type: OpponentType = OpponentType.MINIMAX,
         opponent_model_path: Optional[str] = None,
         minimax_depth: int = 5,
+        minimax_depth_secondary: int = 1,  # For MIXED_DEPTH: the secondary (easier) depth
         mixed_random_prob: float = 0.5,  # For MIXED type: probability of random vs minimax
+        mixed_harder_prob: float = 0.3,  # For MIXED_DEPTH: probability of harder depth
         model_dir: str = 'models',
         batch_size: int = 64,
         replay_buffer_size: int = 50000,
@@ -110,6 +114,7 @@ class Trainer:
             opponent_type: Type of opponent to train against
             opponent_model_path: Path to opponent model (for MODEL type)
             minimax_depth: Search depth for minimax opponent
+            minimax_depth_secondary: Secondary (easier) depth for MIXED_DEPTH opponent
             model_dir: Directory to save models
             batch_size: Batch size for training
             replay_buffer_size: Size of replay buffer
@@ -135,8 +140,10 @@ class Trainer:
         # Opponent configuration
         self.opponent_type = opponent_type
         self.minimax_depth = minimax_depth
+        self.minimax_depth_secondary = minimax_depth_secondary
         self.minimax_depth_range = (max(2, minimax_depth - 2), minimax_depth + 1)  # Vary depth
         self.mixed_random_prob = mixed_random_prob  # For MIXED opponent type
+        self.mixed_harder_prob = mixed_harder_prob  # For MIXED_DEPTH opponent type
         
         # Initialize opponent based on type
         self._init_opponent(opponent_model_path)
@@ -199,6 +206,13 @@ class Trainer:
             self.opponent = MinimaxPlayer(depth=self.minimax_depth)
             debug.info(f"Initialized Mixed opponent ({self.mixed_random_prob:.0%} random, "
                       f"{1-self.mixed_random_prob:.0%} minimax depth {self.minimax_depth})", "training")
+        
+        elif self.opponent_type == OpponentType.MIXED_DEPTH:
+            # Mixed depth uses two different minimax depths
+            self.opponent = MinimaxPlayer(depth=self.minimax_depth)  # Harder depth
+            self.opponent_secondary = MinimaxPlayer(depth=self.minimax_depth_secondary)  # Easier depth
+            debug.info(f"Initialized Mixed-Depth opponent ({self.mixed_harder_prob:.0%} depth {self.minimax_depth}, "
+                      f"{1-self.mixed_harder_prob:.0%} depth {self.minimax_depth_secondary})", "training")
     
     def _get_opponent_move(self, game: ConnectFourGame, valid_moves: List[int]) -> Tuple[int, str]:
         """
@@ -213,17 +227,20 @@ class Trainer:
             if random.random() < 0.1:  # 10% of moves use different depth
                 varied_depth = random.randint(*self.minimax_depth_range)
                 temp_player = MinimaxPlayer(depth=varied_depth)
-                return temp_player.get_move(game.board), f'opponent_minimax_d{varied_depth}'
-            return self.opponent.get_move(game.board), f'opponent_minimax_d{self.minimax_depth}'
+                action = temp_player.get_move(game.board)
+                return action, f'opponent_minimax_d{varied_depth}'
+            action = self.opponent.get_move(game.board)
+            return action, f'opponent_minimax_d{self.minimax_depth}'
         
         elif self.opponent_type == OpponentType.MODEL:
             current_player = game.get_current_player()
-            return self.opponent.get_action(
+            action = self.opponent.get_action(
                 game.board,
                 valid_moves,
                 current_player=current_player,
                 training=False
-            ), 'opponent_model'
+            )
+            return action, 'opponent_model'
         
         elif self.opponent_type == OpponentType.SELF:
             current_player = game.get_current_player()
@@ -242,7 +259,17 @@ class Trainer:
             if random.random() < self.mixed_random_prob:
                 return random.choice(valid_moves), 'opponent_random'
             else:
-                return self.opponent.get_move(game.board), f'opponent_minimax_d{self.minimax_depth}'
+                action = self.opponent.get_move(game.board)
+                return action, f'opponent_minimax_d{self.minimax_depth}'
+        
+        elif self.opponent_type == OpponentType.MIXED_DEPTH:
+            # Randomly choose between harder and easier minimax depth
+            if random.random() < self.mixed_harder_prob:
+                action = self.opponent.get_move(game.board)
+                return action, f'opponent_minimax_d{self.minimax_depth}'
+            else:
+                action = self.opponent_secondary.get_move(game.board)
+                return action, f'opponent_minimax_d{self.minimax_depth_secondary}'
         
         return random.choice(valid_moves), 'opponent_unknown'
     
@@ -292,7 +319,7 @@ class Trainer:
                 if save_game:
                     move_data.append({
                         'column': move,
-                        'player': 'X' if game.get_current_player() == Player.TWO else 'O',  # Previous player
+                        'player': 'O',  # Random opening moves are always opponent (O)
                         'action_source': 'random_opening'
                     })
         
@@ -336,7 +363,7 @@ class Trainer:
             if save_game:
                 move_info = {
                     'column': action,
-                    'player': 'X' if current_player == Player.ONE else 'O',
+                    'player': 'X' if is_agent_turn else 'O',  # Agent always X, opponent always O
                     'action_source': action_source,
                     'epsilon': self.agent.epsilon if is_agent_turn else None
                 }
@@ -389,7 +416,7 @@ class Trainer:
         
         # Save game for replay if flagged
         if save_game and self.job_id is not None:
-            winner_str = 'X' if winner == Player.ONE else 'O' if winner == Player.TWO else None
+            winner_str = 'X' if winner == agent_player else 'O' if winner is not None else None
             save_game_moves(self.job_id, self.episode_count, move_data, winner_str, episode_length)
         
         # Update statistics
@@ -666,7 +693,9 @@ class CurriculumStage:
         opponent_type: OpponentType,
         episodes: int,
         minimax_depth: int = 1,
+        minimax_depth_secondary: int = 1,  # For MIXED_DEPTH: the easier depth
         mixed_random_prob: float = 0.5,  # For MIXED type: probability of random moves
+        mixed_harder_prob: float = 0.3,  # For MIXED_DEPTH: probability of harder depth
         promotion_win_rate: float = 0.5,
         promotion_window: int = 100,
         max_attempts: int = 3
@@ -679,7 +708,9 @@ class CurriculumStage:
             opponent_type: Type of opponent for this stage
             episodes: Number of episodes for this stage
             minimax_depth: Depth for minimax opponent (if applicable)
+            minimax_depth_secondary: Secondary (easier) depth for MIXED_DEPTH opponent
             mixed_random_prob: For MIXED opponent, probability of random vs minimax
+            mixed_harder_prob: For MIXED_DEPTH opponent, probability of using harder depth
             promotion_win_rate: Win rate required to advance to next stage
             promotion_window: Number of recent episodes to consider for promotion
             max_attempts: Maximum times to repeat this stage if promotion threshold not met
@@ -688,7 +719,9 @@ class CurriculumStage:
         self.opponent_type = opponent_type
         self.episodes = episodes
         self.minimax_depth = minimax_depth
+        self.minimax_depth_secondary = minimax_depth_secondary
         self.mixed_random_prob = mixed_random_prob
+        self.mixed_harder_prob = mixed_harder_prob
         self.promotion_win_rate = promotion_win_rate
         self.promotion_window = promotion_window
         self.max_attempts = max_attempts
@@ -702,7 +735,9 @@ class CurriculumTrainer:
     """
     
     # Default curriculum stages - smoother progression with mixed stages
+    # Now includes mixed-depth transitions between pure depth stages
     DEFAULT_CURRICULUM = [
+        # Phase 1: Learn basic winning against random
         CurriculumStage(
             name="Random Opponent",
             opponent_type=OpponentType.RANDOM,
@@ -711,6 +746,7 @@ class CurriculumTrainer:
             promotion_window=100,
             max_attempts=2
         ),
+        # Phase 2: Transition from random to Minimax D1
         CurriculumStage(
             name="Mixed (70% Random, 30% Minimax D1)",
             opponent_type=OpponentType.MIXED,
@@ -741,6 +777,7 @@ class CurriculumTrainer:
             promotion_window=100,
             max_attempts=2
         ),
+        # Phase 3: Pure Minimax D1
         CurriculumStage(
             name="Minimax Depth 1",
             opponent_type=OpponentType.MINIMAX,
@@ -750,6 +787,30 @@ class CurriculumTrainer:
             promotion_window=100,
             max_attempts=3
         ),
+        # Phase 4: Transition D1 -> D2
+        CurriculumStage(
+            name="Mixed Depth (70% D1, 30% D2)",
+            opponent_type=OpponentType.MIXED_DEPTH,
+            episodes=2000,
+            minimax_depth=2,  # Harder depth
+            minimax_depth_secondary=1,  # Easier depth
+            mixed_harder_prob=0.30,
+            promotion_win_rate=0.40,
+            promotion_window=100,
+            max_attempts=3
+        ),
+        CurriculumStage(
+            name="Mixed Depth (50% D1, 50% D2)",
+            opponent_type=OpponentType.MIXED_DEPTH,
+            episodes=2000,
+            minimax_depth=2,
+            minimax_depth_secondary=1,
+            mixed_harder_prob=0.50,
+            promotion_win_rate=0.38,
+            promotion_window=100,
+            max_attempts=3
+        ),
+        # Phase 5: Pure Minimax D2
         CurriculumStage(
             name="Minimax Depth 2",
             opponent_type=OpponentType.MINIMAX,
@@ -759,6 +820,30 @@ class CurriculumTrainer:
             promotion_window=100,
             max_attempts=3
         ),
+        # Phase 6: Transition D2 -> D3
+        CurriculumStage(
+            name="Mixed Depth (70% D2, 30% D3)",
+            opponent_type=OpponentType.MIXED_DEPTH,
+            episodes=2500,
+            minimax_depth=3,  # Harder depth
+            minimax_depth_secondary=2,  # Easier depth
+            mixed_harder_prob=0.30,
+            promotion_win_rate=0.30,
+            promotion_window=100,
+            max_attempts=3
+        ),
+        CurriculumStage(
+            name="Mixed Depth (50% D2, 50% D3)",
+            opponent_type=OpponentType.MIXED_DEPTH,
+            episodes=2500,
+            minimax_depth=3,
+            minimax_depth_secondary=2,
+            mixed_harder_prob=0.50,
+            promotion_win_rate=0.28,
+            promotion_window=100,
+            max_attempts=3
+        ),
+        # Phase 7: Pure Minimax D3
         CurriculumStage(
             name="Minimax Depth 3",
             opponent_type=OpponentType.MINIMAX,
@@ -768,6 +853,30 @@ class CurriculumTrainer:
             promotion_window=100,
             max_attempts=3
         ),
+        # Phase 8: Transition D3 -> D4
+        CurriculumStage(
+            name="Mixed Depth (70% D3, 30% D4)",
+            opponent_type=OpponentType.MIXED_DEPTH,
+            episodes=3000,
+            minimax_depth=4,  # Harder depth
+            minimax_depth_secondary=3,  # Easier depth
+            mixed_harder_prob=0.30,
+            promotion_win_rate=0.20,
+            promotion_window=100,
+            max_attempts=3
+        ),
+        CurriculumStage(
+            name="Mixed Depth (50% D3, 50% D4)",
+            opponent_type=OpponentType.MIXED_DEPTH,
+            episodes=3000,
+            minimax_depth=4,
+            minimax_depth_secondary=3,
+            mixed_harder_prob=0.50,
+            promotion_win_rate=0.18,
+            promotion_window=100,
+            max_attempts=3
+        ),
+        # Phase 9: Pure Minimax D4
         CurriculumStage(
             name="Minimax Depth 4",
             opponent_type=OpponentType.MINIMAX,
@@ -777,6 +886,30 @@ class CurriculumTrainer:
             promotion_window=100,
             max_attempts=3
         ),
+        # Phase 10: Transition D4 -> D5
+        CurriculumStage(
+            name="Mixed Depth (70% D4, 30% D5)",
+            opponent_type=OpponentType.MIXED_DEPTH,
+            episodes=4000,
+            minimax_depth=5,  # Harder depth
+            minimax_depth_secondary=4,  # Easier depth
+            mixed_harder_prob=0.30,
+            promotion_win_rate=0.12,
+            promotion_window=100,
+            max_attempts=3
+        ),
+        CurriculumStage(
+            name="Mixed Depth (50% D4, 50% D5)",
+            opponent_type=OpponentType.MIXED_DEPTH,
+            episodes=4000,
+            minimax_depth=5,
+            minimax_depth_secondary=4,
+            mixed_harder_prob=0.50,
+            promotion_win_rate=0.11,
+            promotion_window=100,
+            max_attempts=3
+        ),
+        # Phase 11: Pure Minimax D5 (final)
         CurriculumStage(
             name="Minimax Depth 5",
             opponent_type=OpponentType.MINIMAX,
@@ -886,6 +1019,8 @@ class CurriculumTrainer:
             print(f"Stages: {len(self.stages)}")
             for i, stage in enumerate(self.stages):
                 depth_str = f" (depth {stage.minimax_depth})" if stage.opponent_type == OpponentType.MINIMAX else ""
+                if stage.opponent_type == OpponentType.MIXED_DEPTH:
+                    depth_str = f" (depths {stage.minimax_depth_secondary}/{stage.minimax_depth})"
                 print(
                     f"  {i+1}. {stage.name}{depth_str}: {stage.episodes} episodes, "
                     f"promotion at {stage.promotion_win_rate:.0%} win rate"
@@ -948,7 +1083,9 @@ class CurriculumTrainer:
             # Determine effective opponent parameters
             eff_opponent_type = stage.opponent_type
             eff_minimax_depth = stage.minimax_depth
+            eff_minimax_depth_secondary = stage.minimax_depth_secondary
             eff_mixed_prob = stage.mixed_random_prob
+            eff_mixed_harder_prob = stage.mixed_harder_prob
             if stage.opponent_type == OpponentType.MIXED:
                 if stage_index not in mixed_effective_prob:
                     mixed_effective_prob[stage_index] = float(stage.mixed_random_prob)
@@ -959,7 +1096,9 @@ class CurriculumTrainer:
                 stage = self.stages[recover_idx]
                 eff_opponent_type = stage.opponent_type
                 eff_minimax_depth = stage.minimax_depth
+                eff_minimax_depth_secondary = stage.minimax_depth_secondary
                 eff_mixed_prob = stage.mixed_random_prob
+                eff_mixed_harder_prob = stage.mixed_harder_prob
                 stage_index_effective = recover_idx
                 recovery_attempts_left -= 1
             else:
@@ -970,7 +1109,9 @@ class CurriculumTrainer:
                     stage = self.stages[stage_index_effective]
                     eff_opponent_type = stage.opponent_type
                     eff_minimax_depth = stage.minimax_depth
+                    eff_minimax_depth_secondary = stage.minimax_depth_secondary
                     eff_mixed_prob = stage.mixed_random_prob
+                    eff_mixed_harder_prob = stage.mixed_harder_prob
                     recovery_target = None
             # Accounting
             self.current_stage_index = stage_index_effective
@@ -995,7 +1136,9 @@ class CurriculumTrainer:
                 agent=self.agent,
                 opponent_type=eff_opponent_type,
                 minimax_depth=eff_minimax_depth,
+                minimax_depth_secondary=eff_minimax_depth_secondary,
                 mixed_random_prob=eff_mixed_prob,
+                mixed_harder_prob=eff_mixed_harder_prob,
                 model_dir=self.model_dir,
                 batch_size=self.batch_size,
                 replay_buffer_size=self.replay_buffer_size,
@@ -1081,15 +1224,16 @@ class CurriculumTrainer:
                     mixed_effective_prob[stage_index_effective] = max(0.0, min(prev_p, new_p))
                     if verbose:
                         print(f"  [BACKOFF] Mixed stage random_prob -> {mixed_effective_prob[stage_index_effective]:.3f} (toward prev {prev_p:.3f})")
-                # Depth stages: temporarily recover on previous stage for `patience` attempts
-                elif stage.opponent_type == OpponentType.MINIMAX and stage_index_effective > 0:
+                # Depth stages (including MIXED_DEPTH): temporarily recover on previous stage for `patience` attempts
+                elif (stage.opponent_type == OpponentType.MINIMAX or stage.opponent_type == OpponentType.MIXED_DEPTH) and stage_index_effective > 0:
                     recovery_target = stage_index_effective
                     recovery_attempts_left = patience
                     if verbose:
                         print(f"  [BACKOFF] Depth stage: training previous stage for {patience} attempts, then retry")
             # Keep looping forever
             continue
-        # Final summary
+        # Final summary (unreachable in infinite loop, but kept for structure)
+        elapsed = time.time() - start_time
         if verbose:
             print()
             print("=" * 60)

@@ -324,7 +324,7 @@ def save_game_moves(job_id: int, episode: int, move_data: List[Dict], winner: Op
         return False
 
 def get_saved_games(job_id: Optional[int] = None) -> List[Dict]:
-    """Get saved games for replay."""
+    """Get saved games for replay, sorted by timestamp."""
     if job_id is not None:
         games_file = os.path.join(GAMES_DIR, f"job_{job_id}_games.json")
         if os.path.exists(games_file):
@@ -336,8 +336,11 @@ def get_saved_games(job_id: Optional[int] = None) -> List[Dict]:
             if file.startswith("job_") and file.endswith("_games.json"):
                 games_file = os.path.join(GAMES_DIR, file)
                 all_games.extend(safe_read_json(games_file))
+        # Sort by timestamp so games[-1] is truly the latest
+        all_games.sort(key=lambda g: g.get('timestamp', ''))
         return all_games
     
+
 def get_latest_game_id(job_id: Optional[int] = None) -> Optional[int]:
     """Get the ID of the latest saved game."""
     games = get_saved_games(job_id)

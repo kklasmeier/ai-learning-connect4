@@ -327,7 +327,7 @@
     "start_time": "2026-01-18T22:41:21.831651",
     "end_time": null,
     "total_episodes": 4000,
-    "episodes_completed": 2759,
+    "episodes_completed": 3250,
     "model_dir": "models/job_18",
     "status": "running",
     "parameters": {

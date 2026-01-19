@@ -710,5 +710,13 @@
     "path": "models/model_20260118_224121_ep2500",
     "timestamp": "2026-01-18T23:01:37.691718",
     "is_final": false
+  },
+  {
+    "model_id": 90,
+    "job_id": 18,
+    "episode": 3000,
+    "path": "models/model_20260118_224121_ep3000",
+    "timestamp": "2026-01-18T23:05:37.119570",
+    "is_final": false
   }
 ]

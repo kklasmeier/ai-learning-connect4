@@ -522,7 +522,7 @@ class Trainer:
         
         debug.info(f"Saved checkpoint: {model_path}", "training")
     
-    def _evaluate(self, num_games: int = 20):
+    def _evaluate(self, num_games: int = 20) -> Dict[str, float]:
         """
         Evaluate the agent against the current opponent.
         
@@ -556,6 +556,12 @@ class Trainer:
         loss_rate = losses / num_games
         
         print(f"  [EVAL] {num_games} games: Win {win_rate:.1%}, Draw {draw_rate:.1%}, Loss {loss_rate:.1%}")
+
+        return {
+            'win_rate': win_rate,
+            'draw_rate': draw_rate,
+            'loss_rate': loss_rate,
+        }
     
     def _get_summary(self) -> Dict[str, Any]:
         """Get training summary statistics."""
@@ -936,22 +942,33 @@ class CurriculumTrainer:
                 
                 total_episodes += stage.episodes
                 
-                # Check if promoted
-                final_win_rate = stats.get('final_win_rate', 0)
+                # Promotion gating should use evaluation games, not training win-rate.
+                # Training win-rate is very noisy early on (especially with exploration) and can
+                # disagree with actual strength. Evaluation is also noisy with small N, so we use
+                # a larger sample specifically for promotion decisions.
+                promotion_eval_games = max(int(eval_games), 100)
+                promotion_eval = trainer._evaluate(promotion_eval_games)
+                promotion_win_rate = float(promotion_eval.get('win_rate', 0.0))
                 
                 self.stage_results.append({
                     'stage': stage_index,
                     'name': stage.name,
                     'attempt': attempts,
                     'episodes': stage.episodes,
-                    'final_win_rate': final_win_rate,
-                    'promoted': final_win_rate >= stage.promotion_win_rate
+                    'final_win_rate': stats.get('final_win_rate', 0),
+                    'promotion_eval_games': promotion_eval_games,
+                    'promotion_win_rate': promotion_win_rate,
+                    'promoted': promotion_win_rate >= stage.promotion_win_rate
                 })
                 
-                if final_win_rate >= stage.promotion_win_rate:
+                if promotion_win_rate >= stage.promotion_win_rate:
                     promoted = True
                     if verbose:
-                        print(f"\n✓ PROMOTED! Win rate {final_win_rate:.1%} >= {stage.promotion_win_rate:.0%}")
+                        print(
+                            f"\n✓ PROMOTED! Promotion eval win rate {promotion_win_rate:.1%} "
+                            f">= {stage.promotion_win_rate:.0%} "
+                            f"({promotion_eval_games} eval games)"
+                        )
                         
                         # Save a checkpoint for this stage completion
                         stage_model_name = f"curriculum_stage{stage_index + 1}_{stage.name.replace(' ', '_').lower()}"
@@ -960,13 +977,23 @@ class CurriculumTrainer:
                         print(f"  Saved stage checkpoint: {stage_model_path}")
                 else:
                     if verbose:
-                        print(f"\n✗ Not promoted. Win rate {final_win_rate:.1%} < {stage.promotion_win_rate:.0%}")
+                        print(
+                            f"\n✗ Not promoted. Promotion eval win rate {promotion_win_rate:.1%} "
+                            f"< {stage.promotion_win_rate:.0%} "
+                            f"({promotion_eval_games} eval games)"
+                        )
                         if attempts < stage.max_attempts:
                             print(f"  Retrying stage ({attempts + 1}/{stage.max_attempts})...")
             
+            # Curriculum gating: do NOT advance if the agent failed the stage.
+            # The whole point of curriculum is that later stages assume earlier competencies.
             if not promoted:
                 if verbose:
-                    print(f"\n⚠ Max attempts reached for stage {stage_index + 1}. Continuing to next stage anyway.")
+                    print(
+                        f"\n✗ Curriculum STOPPED at stage {stage_index + 1}/{len(self.stages)} "
+                        f"({stage.name}). Promotion threshold not reached after {stage.max_attempts} attempts."
+                    )
+                break
         
         elapsed = time.time() - start_time
         
@@ -982,8 +1009,13 @@ class CurriculumTrainer:
             print("Stage Results:")
             for result in self.stage_results:
                 status = "✓" if result['promoted'] else "✗"
-                print(f"  {status} Stage {result['stage'] + 1} ({result['name']}): "
-                      f"{result['final_win_rate']:.1%} win rate (attempt {result['attempt']})")
+                promo_wr = result.get('promotion_win_rate', result.get('final_win_rate', 0.0))
+                promo_n = int(result.get('promotion_eval_games', 0))
+                extra = f" (promotion eval {promo_wr:.1%} over {promo_n} games)" if promo_n else ""
+                print(
+                    f"  {status} Stage {result['stage'] + 1} ({result['name']}): "
+                    f"attempt {result['attempt']}" + extra
+                )
             print()
         
         # Save final model
@@ -992,10 +1024,12 @@ class CurriculumTrainer:
         if verbose:
             print(f"Final model saved: {final_model_path}")
         
+        stages_completed = sum(1 for r in self.stage_results if r.get('promoted'))
+
         return {
             'total_episodes': total_episodes,
             'total_time': elapsed,
-            'stages_completed': len(self.stages),
+            'stages_completed': stages_completed,
             'stage_results': self.stage_results,
             'final_model_path': final_model_path
         }

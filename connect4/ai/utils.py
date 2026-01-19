@@ -13,29 +13,36 @@ from connect4.debug import debug, DebugLevel
 from connect4.utils import ROWS, COLS, Player, GameResult, is_valid_position
 from connect4.game.board import Board
 
-def board_to_state(board: np.ndarray) -> np.ndarray:
+def board_to_state(board: np.ndarray, current_player: Player) -> np.ndarray:
     """
     Convert the raw board representation to a state tensor for the neural network.
-    Uses one-hot encoding for the three possible states (empty, player 1, player 2).
+    Uses one-hot encoding for the board plus an explicit "side-to-move" channel.
     
     Args:
         board: Raw board grid (ROWS x COLS with values 0, 1, 2)
+        current_player: Which player is to move for this state
         
     Returns:
-        3-channel state representation (ROWS x COLS x 3)
+        4-channel state representation (4 x ROWS x COLS):
+          - channel 0: empty
+          - channel 1: player one pieces
+          - channel 2: player two pieces
+          - channel 3: side to move (all 1.0 if Player.ONE to move else all 0.0)
     """
     debug.trace("Converting board to state tensor", "ai")
     
-    # Create a 3-channel representation (empty, player 1, player 2)
+    # Create a 4-channel representation (empty, player 1, player 2, side-to-move)
     # Channel 0: Empty positions (1 where empty, 0 elsewhere)
     # Channel 1: Player 1 positions (1 where player 1 pieces are, 0 elsewhere)
     # Channel 2: Player 2 positions (1 where player 2 pieces are, 0 elsewhere)
-    state = np.zeros((3, ROWS, COLS), dtype=np.float32)
+    # Channel 3: Side to move (all 1.0 if Player.ONE to move else all 0.0)
+    state = np.zeros((4, ROWS, COLS), dtype=np.float32)
     
     # Fill the channels
     state[0] = (board == Player.EMPTY.value).astype(np.float32)
     state[1] = (board == Player.ONE.value).astype(np.float32)
     state[2] = (board == Player.TWO.value).astype(np.float32)
+    state[3].fill(1.0 if current_player == Player.ONE else 0.0)
     
     return state
 
@@ -44,7 +51,7 @@ def state_to_tensor(state: np.ndarray) -> torch.Tensor:
     Convert a numpy state representation to a PyTorch tensor.
     
     Args:
-        state: 3-channel state representation (3 x ROWS x COLS)
+        state: 4-channel state representation (4 x ROWS x COLS)
         
     Returns:
         PyTorch tensor ready for neural network input

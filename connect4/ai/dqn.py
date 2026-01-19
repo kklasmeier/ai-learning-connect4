@@ -26,12 +26,12 @@ class DQNModel(nn.Module):
     The architecture is configurable, allowing for different hidden layer sizes.
     """
     
-    def __init__(self, input_channels: int = 3, hidden_sizes: List[int] = None, hidden_size: int = 128, layers: int = 1):
+    def __init__(self, input_channels: int = 4, hidden_sizes: List[int] = None, hidden_size: int = 128, layers: int = 1):
         """
         Initialize the neural network model.
         
         Args:
-            input_channels: Number of input channels (default 3: empty, player 1, player 2)
+            input_channels: Number of input channels (default 4: empty, player 1, player 2, side-to-move)
             hidden_sizes: List of sizes for each hidden layer (overrides layers parameter)
             hidden_size: Size of each hidden layer if hidden_sizes is not provided
             layers: Number of hidden layers (ignored if hidden_sizes is provided)
@@ -44,7 +44,7 @@ class DQNModel(nn.Module):
         
         debug.debug(f"Initializing DQNModel with {len(hidden_sizes)} layers: {hidden_sizes}", "ai")
         
-        # Input layer: takes 3xROWSxCOLS state representation
+        # Input layer: takes CxROWSxCOLS state representation
         self.conv1 = nn.Conv2d(input_channels, 16, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(16, 32, kernel_size=3, padding=1)
         
@@ -66,6 +66,7 @@ class DQNModel(nn.Module):
         
         # Store model configuration for later reference
         self.hidden_sizes = hidden_sizes
+        self.input_channels = input_channels
     
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -106,7 +107,8 @@ class DQNModel(nn.Module):
         # Save model state dict
         torch.save({
             'state_dict': self.state_dict(),
-            'hidden_sizes': self.hidden_sizes
+            'hidden_sizes': self.hidden_sizes,
+            'input_channels': self.input_channels,
         }, path)
     
     @classmethod
@@ -127,6 +129,10 @@ class DQNModel(nn.Module):
         saved_data = torch.load(path)
         
         # Create model with the same architecture
+        # If caller didn't override, prefer saved input_channels for correctness.
+        if 'input_channels' not in kwargs:
+            kwargs['input_channels'] = saved_data.get('input_channels', 4)
+
         model = cls(hidden_sizes=saved_data.get('hidden_sizes', None), **kwargs)
         
         # Load the state dict
@@ -183,9 +189,9 @@ class DQNAgent:
             debug.debug("Creating new target model", "ai")
             # Copy the architecture from the main model
             if hasattr(self.model, 'hidden_sizes'):
-                self.target_model = DQNModel(hidden_sizes=self.model.hidden_sizes)
+                self.target_model = DQNModel(hidden_sizes=self.model.hidden_sizes, input_channels=self.model.input_channels)
             else:
-                self.target_model = DQNModel(hidden_size=hidden_size, layers=layers)
+                self.target_model = DQNModel(hidden_size=hidden_size, layers=layers, input_channels=getattr(self.model, 'input_channels', 4))
             self.target_model.load_state_dict(self.model.state_dict())
         else:
             self.target_model = target_model
@@ -208,13 +214,14 @@ class DQNAgent:
         # Training tracking
         self.train_step_counter = 0
     
-    def get_action(self, board, valid_moves: List[int], training: bool = False) -> int:
+    def get_action(self, board, valid_moves: List[int], current_player: Player, training: bool = False) -> int:
         """
         Choose an action using the current policy.
         
         Args:
             board: Current game board
             valid_moves: List of valid column indices
+            current_player: Which player is to move for this decision
             training: Whether agent is in training mode (affects exploration)
             
         Returns:
@@ -232,7 +239,7 @@ class DQNAgent:
             return action
         
         # Otherwise, use the model to pick the best action
-        state = board_to_state(board.grid)
+        state = board_to_state(board.grid, current_player)
         state_tensor = state_to_tensor(state)
         
         with torch.no_grad():

@@ -59,6 +59,7 @@ class Trainer:
         model_dir: str = 'models',
         batch_size: int = 64,
         replay_buffer_size: int = 50000,
+        replay_buffer: Optional[ReplayBuffer] = None,
         # Reward settings (simplified)
         reward_win: float = 1.0,
         reward_loss: float = -1.0,
@@ -79,6 +80,7 @@ class Trainer:
             model_dir: Directory to save models
             batch_size: Batch size for training
             replay_buffer_size: Size of replay buffer
+            replay_buffer: Optional shared replay buffer instance (if None, a new buffer is created)
             reward_win: Reward for winning
             reward_loss: Reward for losing
             reward_draw: Reward for draw
@@ -107,7 +109,8 @@ class Trainer:
         self._init_opponent(opponent_model_path)
         
         # Training infrastructure
-        self.replay_buffer = ReplayBuffer(capacity=replay_buffer_size)
+        # If a replay buffer is provided (e.g., curriculum training), reuse it to preserve experience
+        self.replay_buffer = replay_buffer if replay_buffer is not None else ReplayBuffer(capacity=replay_buffer_size)
         self.batch_size = batch_size
         self.model_dir = model_dir
         os.makedirs(model_dir, exist_ok=True)
@@ -181,10 +184,22 @@ class Trainer:
             return self.opponent.get_move(game.board), f'opponent_minimax_d{self.minimax_depth}'
         
         elif self.opponent_type == OpponentType.MODEL:
-            return self.opponent.get_action(game.board, valid_moves, training=False), 'opponent_model'
+            current_player = game.get_current_player()
+            return self.opponent.get_action(
+                game.board,
+                valid_moves,
+                current_player=current_player,
+                training=False
+            ), 'opponent_model'
         
         elif self.opponent_type == OpponentType.SELF:
-            return self.agent.get_action(game.board, valid_moves, training=True), 'opponent_self'
+            current_player = game.get_current_player()
+            return self.agent.get_action(
+                game.board,
+                valid_moves,
+                current_player=current_player,
+                training=True
+            ), 'opponent_self'
         
         elif self.opponent_type == OpponentType.RANDOM:
             return random.choice(valid_moves), 'opponent_random'
@@ -257,7 +272,8 @@ class Trainer:
             if not valid_moves:
                 break
             
-            state = board_to_state(game.board.grid)
+            # Include side-to-move in the state representation (critical for learning)
+            state = board_to_state(game.board.grid, current_player)
             
             # Determine whose turn it is
             is_agent_turn = (current_player == agent_player)
@@ -269,7 +285,12 @@ class Trainer:
                     action = random.choice(valid_moves)
                     is_random = True
                 else:
-                    action = self.agent.get_action(game.board, valid_moves, training=False)
+                    action = self.agent.get_action(
+                        game.board,
+                        valid_moves,
+                        current_player=current_player,
+                        training=False
+                    )
                 action_source = 'agent_random' if is_random else 'agent_model'
             else:
                 # Opponent's turn - get both action and descriptive source
@@ -295,7 +316,9 @@ class Trainer:
             
             # Store experience for agent's moves only
             if is_agent_turn and training:
-                next_state = board_to_state(game.board.grid)
+                # After making a move, the current player has switched
+                next_player = game.get_current_player()
+                next_state = board_to_state(game.board.grid, next_player)
                 done = game.is_game_over()
                 experiences.append((state, action, next_state, done, current_player))
         
@@ -755,6 +778,7 @@ class CurriculumTrainer:
             model_dir: Directory to save models
             batch_size: Batch size for training
             replay_buffer_size: Size of replay buffer
+            replay_buffer: Optional shared replay buffer instance (if None, a new buffer is created)
             epsilon_start: Starting exploration rate (for first stage)
             epsilon_end: Final exploration rate
         """
@@ -829,6 +853,10 @@ class CurriculumTrainer:
             print("=" * 60)
             print()
         
+        # Shared replay buffer across all curriculum stages.
+        # This prevents catastrophic forgetting when the opponent distribution changes.
+        shared_replay_buffer = ReplayBuffer(capacity=self.replay_buffer_size)
+        
         total_episodes = 0
         
         for stage_index, stage in enumerate(self.stages):
@@ -872,7 +900,7 @@ class CurriculumTrainer:
                     if verbose:
                         print(f"  Keeping epsilon at {self.agent.epsilon:.3f} (no reset on retry)")
                 
-                # Create trainer for this stage (fresh replay buffer each stage)
+                # Create trainer for this stage (persistent replay buffer across curriculum)
                 trainer = Trainer(
                     agent=self.agent,
                     opponent_type=stage.opponent_type,
@@ -881,15 +909,16 @@ class CurriculumTrainer:
                     model_dir=self.model_dir,
                     batch_size=self.batch_size,
                     replay_buffer_size=self.replay_buffer_size,
+                    replay_buffer=shared_replay_buffer,
                     epsilon_start=self.agent.epsilon,
                     epsilon_end=eps_end,
                     epsilon_decay_episodes=int(stage.episodes * 0.5)  # Slower decay
                 )
                 
-                # Note: Each Trainer creates a fresh replay buffer, which is what we want
-                # to avoid carrying over bad experiences from failed attempts
+                # Note: We intentionally reuse the same replay buffer across stages
+                # so the agent doesn't catastrophically forget earlier patterns.
                 if verbose and attempts == 1:
-                    print(f"  Fresh replay buffer for this stage")
+                    print(f"  Using persistent replay buffer across curriculum")
                 
                 # Set curriculum tracking info for logging
                 trainer.curriculum_stage = stage_index

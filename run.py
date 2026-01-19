@@ -422,7 +422,12 @@ def handle_ai_play(args):
                 except ValueError:
                     print("Please enter a valid number")
         else:
-            move = agent.get_action(game.board, valid_moves=game.get_valid_moves(), training=False)
+            move = agent.get_action(
+                game.board,
+                valid_moves=game.get_valid_moves(),
+                current_player=game.get_current_player(),
+                training=False
+            )
             print(f"AI plays column {move}")
         
         game.make_move(move)

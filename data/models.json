@@ -686,5 +686,29 @@
     "path": "models/model_20260118_224121_ep1000",
     "timestamp": "2026-01-18T22:49:04.739666",
     "is_final": false
+  },
+  {
+    "model_id": 87,
+    "job_id": 18,
+    "episode": 1500,
+    "path": "models/model_20260118_224121_ep1500",
+    "timestamp": "2026-01-18T22:52:56.767252",
+    "is_final": false
+  },
+  {
+    "model_id": 88,
+    "job_id": 18,
+    "episode": 2000,
+    "path": "models/model_20260118_224121_ep2000",
+    "timestamp": "2026-01-18T22:57:17.453959",
+    "is_final": false
+  },
+  {
+    "model_id": 89,
+    "job_id": 18,
+    "episode": 2500,
+    "path": "models/model_20260118_224121_ep2500",
+    "timestamp": "2026-01-18T23:01:37.691718",
+    "is_final": false
   }
 ]

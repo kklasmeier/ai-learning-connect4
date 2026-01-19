@@ -1,1 +1,690 @@
-[]
+[
+  {
+    "model_id": 1,
+    "job_id": 1,
+    "episode": 500,
+    "path": "models/model_20260118_214454_ep500",
+    "timestamp": "2026-01-18T21:45:12.131630",
+    "is_final": false
+  },
+  {
+    "model_id": 2,
+    "job_id": 1,
+    "episode": 1000,
+    "path": "models/model_20260118_214454_ep1000",
+    "timestamp": "2026-01-18T21:45:31.469826",
+    "is_final": false
+  },
+  {
+    "model_id": 3,
+    "job_id": 1,
+    "episode": 1000,
+    "path": "models/final_model_20260118_214454",
+    "timestamp": "2026-01-18T21:45:31.768848",
+    "is_final": true
+  },
+  {
+    "model_id": 4,
+    "job_id": 2,
+    "episode": 500,
+    "path": "models/model_20260118_214531_ep500",
+    "timestamp": "2026-01-18T21:45:51.128827",
+    "is_final": false
+  },
+  {
+    "model_id": 5,
+    "job_id": 2,
+    "episode": 1000,
+    "path": "models/model_20260118_214531_ep1000",
+    "timestamp": "2026-01-18T21:46:10.587625",
+    "is_final": false
+  },
+  {
+    "model_id": 6,
+    "job_id": 2,
+    "episode": 1000,
+    "path": "models/final_model_20260118_214531",
+    "timestamp": "2026-01-18T21:46:10.887004",
+    "is_final": true
+  },
+  {
+    "model_id": 7,
+    "job_id": 3,
+    "episode": 500,
+    "path": "models/model_20260118_214610_ep500",
+    "timestamp": "2026-01-18T21:46:29.712555",
+    "is_final": false
+  },
+  {
+    "model_id": 8,
+    "job_id": 3,
+    "episode": 1000,
+    "path": "models/model_20260118_214610_ep1000",
+    "timestamp": "2026-01-18T21:46:50.411960",
+    "is_final": false
+  },
+  {
+    "model_id": 9,
+    "job_id": 3,
+    "episode": 1500,
+    "path": "models/model_20260118_214610_ep1500",
+    "timestamp": "2026-01-18T21:47:09.678161",
+    "is_final": false
+  },
+  {
+    "model_id": 10,
+    "job_id": 3,
+    "episode": 1500,
+    "path": "models/final_model_20260118_214610",
+    "timestamp": "2026-01-18T21:47:10.061196",
+    "is_final": true
+  },
+  {
+    "model_id": 11,
+    "job_id": 4,
+    "episode": 500,
+    "path": "models/model_20260118_214710_ep500",
+    "timestamp": "2026-01-18T21:47:28.454816",
+    "is_final": false
+  },
+  {
+    "model_id": 12,
+    "job_id": 4,
+    "episode": 1000,
+    "path": "models/model_20260118_214710_ep1000",
+    "timestamp": "2026-01-18T21:47:49.005512",
+    "is_final": false
+  },
+  {
+    "model_id": 13,
+    "job_id": 4,
+    "episode": 1500,
+    "path": "models/model_20260118_214710_ep1500",
+    "timestamp": "2026-01-18T21:48:09.527202",
+    "is_final": false
+  },
+  {
+    "model_id": 14,
+    "job_id": 4,
+    "episode": 1500,
+    "path": "models/final_model_20260118_214710",
+    "timestamp": "2026-01-18T21:48:10.024283",
+    "is_final": true
+  },
+  {
+    "model_id": 15,
+    "job_id": 5,
+    "episode": 500,
+    "path": "models/model_20260118_214810_ep500",
+    "timestamp": "2026-01-18T21:48:43.003392",
+    "is_final": false
+  },
+  {
+    "model_id": 16,
+    "job_id": 5,
+    "episode": 1000,
+    "path": "models/model_20260118_214810_ep1000",
+    "timestamp": "2026-01-18T21:49:13.635239",
+    "is_final": false
+  },
+  {
+    "model_id": 17,
+    "job_id": 5,
+    "episode": 1500,
+    "path": "models/model_20260118_214810_ep1500",
+    "timestamp": "2026-01-18T21:49:33.550512",
+    "is_final": false
+  },
+  {
+    "model_id": 18,
+    "job_id": 5,
+    "episode": 1500,
+    "path": "models/final_model_20260118_214810",
+    "timestamp": "2026-01-18T21:49:33.806733",
+    "is_final": true
+  },
+  {
+    "model_id": 19,
+    "job_id": 6,
+    "episode": 500,
+    "path": "models/model_20260118_214933_ep500",
+    "timestamp": "2026-01-18T21:49:52.448359",
+    "is_final": false
+  },
+  {
+    "model_id": 20,
+    "job_id": 6,
+    "episode": 1000,
+    "path": "models/model_20260118_214933_ep1000",
+    "timestamp": "2026-01-18T21:50:12.462536",
+    "is_final": false
+  },
+  {
+    "model_id": 21,
+    "job_id": 6,
+    "episode": 1500,
+    "path": "models/model_20260118_214933_ep1500",
+    "timestamp": "2026-01-18T21:50:32.360107",
+    "is_final": false
+  },
+  {
+    "model_id": 22,
+    "job_id": 6,
+    "episode": 1500,
+    "path": "models/final_model_20260118_214933",
+    "timestamp": "2026-01-18T21:50:32.700322",
+    "is_final": true
+  },
+  {
+    "model_id": 23,
+    "job_id": 7,
+    "episode": 500,
+    "path": "models/model_20260118_215032_ep500",
+    "timestamp": "2026-01-18T21:50:51.736428",
+    "is_final": false
+  },
+  {
+    "model_id": 24,
+    "job_id": 7,
+    "episode": 1000,
+    "path": "models/model_20260118_215032_ep1000",
+    "timestamp": "2026-01-18T21:51:13.032630",
+    "is_final": false
+  },
+  {
+    "model_id": 25,
+    "job_id": 7,
+    "episode": 1500,
+    "path": "models/model_20260118_215032_ep1500",
+    "timestamp": "2026-01-18T21:51:34.437616",
+    "is_final": false
+  },
+  {
+    "model_id": 26,
+    "job_id": 7,
+    "episode": 1500,
+    "path": "models/final_model_20260118_215032",
+    "timestamp": "2026-01-18T21:51:34.689866",
+    "is_final": true
+  },
+  {
+    "model_id": 27,
+    "job_id": 8,
+    "episode": 500,
+    "path": "models/model_20260118_215134_ep500",
+    "timestamp": "2026-01-18T21:51:54.828889",
+    "is_final": false
+  },
+  {
+    "model_id": 28,
+    "job_id": 8,
+    "episode": 1000,
+    "path": "models/model_20260118_215134_ep1000",
+    "timestamp": "2026-01-18T21:52:15.827944",
+    "is_final": false
+  },
+  {
+    "model_id": 29,
+    "job_id": 8,
+    "episode": 1500,
+    "path": "models/model_20260118_215134_ep1500",
+    "timestamp": "2026-01-18T21:52:36.939163",
+    "is_final": false
+  },
+  {
+    "model_id": 30,
+    "job_id": 8,
+    "episode": 1500,
+    "path": "models/final_model_20260118_215134",
+    "timestamp": "2026-01-18T21:52:37.314238",
+    "is_final": true
+  },
+  {
+    "model_id": 31,
+    "job_id": 9,
+    "episode": 500,
+    "path": "models/model_20260118_215237_ep500",
+    "timestamp": "2026-01-18T21:52:58.590968",
+    "is_final": false
+  },
+  {
+    "model_id": 32,
+    "job_id": 9,
+    "episode": 1000,
+    "path": "models/model_20260118_215237_ep1000",
+    "timestamp": "2026-01-18T21:53:20.975106",
+    "is_final": false
+  },
+  {
+    "model_id": 33,
+    "job_id": 9,
+    "episode": 1500,
+    "path": "models/model_20260118_215237_ep1500",
+    "timestamp": "2026-01-18T21:53:44.368000",
+    "is_final": false
+  },
+  {
+    "model_id": 34,
+    "job_id": 9,
+    "episode": 2000,
+    "path": "models/model_20260118_215237_ep2000",
+    "timestamp": "2026-01-18T21:54:08.862838",
+    "is_final": false
+  },
+  {
+    "model_id": 35,
+    "job_id": 9,
+    "episode": 2000,
+    "path": "models/final_model_20260118_215237",
+    "timestamp": "2026-01-18T21:54:09.480654",
+    "is_final": true
+  },
+  {
+    "model_id": 36,
+    "job_id": 10,
+    "episode": 500,
+    "path": "models/model_20260118_215409_ep500",
+    "timestamp": "2026-01-18T21:54:36.794411",
+    "is_final": false
+  },
+  {
+    "model_id": 37,
+    "job_id": 10,
+    "episode": 1000,
+    "path": "models/model_20260118_215409_ep1000",
+    "timestamp": "2026-01-18T21:55:04.922352",
+    "is_final": false
+  },
+  {
+    "model_id": 38,
+    "job_id": 10,
+    "episode": 1500,
+    "path": "models/model_20260118_215409_ep1500",
+    "timestamp": "2026-01-18T21:55:31.712803",
+    "is_final": false
+  },
+  {
+    "model_id": 39,
+    "job_id": 10,
+    "episode": 2000,
+    "path": "models/model_20260118_215409_ep2000",
+    "timestamp": "2026-01-18T21:56:00.693163",
+    "is_final": false
+  },
+  {
+    "model_id": 40,
+    "job_id": 10,
+    "episode": 2000,
+    "path": "models/final_model_20260118_215409",
+    "timestamp": "2026-01-18T21:56:01.300142",
+    "is_final": true
+  },
+  {
+    "model_id": 41,
+    "job_id": 11,
+    "episode": 500,
+    "path": "models/model_20260118_215601_ep500",
+    "timestamp": "2026-01-18T21:56:30.235646",
+    "is_final": false
+  },
+  {
+    "model_id": 42,
+    "job_id": 11,
+    "episode": 1000,
+    "path": "models/model_20260118_215601_ep1000",
+    "timestamp": "2026-01-18T21:56:57.870840",
+    "is_final": false
+  },
+  {
+    "model_id": 43,
+    "job_id": 11,
+    "episode": 1500,
+    "path": "models/model_20260118_215601_ep1500",
+    "timestamp": "2026-01-18T21:57:25.532457",
+    "is_final": false
+  },
+  {
+    "model_id": 44,
+    "job_id": 11,
+    "episode": 2000,
+    "path": "models/model_20260118_215601_ep2000",
+    "timestamp": "2026-01-18T21:57:55.430466",
+    "is_final": false
+  },
+  {
+    "model_id": 45,
+    "job_id": 11,
+    "episode": 2000,
+    "path": "models/final_model_20260118_215601",
+    "timestamp": "2026-01-18T21:57:56.344634",
+    "is_final": true
+  },
+  {
+    "model_id": 46,
+    "job_id": 12,
+    "episode": 500,
+    "path": "models/model_20260118_215756_ep500",
+    "timestamp": "2026-01-18T21:58:38.780572",
+    "is_final": false
+  },
+  {
+    "model_id": 47,
+    "job_id": 12,
+    "episode": 1000,
+    "path": "models/model_20260118_215756_ep1000",
+    "timestamp": "2026-01-18T21:59:20.084632",
+    "is_final": false
+  },
+  {
+    "model_id": 48,
+    "job_id": 12,
+    "episode": 1500,
+    "path": "models/model_20260118_215756_ep1500",
+    "timestamp": "2026-01-18T21:59:58.521638",
+    "is_final": false
+  },
+  {
+    "model_id": 49,
+    "job_id": 12,
+    "episode": 2000,
+    "path": "models/model_20260118_215756_ep2000",
+    "timestamp": "2026-01-18T22:00:41.157173",
+    "is_final": false
+  },
+  {
+    "model_id": 50,
+    "job_id": 12,
+    "episode": 2500,
+    "path": "models/model_20260118_215756_ep2500",
+    "timestamp": "2026-01-18T22:01:26.811211",
+    "is_final": false
+  },
+  {
+    "model_id": 51,
+    "job_id": 12,
+    "episode": 2500,
+    "path": "models/final_model_20260118_215756",
+    "timestamp": "2026-01-18T22:01:28.158222",
+    "is_final": true
+  },
+  {
+    "model_id": 52,
+    "job_id": 13,
+    "episode": 500,
+    "path": "models/model_20260118_220128_ep500",
+    "timestamp": "2026-01-18T22:02:15.990666",
+    "is_final": false
+  },
+  {
+    "model_id": 53,
+    "job_id": 13,
+    "episode": 1000,
+    "path": "models/model_20260118_220128_ep1000",
+    "timestamp": "2026-01-18T22:03:08.256387",
+    "is_final": false
+  },
+  {
+    "model_id": 54,
+    "job_id": 13,
+    "episode": 1500,
+    "path": "models/model_20260118_220128_ep1500",
+    "timestamp": "2026-01-18T22:04:02.157857",
+    "is_final": false
+  },
+  {
+    "model_id": 55,
+    "job_id": 13,
+    "episode": 2000,
+    "path": "models/model_20260118_220128_ep2000",
+    "timestamp": "2026-01-18T22:04:53.967006",
+    "is_final": false
+  },
+  {
+    "model_id": 56,
+    "job_id": 13,
+    "episode": 2500,
+    "path": "models/model_20260118_220128_ep2500",
+    "timestamp": "2026-01-18T22:05:49.598127",
+    "is_final": false
+  },
+  {
+    "model_id": 57,
+    "job_id": 13,
+    "episode": 2500,
+    "path": "models/final_model_20260118_220128",
+    "timestamp": "2026-01-18T22:05:51.422845",
+    "is_final": true
+  },
+  {
+    "model_id": 58,
+    "job_id": 14,
+    "episode": 500,
+    "path": "models/model_20260118_220551_ep500",
+    "timestamp": "2026-01-18T22:06:38.348543",
+    "is_final": false
+  },
+  {
+    "model_id": 59,
+    "job_id": 14,
+    "episode": 1000,
+    "path": "models/model_20260118_220551_ep1000",
+    "timestamp": "2026-01-18T22:07:30.875313",
+    "is_final": false
+  },
+  {
+    "model_id": 60,
+    "job_id": 14,
+    "episode": 1500,
+    "path": "models/model_20260118_220551_ep1500",
+    "timestamp": "2026-01-18T22:08:20.902072",
+    "is_final": false
+  },
+  {
+    "model_id": 61,
+    "job_id": 14,
+    "episode": 2000,
+    "path": "models/model_20260118_220551_ep2000",
+    "timestamp": "2026-01-18T22:09:08.514102",
+    "is_final": false
+  },
+  {
+    "model_id": 62,
+    "job_id": 14,
+    "episode": 2500,
+    "path": "models/model_20260118_220551_ep2500",
+    "timestamp": "2026-01-18T22:09:57.324074",
+    "is_final": false
+  },
+  {
+    "model_id": 63,
+    "job_id": 14,
+    "episode": 2500,
+    "path": "models/final_model_20260118_220551",
+    "timestamp": "2026-01-18T22:09:59.038258",
+    "is_final": true
+  },
+  {
+    "model_id": 64,
+    "job_id": 15,
+    "episode": 500,
+    "path": "models/model_20260118_220959_ep500",
+    "timestamp": "2026-01-18T22:11:40.771519",
+    "is_final": false
+  },
+  {
+    "model_id": 65,
+    "job_id": 15,
+    "episode": 1000,
+    "path": "models/model_20260118_220959_ep1000",
+    "timestamp": "2026-01-18T22:13:28.667881",
+    "is_final": false
+  },
+  {
+    "model_id": 66,
+    "job_id": 15,
+    "episode": 1500,
+    "path": "models/model_20260118_220959_ep1500",
+    "timestamp": "2026-01-18T22:15:08.144363",
+    "is_final": false
+  },
+  {
+    "model_id": 67,
+    "job_id": 15,
+    "episode": 2000,
+    "path": "models/model_20260118_220959_ep2000",
+    "timestamp": "2026-01-18T22:16:49.587939",
+    "is_final": false
+  },
+  {
+    "model_id": 68,
+    "job_id": 15,
+    "episode": 2500,
+    "path": "models/model_20260118_220959_ep2500",
+    "timestamp": "2026-01-18T22:18:35.011752",
+    "is_final": false
+  },
+  {
+    "model_id": 69,
+    "job_id": 15,
+    "episode": 3000,
+    "path": "models/model_20260118_220959_ep3000",
+    "timestamp": "2026-01-18T22:20:20.895172",
+    "is_final": false
+  },
+  {
+    "model_id": 70,
+    "job_id": 15,
+    "episode": 3000,
+    "path": "models/final_model_20260118_220959",
+    "timestamp": "2026-01-18T22:20:25.022875",
+    "is_final": true
+  },
+  {
+    "model_id": 71,
+    "job_id": 16,
+    "episode": 500,
+    "path": "models/model_20260118_222025_ep500",
+    "timestamp": "2026-01-18T22:22:29.830800",
+    "is_final": false
+  },
+  {
+    "model_id": 72,
+    "job_id": 16,
+    "episode": 1000,
+    "path": "models/model_20260118_222025_ep1000",
+    "timestamp": "2026-01-18T22:24:17.680561",
+    "is_final": false
+  },
+  {
+    "model_id": 73,
+    "job_id": 16,
+    "episode": 1500,
+    "path": "models/model_20260118_222025_ep1500",
+    "timestamp": "2026-01-18T22:25:58.539035",
+    "is_final": false
+  },
+  {
+    "model_id": 74,
+    "job_id": 16,
+    "episode": 2000,
+    "path": "models/model_20260118_222025_ep2000",
+    "timestamp": "2026-01-18T22:27:50.687972",
+    "is_final": false
+  },
+  {
+    "model_id": 75,
+    "job_id": 16,
+    "episode": 2500,
+    "path": "models/model_20260118_222025_ep2500",
+    "timestamp": "2026-01-18T22:29:48.254895",
+    "is_final": false
+  },
+  {
+    "model_id": 76,
+    "job_id": 16,
+    "episode": 3000,
+    "path": "models/model_20260118_222025_ep3000",
+    "timestamp": "2026-01-18T22:31:33.991530",
+    "is_final": false
+  },
+  {
+    "model_id": 77,
+    "job_id": 16,
+    "episode": 3000,
+    "path": "models/final_model_20260118_222025",
+    "timestamp": "2026-01-18T22:31:37.277287",
+    "is_final": true
+  },
+  {
+    "model_id": 78,
+    "job_id": 17,
+    "episode": 500,
+    "path": "models/model_20260118_223137_ep500",
+    "timestamp": "2026-01-18T22:33:17.734959",
+    "is_final": false
+  },
+  {
+    "model_id": 79,
+    "job_id": 17,
+    "episode": 1000,
+    "path": "models/model_20260118_223137_ep1000",
+    "timestamp": "2026-01-18T22:34:52.357943",
+    "is_final": false
+  },
+  {
+    "model_id": 80,
+    "job_id": 17,
+    "episode": 1500,
+    "path": "models/model_20260118_223137_ep1500",
+    "timestamp": "2026-01-18T22:36:28.953578",
+    "is_final": false
+  },
+  {
+    "model_id": 81,
+    "job_id": 17,
+    "episode": 2000,
+    "path": "models/model_20260118_223137_ep2000",
+    "timestamp": "2026-01-18T22:37:55.209811",
+    "is_final": false
+  },
+  {
+    "model_id": 82,
+    "job_id": 17,
+    "episode": 2500,
+    "path": "models/model_20260118_223137_ep2500",
+    "timestamp": "2026-01-18T22:39:34.552710",
+    "is_final": false
+  },
+  {
+    "model_id": 83,
+    "job_id": 17,
+    "episode": 3000,
+    "path": "models/model_20260118_223137_ep3000",
+    "timestamp": "2026-01-18T22:41:18.137336",
+    "is_final": false
+  },
+  {
+    "model_id": 84,
+    "job_id": 17,
+    "episode": 3000,
+    "path": "models/final_model_20260118_223137",
+    "timestamp": "2026-01-18T22:41:21.786100",
+    "is_final": true
+  },
+  {
+    "model_id": 85,
+    "job_id": 18,
+    "episode": 500,
+    "path": "models/model_20260118_224121_ep500",
+    "timestamp": "2026-01-18T22:45:10.338947",
+    "is_final": false
+  },
+  {
+    "model_id": 86,
+    "job_id": 18,
+    "episode": 1000,
+    "path": "models/model_20260118_224121_ep1000",
+    "timestamp": "2026-01-18T22:49:04.739666",
+    "is_final": false
+  }
+]

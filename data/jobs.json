@@ -1,1 +1,344 @@
-[]
+[
+  {
+    "job_id": 1,
+    "start_time": "2026-01-18T21:44:54.349798",
+    "end_time": "2026-01-18T21:45:31.769888",
+    "total_episodes": 1000,
+    "episodes_completed": 1000,
+    "model_dir": "models/job_1",
+    "status": "completed",
+    "parameters": {
+      "episodes": 1000,
+      "opponent_type": "random",
+      "minimax_depth": null,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.2,
+      "epsilon_decay_episodes": 400
+    }
+  },
+  {
+    "job_id": 2,
+    "start_time": "2026-01-18T21:45:31.791999",
+    "end_time": "2026-01-18T21:46:10.887634",
+    "total_episodes": 1000,
+    "episodes_completed": 1000,
+    "model_dir": "models/job_2",
+    "status": "completed",
+    "parameters": {
+      "episodes": 1000,
+      "opponent_type": "random",
+      "minimax_depth": null,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.199998,
+      "epsilon_end": 0.2,
+      "epsilon_decay_episodes": 400
+    }
+  },
+  {
+    "job_id": 3,
+    "start_time": "2026-01-18T21:46:10.904329",
+    "end_time": "2026-01-18T21:47:10.061848",
+    "total_episodes": 1500,
+    "episodes_completed": 1500,
+    "model_dir": "models/job_3",
+    "status": "completed",
+    "parameters": {
+      "episodes": 1500,
+      "opponent_type": "mixed",
+      "minimax_depth": null,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.299998,
+      "epsilon_end": 0.18125000000000002,
+      "epsilon_decay_episodes": 600
+    }
+  },
+  {
+    "job_id": 4,
+    "start_time": "2026-01-18T21:47:10.079015",
+    "end_time": "2026-01-18T21:48:10.026889",
+    "total_episodes": 1500,
+    "episodes_completed": 1500,
+    "model_dir": "models/job_4",
+    "status": "completed",
+    "parameters": {
+      "episodes": 1500,
+      "opponent_type": "mixed",
+      "minimax_depth": null,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.18124818750000002,
+      "epsilon_end": 0.18125000000000002,
+      "epsilon_decay_episodes": 600
+    }
+  },
+  {
+    "job_id": 5,
+    "start_time": "2026-01-18T21:48:10.044483",
+    "end_time": "2026-01-18T21:49:33.807513",
+    "total_episodes": 1500,
+    "episodes_completed": 1500,
+    "model_dir": "models/job_5",
+    "status": "completed",
+    "parameters": {
+      "episodes": 1500,
+      "opponent_type": "mixed",
+      "minimax_depth": null,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.2812481875,
+      "epsilon_end": 0.16249999999999998,
+      "epsilon_decay_episodes": 600
+    }
+  },
+  {
+    "job_id": 6,
+    "start_time": "2026-01-18T21:49:33.823186",
+    "end_time": "2026-01-18T21:50:32.701151",
+    "total_episodes": 1500,
+    "episodes_completed": 1500,
+    "model_dir": "models/job_6",
+    "status": "completed",
+    "parameters": {
+      "episodes": 1500,
+      "opponent_type": "mixed",
+      "minimax_depth": null,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.16249837499999997,
+      "epsilon_end": 0.16249999999999998,
+      "epsilon_decay_episodes": 600
+    }
+  },
+  {
+    "job_id": 7,
+    "start_time": "2026-01-18T21:50:32.716873",
+    "end_time": "2026-01-18T21:51:34.690685",
+    "total_episodes": 1500,
+    "episodes_completed": 1500,
+    "model_dir": "models/job_7",
+    "status": "completed",
+    "parameters": {
+      "episodes": 1500,
+      "opponent_type": "mixed",
+      "minimax_depth": null,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.26249837499999995,
+      "epsilon_end": 0.14375,
+      "epsilon_decay_episodes": 600
+    }
+  },
+  {
+    "job_id": 8,
+    "start_time": "2026-01-18T21:51:34.706140",
+    "end_time": "2026-01-18T21:52:37.316744",
+    "total_episodes": 1500,
+    "episodes_completed": 1500,
+    "model_dir": "models/job_8",
+    "status": "completed",
+    "parameters": {
+      "episodes": 1500,
+      "opponent_type": "mixed",
+      "minimax_depth": null,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.14374856249999998,
+      "epsilon_end": 0.14375,
+      "epsilon_decay_episodes": 600
+    }
+  },
+  {
+    "job_id": 9,
+    "start_time": "2026-01-18T21:52:37.333615",
+    "end_time": "2026-01-18T21:54:09.481739",
+    "total_episodes": 2000,
+    "episodes_completed": 2000,
+    "model_dir": "models/job_9",
+    "status": "completed",
+    "parameters": {
+      "episodes": 2000,
+      "opponent_type": "minimax",
+      "minimax_depth": 1,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.2437485625,
+      "epsilon_end": 0.125,
+      "epsilon_decay_episodes": 800
+    }
+  },
+  {
+    "job_id": 10,
+    "start_time": "2026-01-18T21:54:09.502585",
+    "end_time": "2026-01-18T21:56:01.301585",
+    "total_episodes": 2000,
+    "episodes_completed": 2000,
+    "model_dir": "models/job_10",
+    "status": "completed",
+    "parameters": {
+      "episodes": 2000,
+      "opponent_type": "minimax",
+      "minimax_depth": 1,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.12499875,
+      "epsilon_end": 0.125,
+      "epsilon_decay_episodes": 800
+    }
+  },
+  {
+    "job_id": 11,
+    "start_time": "2026-01-18T21:56:01.328073",
+    "end_time": "2026-01-18T21:57:56.345742",
+    "total_episodes": 2000,
+    "episodes_completed": 2000,
+    "model_dir": "models/job_11",
+    "status": "completed",
+    "parameters": {
+      "episodes": 2000,
+      "opponent_type": "minimax",
+      "minimax_depth": 1,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.12499875,
+      "epsilon_end": 0.125,
+      "epsilon_decay_episodes": 800
+    }
+  },
+  {
+    "job_id": 12,
+    "start_time": "2026-01-18T21:57:56.371973",
+    "end_time": "2026-01-18T22:01:28.159463",
+    "total_episodes": 2500,
+    "episodes_completed": 2500,
+    "model_dir": "models/job_12",
+    "status": "completed",
+    "parameters": {
+      "episodes": 2500,
+      "opponent_type": "minimax",
+      "minimax_depth": 2,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.22499875000000003,
+      "epsilon_end": 0.10625,
+      "epsilon_decay_episodes": 1000
+    }
+  },
+  {
+    "job_id": 13,
+    "start_time": "2026-01-18T22:01:28.190422",
+    "end_time": "2026-01-18T22:05:51.423846",
+    "total_episodes": 2500,
+    "episodes_completed": 2500,
+    "model_dir": "models/job_13",
+    "status": "completed",
+    "parameters": {
+      "episodes": 2500,
+      "opponent_type": "minimax",
+      "minimax_depth": 2,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.1062489375,
+      "epsilon_end": 0.10625,
+      "epsilon_decay_episodes": 1000
+    }
+  },
+  {
+    "job_id": 14,
+    "start_time": "2026-01-18T22:05:51.462756",
+    "end_time": "2026-01-18T22:09:59.039352",
+    "total_episodes": 2500,
+    "episodes_completed": 2500,
+    "model_dir": "models/job_14",
+    "status": "completed",
+    "parameters": {
+      "episodes": 2500,
+      "opponent_type": "minimax",
+      "minimax_depth": 2,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.1062489375,
+      "epsilon_end": 0.10625,
+      "epsilon_decay_episodes": 1000
+    }
+  },
+  {
+    "job_id": 15,
+    "start_time": "2026-01-18T22:09:59.090373",
+    "end_time": "2026-01-18T22:20:25.024082",
+    "total_episodes": 3000,
+    "episodes_completed": 3000,
+    "model_dir": "models/job_15",
+    "status": "completed",
+    "parameters": {
+      "episodes": 3000,
+      "opponent_type": "minimax",
+      "minimax_depth": 3,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.2062489375,
+      "epsilon_end": 0.0875,
+      "epsilon_decay_episodes": 1200
+    }
+  },
+  {
+    "job_id": 16,
+    "start_time": "2026-01-18T22:20:25.055470",
+    "end_time": "2026-01-18T22:31:37.279243",
+    "total_episodes": 3000,
+    "episodes_completed": 3000,
+    "model_dir": "models/job_16",
+    "status": "completed",
+    "parameters": {
+      "episodes": 3000,
+      "opponent_type": "minimax",
+      "minimax_depth": 3,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.0875,
+      "epsilon_end": 0.0875,
+      "epsilon_decay_episodes": 1200
+    }
+  },
+  {
+    "job_id": 17,
+    "start_time": "2026-01-18T22:31:37.306105",
+    "end_time": "2026-01-18T22:41:21.788156",
+    "total_episodes": 3000,
+    "episodes_completed": 3000,
+    "model_dir": "models/job_17",
+    "status": "completed",
+    "parameters": {
+      "episodes": 3000,
+      "opponent_type": "minimax",
+      "minimax_depth": 3,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.0875,
+      "epsilon_end": 0.0875,
+      "epsilon_decay_episodes": 1200
+    }
+  },
+  {
+    "job_id": 18,
+    "start_time": "2026-01-18T22:41:21.831651",
+    "end_time": null,
+    "total_episodes": 4000,
+    "episodes_completed": 1131,
+    "model_dir": "models/job_18",
+    "status": "running",
+    "parameters": {
+      "episodes": 4000,
+      "opponent_type": "minimax",
+      "minimax_depth": 4,
+      "batch_size": 64,
+      "model_dir": "models",
+      "epsilon_start": 0.1875,
+      "epsilon_end": 0.06875,
+      "epsilon_decay_episodes": 1600
+    }
+  }
+]

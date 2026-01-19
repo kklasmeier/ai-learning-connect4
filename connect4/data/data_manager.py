@@ -258,6 +258,18 @@ def get_job_data(job_id: Optional[int] = None) -> Union[Dict, List[Dict]]:
     debug.warning(f"Job {job_id} not found", "data")
     return {}
 
+def get_all_jobs() -> List[Dict]:
+    """Get all jobs."""
+    return safe_read_json(JOBS_FILE)
+
+def get_job_info(job_id: int) -> Optional[Dict]:
+    """Get info for a specific job."""
+    jobs = safe_read_json(JOBS_FILE)
+    for job in jobs:
+        if job['job_id'] == job_id:
+            return job
+    return None
+
 def get_episode_logs(job_id: int, recent: bool = True) -> List[Dict]:
     """Get episode logs for a job."""
     log_type = "recent" if recent else "history"
@@ -333,3 +345,69 @@ def get_latest_game_id(job_id: Optional[int] = None) -> Optional[int]:
         return None
     
     return len(games) - 1
+
+def purge_all_data() -> bool:
+    """
+    Purge all training data, logs, games, and model registrations.
+    
+    This removes:
+    - All job records
+    - All episode logs
+    - All saved games
+    - All model registrations
+    
+    Note: This does NOT delete the actual model files in the models/ directory.
+    
+    Returns:
+        True if successful, False otherwise
+    """
+    success = True
+    
+    # Clear jobs file
+    if os.path.exists(JOBS_FILE):
+        if not safe_write_json(JOBS_FILE, []):
+            debug.error("Failed to clear jobs file", "data")
+            success = False
+        else:
+            debug.info("Cleared jobs file", "data")
+    
+    # Clear models file
+    if os.path.exists(MODELS_FILE):
+        if not safe_write_json(MODELS_FILE, []):
+            debug.error("Failed to clear models file", "data")
+            success = False
+        else:
+            debug.info("Cleared models registry", "data")
+    
+    # Clear logs directory
+    if os.path.exists(LOGS_DIR):
+        for file in os.listdir(LOGS_DIR):
+            file_path = os.path.join(LOGS_DIR, file)
+            try:
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                    debug.trace(f"Removed log file: {file}", "data")
+            except Exception as e:
+                debug.error(f"Failed to remove {file}: {e}", "data")
+                success = False
+        debug.info("Cleared logs directory", "data")
+    
+    # Clear games directory
+    if os.path.exists(GAMES_DIR):
+        for file in os.listdir(GAMES_DIR):
+            file_path = os.path.join(GAMES_DIR, file)
+            try:
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+                    debug.trace(f"Removed game file: {file}", "data")
+            except Exception as e:
+                debug.error(f"Failed to remove {file}: {e}", "data")
+                success = False
+        debug.info("Cleared games directory", "data")
+    
+    if success:
+        print("All training data purged successfully.")
+        print("Note: Model files in models/ directory were NOT deleted.")
+        print("To delete models, manually remove files from the models/ directory.")
+    
+    return success

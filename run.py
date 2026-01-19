@@ -29,6 +29,40 @@ except ImportError as e:
         print("interfaces directory not found")
     sys.exit(1)
 
+def highlight_last_move(board_str, column, player_symbol):
+    """
+    Highlight the most recently played piece on the board.
+    
+    Args:
+        board_str: The rendered board string from game.render()
+        column: The column where the piece was played (0-6)
+        player_symbol: 'X' or 'O' - the piece that was just played
+    
+    Returns:
+        Board string with the last played piece highlighted
+    """
+    lines = board_str.split('\n')
+    
+    # Board layout: each cell is 2 chars wide, columns are at positions 1, 3, 5, 7, 9, 11, 13
+    # Format: |X   O   X   O   X   O   X|
+    # The piece position in each row is: 1 + (column * 2)
+    piece_pos = 1 + (column * 2)
+    
+    # Find the topmost row containing the player's piece in this column
+    # Skip header line (index 0) and footer lines (last 2)
+    # Board rows are indices 1-6 (6 rows, top to bottom)
+    for i in range(1, 7):  # rows 1-6 are the playable area
+        line = lines[i]
+        if len(line) > piece_pos and line[piece_pos] == player_symbol:
+            # Found the piece - highlight it with bright/bold color
+            highlight_color = Fore.LIGHTGREEN_EX if player_symbol == 'X' else Fore.LIGHTCYAN_EX
+            highlighted_piece = f"{highlight_color}{Style.BRIGHT}{player_symbol}{Style.RESET_ALL}"
+            # Replace just this occurrence
+            lines[i] = line[:piece_pos] + highlighted_piece + line[piece_pos + 1:]
+            break
+    
+    return '\n'.join(lines)
+
 def configure_debug(args):
     """Configure debug level based on args.debug or args.debug_level."""
     if args.debug:
@@ -124,9 +158,92 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
         current_player = "X" if game.get_current_player() == Player.ONE else "O"
         move_info = f"Episode: {episode}, Move {i+1}: Player {current_player} plays column {move['column']}"
         
-        # Prepare stats
+        # Prepare stats - handle both old and new formats
         stats_lines = []
-        if isinstance(move, dict) and all(key in move for key in ['reward', 'epsilon', 'q_values', 'loss', 'action_source']):
+        
+        # Check for new simplified format (from new trainer)
+        if 'action_source' in move:
+            action_source = move.get('action_source', 'unknown')
+            epsilon = move.get('epsilon')
+            curriculum_stage = move.get('curriculum_stage')
+            curriculum_stage_name = move.get('curriculum_stage_name')
+            
+            # Color code based on who made the move
+            if action_source.startswith('opponent_'):
+                # Opponent move - parse the specific type
+                source_color = Fore.CYAN
+                opponent_detail = action_source.replace('opponent_', '')
+                
+                # Make the display more readable
+                if opponent_detail == 'random':
+                    source_display = "RANDOM"
+                elif opponent_detail.startswith('minimax_d'):
+                    depth = opponent_detail.replace('minimax_d', '')
+                    source_display = f"MINIMAX (depth {depth})"
+                elif opponent_detail == 'model':
+                    source_display = "MODEL"
+                elif opponent_detail == 'self':
+                    source_display = "SELF-PLAY"
+                else:
+                    source_display = opponent_detail.upper()
+                
+                stats_lines.append(f"{source_color}Source: {source_display} (opponent, Player {current_player}){Style.RESET_ALL}")
+            elif action_source == 'agent_model':
+                # Agent using learned policy
+                source_color = Fore.GREEN
+                stats_lines.append(f"{source_color}Source: AGENT (model, Player {current_player}){Style.RESET_ALL}")
+                if epsilon is not None:
+                    stats_lines.append(f"Epsilon: {epsilon:.3f}")
+            elif action_source == 'agent_random':
+                # Agent exploring randomly
+                source_color = Fore.YELLOW
+                stats_lines.append(f"{source_color}Source: AGENT (random exploration, Player {current_player}){Style.RESET_ALL}")
+                if epsilon is not None:
+                    stats_lines.append(f"Epsilon: {epsilon:.3f}")
+            elif action_source == 'model':
+                # Legacy format - agent using learned policy
+                source_color = Fore.GREEN
+                stats_lines.append(f"{source_color}Source: AGENT (model, Player {current_player}){Style.RESET_ALL}")
+                if epsilon is not None:
+                    stats_lines.append(f"Epsilon: {epsilon:.3f}")
+            elif action_source == 'random':
+                # Legacy format - agent exploring randomly
+                source_color = Fore.YELLOW
+                stats_lines.append(f"{source_color}Source: AGENT (random exploration, Player {current_player}){Style.RESET_ALL}")
+                if epsilon is not None:
+                    stats_lines.append(f"Epsilon: {epsilon:.3f}")
+            elif action_source == 'random_opening':
+                source_color = Fore.MAGENTA
+                stats_lines.append(f"{source_color}Source: Random opening move (Player {current_player}){Style.RESET_ALL}")
+            else:
+                stats_lines.append(f"Source: {action_source} (Player {current_player})")
+            
+            # Add curriculum stage info if available
+            if curriculum_stage is not None:
+                stats_lines.append(f"{Fore.WHITE}Curriculum: Stage {curriculum_stage} - {curriculum_stage_name}{Style.RESET_ALL}")
+            
+            # Add old-style detailed stats if available
+            if 'q_values' in move and move['q_values']:
+                q_values = move['q_values']
+                chosen_action = move['column']
+                q_values_str = '[' + ', '.join(
+                    f"{Fore.GREEN}{q:.3f}{Style.RESET_ALL}" if idx == chosen_action else f"{q:.3f}"
+                    for idx, q in enumerate(q_values)
+                ) + ']'
+                stats_lines.append(f"Q-Values: {q_values_str}")
+            
+            if 'reward' in move:
+                reward = move['reward']
+                reward_color = Fore.GREEN if reward > 0 else Fore.RED if reward < 0 else Fore.WHITE
+                stats_lines.append(f"{reward_color}Reward: {reward:.3f}{Style.RESET_ALL}")
+            
+            if 'loss' in move and move['loss'] is not None:
+                loss = move['loss']
+                loss_color = Fore.RED if loss > 1.0 else Fore.WHITE
+                stats_lines.append(f"{loss_color}Loss: {loss:.3f}{Style.RESET_ALL}")
+                
+        # Old format with all detailed fields
+        elif isinstance(move, dict) and all(key in move for key in ['reward', 'epsilon', 'q_values', 'loss', 'action_source']):
             # Reward with color and width-based wrapping
             reward = move['reward']
             reward_color = Fore.GREEN if reward > 0 else Fore.RED if reward < 0 else Fore.WHITE
@@ -178,8 +295,8 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
             q_values = move['q_values']
             chosen_action = move['column']
             q_values_str = '[' + ', '.join(
-                f"{Fore.GREEN}{q:.3f}{Style.RESET_ALL}" if i == chosen_action else f"{q:.3f}"
-                for i, q in enumerate(q_values)
+                f"{Fore.GREEN}{q:.3f}{Style.RESET_ALL}" if idx == chosen_action else f"{q:.3f}"
+                for idx, q in enumerate(q_values)
             ) + ']'
             stats_lines.append(f"Q-Values: {q_values_str} (Chosen: {q_values[chosen_action]:.3f})")
             
@@ -196,14 +313,8 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
             action_color = Fore.GREEN if action_source == 'model' else Fore.RED
             stats_lines.append(f"{action_color}Action: {action_source.capitalize()}{Style.RESET_ALL}")
         else:
-            # Fallback for older game files
-            stats_lines = [
-                f"{Fore.WHITE}Reward: N/A{Style.RESET_ALL}",
-                f"{Fore.WHITE}Epsilon: N/A{Style.RESET_ALL}",
-                f"{Fore.WHITE}Q-Values: N/A{Style.RESET_ALL}",
-                f"{Fore.WHITE}Loss: N/A{Style.RESET_ALL}",
-                f"{Fore.WHITE}Action: N/A{Style.RESET_ALL}"
-            ]
+            # Fallback for minimal data
+            stats_lines = [f"{Fore.WHITE}(No detailed stats available){Style.RESET_ALL}"]
         
         # Check terminal width
         try:
@@ -216,8 +327,13 @@ def replay_game(game_data, delay, show_metrics=False, job_id=None):
         combined_width = max_board_width + max_stats_width + 2  # 2 for padding
         
         # Make move
-        game.make_move(move['column'] if isinstance(move, dict) else move)
-        board_lines = game.render().split('\n')
+        column_played = move['column'] if isinstance(move, dict) else move
+        game.make_move(column_played)
+        board_rendered = game.render()
+        
+        # Highlight the last played piece
+        board_rendered = highlight_last_move(board_rendered, column_played, current_player)
+        board_lines = board_rendered.split('\n')
         
         # Display board and stats
         if combined_width <= terminal_width:
@@ -263,6 +379,8 @@ def handle_game_command(args):
         sys.argv.extend(['--iterations', str(args.iterations)])
     if args.command == 'play' and args.ai:
         sys.argv.extend(['--ai', args.ai])
+    if args.command == 'play' and hasattr(args, 'depth') and args.depth:
+        sys.argv.extend(['--depth', str(args.depth)])
     
     cli.run()
 
@@ -300,13 +418,11 @@ def handle_ai_play(args):
                     move = int(input("Enter column (0-6): "))
                     if move in valid_moves:
                         break
-                    print(f"Invalid move. Valid options: {valid_moves}")
+                    print(f"Invalid move. Choose from: {valid_moves}")
                 except ValueError:
-                    print("Please enter a number from 0-6")
+                    print("Please enter a valid number")
         else:
-            print("AI is thinking...")
-            valid_moves = game.get_valid_moves()
-            move = agent.get_action(game.board, valid_moves)
+            move = agent.get_action(game.board, valid_moves=game.get_valid_moves(), training=False)
             print(f"AI plays column {move}")
         
         game.make_move(move)
@@ -314,177 +430,263 @@ def handle_ai_play(args):
     
     winner = game.get_winner()
     if winner == Player.ONE:
-        print("You win!")
+        print("Congratulations! You won!")
     elif winner == Player.TWO:
-        print("AI wins!")
+        print("AI wins! Better luck next time.")
     else:
         print("It's a draw!")
 
 def handle_ai_train(args):
     """Handle the 'ai train' command."""
-    from connect4.ai.training import SelfPlayTrainer
+    from connect4.ai.trainer import Trainer, OpponentType, CurriculumTrainer
     
     configure_debug(args)
-    print(f"Starting training with {args.episodes} episodes")
-    agent = create_or_load_agent(args, args.model)
     
-    trainer = SelfPlayTrainer(agent=agent)
-    print(f"Created training job with ID: {trainer.job_id}")
-    print(f"You can check status with: python run.py ai jobs --job_id {trainer.job_id}")
+    # Load existing agent or create new one
+    agent = None
+    if args.model:
+        agent = create_or_load_agent(args, args.model)
+    else:
+        agent = create_or_load_agent(args)
     
-    log_interval = args.log_interval if args.log_interval is not None else max(1, args.episodes // 100)
-    save_interval = max(1, args.episodes // 10)
+    ensure_directory('models')
+    ensure_directory('data')
+    ensure_directory(os.path.join('data', 'games'))
+    ensure_directory(os.path.join('data', 'logs'))
     
-    try:
-        print("Starting self-play training...")
-        trainer.train(episodes=args.episodes, log_interval=log_interval, save_interval=save_interval)
-        print("Training completed successfully")
-    except KeyboardInterrupt:
-        print("\nTraining interrupted. Saving current model...")
-        trainer._save_checkpoint(trainer.episode_count, final=True)
-        print("Model saved. Exiting.")
+    # Handle curriculum training separately
+    if args.opponent == 'curriculum':
+        print("Starting CURRICULUM training...")
+        print("This will progressively train against harder opponents.")
+        if args.model:
+            print(f"Continuing from model: {args.model}")
+        else:
+            print("Starting with new model")
+        print()
+        
+        log_interval = args.log_interval if args.log_interval else 50
+        
+        curriculum_trainer = CurriculumTrainer(
+            agent=agent,
+        )
+        
+        stats = curriculum_trainer.train(
+            log_interval=log_interval,
+        )
+        
+        print("\nCurriculum Training Complete!")
+        print("-" * 40)
+        print(f"Total episodes: {stats['total_episodes']}")
+        print(f"Total time: {stats['total_time']:.0f}s ({stats['total_time']/60:.1f} min)")
+        print(f"Final model: {stats['final_model_path']}")
+        return
+    
+    # Standard training (non-curriculum)
+    opponent_type = OpponentType.MINIMAX  # Default
+    if args.opponent == 'self':
+        opponent_type = OpponentType.SELF
+    elif args.opponent == 'minimax':
+        opponent_type = OpponentType.MINIMAX
+    elif args.opponent == 'random':
+        opponent_type = OpponentType.RANDOM
+    elif args.opponent == 'model':
+        opponent_type = OpponentType.MODEL
+        if not args.opponent_model:
+            print("Error: --opponent_model required when using --opponent model")
+            return
+    
+    log_interval = args.log_interval if args.log_interval else max(1, args.episodes // 100)
+    
+    # Get minimax depth
+    minimax_depth = getattr(args, 'depth', 5)
+    
+    print(f"Starting training for {args.episodes} episodes...")
+    print(f"Opponent: {args.opponent}")
+    if args.opponent == 'minimax':
+        print(f"Minimax depth: {minimax_depth}")
+    if args.model:
+        print(f"Continuing from model: {args.model}")
+    else:
+        print("Starting with new model")
+    
+    # Create trainer
+    trainer = Trainer(
+        agent=agent,
+        opponent_type=opponent_type,
+        opponent_model_path=args.opponent_model if args.opponent == 'model' else None,
+        minimax_depth=minimax_depth,
+    )
+    
+    # Run training
+    stats = trainer.train(
+        episodes=args.episodes,
+        log_interval=log_interval,
+        save_interval=max(100, args.episodes // 10),
+        eval_interval=max(50, args.episodes // 20),
+    )
+    
+    print("\nTraining Complete!")
+    print("-" * 40)
+    for key, value in stats.items():
+        if isinstance(value, float):
+            print(f"{key}: {value:.4f}")
+        else:
+            print(f"{key}: {value}")
 
 def handle_ai_jobs(args):
     """Handle the 'ai jobs' command."""
-    from connect4.data.data_manager import get_job_data, get_episode_logs
+    from connect4.data.data_manager import get_all_jobs, get_job_info, get_episode_logs
     
     configure_debug(args)
-    jobs = get_job_data(args.job_id)
     
     if args.job_id is not None:
-        if not jobs:
-            print(f"Job {args.job_id} not found")
+        job = get_job_info(args.job_id)
+        if job:
+            print(f"\nJob {args.job_id} Details:")
+            print("-" * 40)
+            for key, value in job.items():
+                print(f"{key}: {value}")
+            
+            logs = get_episode_logs(args.job_id)
+            if logs:
+                print(f"\nTraining Progress ({len(logs)} logged episodes):")
+                print("-" * 40)
+                
+                if len(logs) <= 10:
+                    for log in logs:
+                        print(f"Episode {log['episode']}: "
+                              f"Reward={log.get('reward', 'N/A'):.2f}, "
+                              f"Epsilon={log.get('epsilon', 'N/A'):.3f}")
+                else:
+                    print("First 5 episodes:")
+                    for log in logs[:5]:
+                        print(f"  Episode {log['episode']}: "
+                              f"Reward={log.get('reward', 'N/A'):.2f}, "
+                              f"Epsilon={log.get('epsilon', 'N/A'):.3f}")
+                    print("...")
+                    print("Last 5 episodes:")
+                    for log in logs[-5:]:
+                        print(f"  Episode {log['episode']}: "
+                              f"Reward={log.get('reward', 'N/A'):.2f}, "
+                              f"Epsilon={log.get('epsilon', 'N/A'):.3f}")
         else:
-            print(f"Job {args.job_id} Details:")
-            print(f"Started: {jobs['start_time']}")
-            print(f"Status: {jobs['status']}")
-            print(f"Episodes: {jobs['episodes_completed']}/{jobs['total_episodes']}")
-            if jobs['end_time']:
-                print(f"Completed: {jobs['end_time']}")
-            print("\nTraining Parameters:")
-            for key, value in jobs['parameters'].items():
-                print(f"  {key}: {value}")
-            print("\nRecent Episodes:")
-            logs = get_episode_logs(args.job_id)[-5:]
-            for log in logs:
-                print(f"Episode {log['episode']}: Reward={log['reward']:.2f}, "
-                      f"Length={log['length']}, Winner={log['winner']}")
+            print(f"Job {args.job_id} not found")
     else:
-        print(f"Found {len(jobs)} training jobs:")
-        for job in jobs:
-            status = job['status']
-            progress = f"{job['episodes_completed']}/{job['total_episodes']}"
-            print(f"Job {job['job_id']}: {status}, Progress: {progress}")
-        print("\nUse 'python run.py ai jobs --job_id <id>' to view job details")
+        jobs = get_all_jobs()
+        if jobs:
+            print("\nTraining Jobs:")
+            print("-" * 60)
+            print(f"{'ID':<5} {'Status':<12} {'Episodes':<10} {'Started':<20}")
+            print("-" * 60)
+            for job in jobs:
+                print(f"{job['id']:<5} {job['status']:<12} {job['episodes']:<10} {job['start_time']:<20}")
+        else:
+            print("No training jobs found")
 
 def handle_ai_purge(args):
     """Handle the 'ai purge' command."""
-    configure_debug(args)
+    from connect4.data.data_manager import purge_all_data
+    
     if not args.confirm:
-        print("WARNING: This will delete all jobs, logs, games, models, and training data.")
-        print("To confirm, run: python run.py ai purge --confirm")
+        print("Warning: This will delete all training data, logs, and saved games.")
+        print("Run with --confirm to proceed.")
         return
     
-    print("Purging all data...")
-    if os.path.exists('data/jobs.json'):
-        with open('data/jobs.json', 'w') as f:
-            f.write('[]')
-        print("Cleared jobs.json")
-    if os.path.exists('data/models.json'):
-        with open('data/models.json', 'w') as f:
-            f.write('[]')
-        print("Cleared models.json")
-    if os.path.exists('data/logs'):
-        log_files = os.listdir('data/logs')
-        for file in log_files:
-            os.remove(os.path.join('data/logs', file))
-        print(f"Removed {len(log_files)} log files")
-    if os.path.exists('data/games'):
-        game_files = os.listdir('data/games')
-        for file in game_files:
-            os.remove(os.path.join('data/games', file))
-        print(f"Removed {len(game_files)} game files")
-    if os.path.exists('models'):
-        model_files = [f for f in os.listdir('models') if f.endswith('.pt')]
-        for file in model_files:
-            os.remove(os.path.join('models', file))
-        print(f"Removed {len(model_files)} model files")
-    print("Purge completed")
+    purge_all_data()
+    print("All data purged successfully")
 
 def handle_ai_games(args):
     """Handle the 'ai games' command."""
-    from connect4.data.data_manager import get_saved_games, get_latest_game_id
+    from connect4.data.data_manager import get_saved_games
     
     configure_debug(args)
+    
     if args.watch_latest:
-        print("Watching for new games. Press Ctrl+C to stop.")
-        last_game_id = None
-        try:
-            while True:
-                latest_game_id = get_latest_game_id(args.job_id)
-                if latest_game_id is not None and latest_game_id != last_game_id:
-                    last_game_id = latest_game_id
-                    all_games = get_saved_games(args.job_id)
-                    if 0 <= latest_game_id < len(all_games):
-                        job_id = all_games[latest_game_id]['job_id']
-                        replay_game(all_games[latest_game_id], args.delay, show_metrics=True, job_id=job_id)
-                        print("\n------------------------------------------------------------------------------")
-                time.sleep(5)
-        except KeyboardInterrupt:
-            print("\nStopped watching for new games.")
-    
-    elif args.replay is not None:
-        all_games = get_saved_games(args.job_id)
-        if 0 <= args.replay < len(all_games):
-            replay_game(all_games[args.replay], args.delay)
-        else:
-            print(f"Error: Game ID {args.replay} not found")
-            print(f"Available game IDs: 0-{len(all_games)-1}")
-    
+        watch_latest_game(args.delay)
     elif args.list:
-        all_games = get_saved_games(args.job_id)
-        if not all_games:
-            print("No saved games found")
-            if args.job_id is not None:
-                print(f"No games found for job {args.job_id}")
-            return
-        print(f"Found {len(all_games)} saved games:")
-        print("\nID | Job | Episode | Winner | Moves | Timestamp")
-        print("-" * 60)
-        for i, game in enumerate(all_games):
-            winner = game['winner'] or "Draw"
-            timestamp = game['timestamp'].split('T')[0] if 'timestamp' in game else "Unknown"
-            print(f"{i:2d} | {game['job_id']:3d} | {game['episode']:7d} | {winner:6s} | {game['game_length']:5d} | {timestamp}")
-        print("\nTo replay a game: python run.py ai games --replay GAME_ID")
-        if args.job_id is not None:
-            print(f"Currently showing games for job {args.job_id} only")
-            print("To see all games: python run.py ai games --list")
+        games = get_saved_games(args.job_id)
+        if games:
+            print("\nSaved Games:")
+            print("-" * 70)
+            print(f"{'ID':<5} {'Job':<5} {'Episode':<10} {'Winner':<10} {'Length':<10}")
+            print("-" * 70)
+            for i, game in enumerate(games):
+                winner = game.get('winner', 'Draw') or 'Draw'
+                print(f"{i:<5} {game['job_id']:<5} {game['episode']:<10} {winner:<10} {game['game_length']:<10}")
         else:
-            print("To filter by job: python run.py ai games --list --job_id JOB_ID")
-    
+            print("No saved games found")
+    elif args.replay is not None:
+        games = get_saved_games(args.job_id)
+        if games and 0 <= args.replay < len(games):
+            game_data = games[args.replay]
+            replay_game(game_data, args.delay, job_id=game_data.get('job_id'))
+        else:
+            print(f"Game {args.replay} not found")
     else:
-        print("Please specify an action: --list or --replay")
-        print("Example: python run.py ai games --list")
-        print("Example: python run.py ai games --replay 0 --delay 1.0")
-        
+        print("Use --list to see saved games or --replay <id> to replay a game")
+
+def watch_latest_game(delay):
+    """Continuously watch and replay the latest game as it becomes available."""
+    from connect4.data.data_manager import get_saved_games, get_job_info
+    
+    print("Watching for latest games... Press Ctrl+C to stop.")
+    last_game_id = None
+    last_job_id = None
+    waiting_printed = False
+    
+    try:
+        while True:
+            games = get_saved_games()
+            if games:
+                latest_game = games[-1]
+                game_id = (latest_game['job_id'], latest_game['episode'])
+                
+                if game_id != last_game_id:
+                    waiting_printed = False  # Reset waiting flag
+                    print("\n" + "=" * 50)
+                    print("New game detected!")
+                    
+                    # Show job info if job changed (helps track curriculum progress)
+                    current_job_id = latest_game.get('job_id')
+                    if current_job_id != last_job_id and current_job_id is not None:
+                        job_info = get_job_info(current_job_id)
+                        if job_info and 'params' in job_info:
+                            params = job_info['params']
+                            opponent = params.get('opponent_type', 'unknown')
+                            depth = params.get('minimax_depth')
+                            depth_str = f" (depth {depth})" if depth else ""
+                            print(f"Job {current_job_id}: Training vs {opponent}{depth_str}")
+                        last_job_id = current_job_id
+                    
+                    replay_game(latest_game, delay, job_id=latest_game.get('job_id'))
+                    last_game_id = game_id
+                    print("\nWaiting for next game...", end="", flush=True)
+                    waiting_printed = True
+                else:
+                    # Still waiting for a new game - show a dot to indicate activity
+                    if waiting_printed:
+                        print(".", end="", flush=True)
+            
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\nStopped watching.")
+
 def handle_ai_command(args):
     """Handle the 'ai' component commands."""
-    try:
-        if args.command == 'init':
-            handle_ai_init(args)
-        elif args.command == 'play':
-            handle_ai_play(args)
-        elif args.command == 'train':
-            handle_ai_train(args)
-        elif args.command == 'jobs':
-            handle_ai_jobs(args)
-        elif args.command == 'purge':
-            handle_ai_purge(args)
-        elif args.command == 'games':
-            handle_ai_games(args)
-    except ImportError as e:
-        print(f"Error importing AI modules: {e}")
-        print("Make sure all AI components are implemented before using this command")
+    if args.command == 'init':
+        handle_ai_init(args)
+    elif args.command == 'play':
+        handle_ai_play(args)
+    elif args.command == 'train':
+        handle_ai_train(args)
+    elif args.command == 'jobs':
+        handle_ai_jobs(args)
+    elif args.command == 'purge':
+        handle_ai_purge(args)
+    elif args.command == 'games':
+        handle_ai_games(args)
+    else:
+        print(f"Unknown AI command: {args.command}")
 
 def main():
     """Main entry point for the Connect Four AI Learning System."""
@@ -498,6 +700,12 @@ def main():
     ---------------
     # Play Connect Four against a random AI
     python run.py game play
+    
+    # Play Connect Four against Minimax AI (depth 6)
+    python run.py game play --ai minimax
+    
+    # Play against Minimax with custom depth (stronger but slower)
+    python run.py game play --ai minimax --depth 8
     
     # Play Connect Four with two human players
     python run.py game play --ai none
@@ -530,23 +738,63 @@ def main():
 
     AI COMPONENT - TRAINING:
     ------------------------
-    # Train the AI for 1000 episodes
-    python run.py ai train --episodes 1000
+    # Train against minimax opponent (default)
+    python run.py ai train --opponent minimax --episodes 5000
+    
+    # Train against minimax with specific depth (higher = harder opponent)
+    python run.py ai train --opponent minimax --depth 6 --episodes 5000
+    
+    # Train using self-play (agent plays against itself)
+    python run.py ai train --opponent self --episodes 5000
+    
+    # Train against random opponent (for baseline/testing)
+    python run.py ai train --opponent random --episodes 1000
+    
+    # Train against a saved model
+    python run.py ai train --opponent model --opponent_model models/final_model_TIMESTAMP --episodes 5000
+    
+    # Continue training an existing model against minimax
+    python run.py ai train --opponent minimax --model models/existing_model --episodes 5000
+    
+    # Train with custom neural network architecture (3 layers)
+    python run.py ai train --opponent minimax --layer_sizes 256,128,64 --episodes 5000
+    
+    # Train with 2-layer architecture
+    python run.py ai train --layer_sizes 256,128 --episodes 5000
     
     # Train with a specific log interval
-    python run.py ai train --episodes 500 --log_interval 10
-    
-    #This will train an AI for 1000 episodes with a neural network that has three hidden layers of sizes 256, 128, and 64.
-    python run.py ai train --episodes 1000 --layer_sizes 256,128,64
-    
-    # Train with a larger hidden layer size
-    python run.py ai train --episodes 1000 --hidden_size 256
-    
-    # Continue training from an existing model
-    python run.py ai train --episodes 2000 --model models/final_model_TIMESTAMP
+    python run.py ai train --opponent minimax --episodes 500 --log_interval 10
     
     # Train with detailed logging
     python run.py ai train --episodes 100 --debug_level debug
+
+    AI COMPONENT - CURRICULUM TRAINING (RECOMMENDED FOR NEW MODELS):
+    ----------------------------------------------------------------
+    # Use curriculum training to progressively train against harder opponents
+    # This is RECOMMENDED for training new models from scratch
+    # The agent learns to win against easy opponents first, then graduates
+    # to harder ones. This prevents the "learned helplessness" problem.
+    
+    # Start curriculum training with default settings (recommended)
+    python run.py ai train --opponent curriculum
+    
+    # Curriculum training with custom architecture
+    python run.py ai train --opponent curriculum --layer_sizes 256,128,64
+    
+    # Continue curriculum training from an existing model
+    python run.py ai train --opponent curriculum --model models/existing_model
+    
+    # Curriculum stages (default - with mixed transition stages):
+    #   1. Random opponent                    - 1000 episodes, promote at 75%
+    #   2. Mixed (70% Random, 30% Minimax D1) - 1500 episodes, promote at 65%
+    #   3. Mixed (50% Random, 50% Minimax D1) - 1500 episodes, promote at 55%
+    #   4. Mixed (30% Random, 70% Minimax D1) - 1500 episodes, promote at 50%
+    #   5. Minimax depth 1                    - 2000 episodes, promote at 45%
+    #   6. Minimax depth 2                    - 2500 episodes, promote at 35%
+    #   7. Minimax depth 3                    - 3000 episodes, promote at 25%
+    #   8. Minimax depth 4                    - 4000 episodes, promote at 15%
+    #   9. Minimax depth 5                    - 5000 episodes, promote at 10%
+    # Total: ~22,000 episodes across all stages (smoother progression)
 
     AI COMPONENT - JOB MANAGEMENT:
     ------------------------------
@@ -604,9 +852,13 @@ def main():
         default=1000, 
         help='Number of iterations for benchmarking')
     game_parser.add_argument('--ai', 
-        choices=['random', 'none'], 
+        choices=['random', 'minimax', 'none'], 
         default='random',
-        help='AI opponent type: random (makes random moves), none (two human players)')
+        help='AI opponent type: random (makes random moves), minimax (strategic AI), none (two human players)')
+    game_parser.add_argument('--depth',
+        type=int,
+        default=6,
+        help='Search depth for minimax AI (default: 6, higher = stronger but slower)')
 
     ai_parser = subparsers.add_parser('ai', 
         help='Run AI components',
@@ -651,6 +903,18 @@ def main():
         type=int, 
         default=None,
         help='Interval between training log updates (default: episodes/100)')
+    training_group.add_argument('--opponent',
+        choices=['minimax', 'self', 'random', 'model', 'curriculum'],
+        default='minimax',
+        help='Opponent type for training: minimax (algorithmic), self (self-play), random, model (saved model), curriculum (progressive difficulty)')
+    training_group.add_argument('--opponent_model',
+        type=str,
+        default=None,
+        help='Path to opponent model when using --opponent model')
+    training_group.add_argument('--depth',
+        type=int,
+        default=5,
+        help='Minimax search depth when using --opponent minimax (default: 5)')
     data_group = ai_parser.add_argument_group('Data options')
     data_group.add_argument('--job_id', 
         type=int, 

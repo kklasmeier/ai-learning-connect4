@@ -1,0 +1,5057 @@
+[
+  {
+    "job_id": 18,
+    "episode": 1,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.18742578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.18742578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.18742578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.18742578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:41:22.248831"
+  },
+  {
+    "job_id": 18,
+    "episode": 50,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1837890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1837890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1837890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1837890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:41:42.984084"
+  },
+  {
+    "job_id": 18,
+    "episode": 100,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.180078125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.180078125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.180078125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.180078125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:42:04.258130"
+  },
+  {
+    "job_id": 18,
+    "episode": 116,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.178890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.178890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.178890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.178890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:42:11.290152"
+  },
+  {
+    "job_id": 18,
+    "episode": 150,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1763671875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1763671875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1763671875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1763671875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1763671875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1763671875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1763671875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 15,
+    "timestamp": "2026-01-18T22:42:27.082666"
+  },
+  {
+    "job_id": 18,
+    "episode": 174,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1745859375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1745859375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1745859375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1745859375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:42:39.164587"
+  },
+  {
+    "job_id": 18,
+    "episode": 200,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.17265625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.17265625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.17265625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.17265625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d2",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:42:49.778847"
+  },
+  {
+    "job_id": 18,
+    "episode": 250,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1689453125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1689453125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1689453125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1689453125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:43:11.193120"
+  },
+  {
+    "job_id": 18,
+    "episode": 300,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.165234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d2",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.165234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.165234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.165234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:43:42.396421"
+  },
+  {
+    "job_id": 18,
+    "episode": 313,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16426953125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16426953125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16426953125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16426953125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:43:47.915059"
+  },
+  {
+    "job_id": 18,
+    "episode": 325,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d5",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16337890625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 18,
+    "timestamp": "2026-01-18T22:43:53.907305"
+  },
+  {
+    "job_id": 18,
+    "episode": 338,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1624140625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1624140625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1624140625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T22:43:58.851420"
+  },
+  {
+    "job_id": 18,
+    "episode": 350,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1615234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1615234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1615234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T22:44:05.394225"
+  },
+  {
+    "job_id": 18,
+    "episode": 387,
+    "moves": [
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15877734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.15877734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.15877734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15877734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d2",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.15877734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 14,
+    "timestamp": "2026-01-18T22:44:20.702389"
+  },
+  {
+    "job_id": 18,
+    "episode": 395,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15818359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.15818359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.15818359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15818359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15818359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T22:44:24.206390"
+  },
+  {
+    "job_id": 18,
+    "episode": 400,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.1578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T22:44:26.572302"
+  },
+  {
+    "job_id": 18,
+    "episode": 402,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1576640625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1576640625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1576640625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1576640625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:44:27.293982"
+  },
+  {
+    "job_id": 18,
+    "episode": 412,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d5",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d2",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.156921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 18,
+    "timestamp": "2026-01-18T22:44:33.124535"
+  },
+  {
+    "job_id": 18,
+    "episode": 450,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1541015625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1541015625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1541015625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1541015625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:44:49.342286"
+  },
+  {
+    "job_id": 18,
+    "episode": 451,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15402734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15402734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15402734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d5",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15402734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.15402734375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T22:44:50.258388"
+  },
+  {
+    "job_id": 18,
+    "episode": 500,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.150390625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d3",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.150390625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.150390625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.150390625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.150390625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.150390625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 12,
+    "timestamp": "2026-01-18T22:45:10.325028"
+  },
+  {
+    "job_id": 18,
+    "episode": 550,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1466796875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1466796875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1466796875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1466796875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:45:41.570083"
+  },
+  {
+    "job_id": 18,
+    "episode": 566,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1454921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d5",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1454921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d5",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1454921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1454921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1454921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 11,
+    "timestamp": "2026-01-18T22:45:48.749484"
+  },
+  {
+    "job_id": 18,
+    "episode": 600,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d2",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14296875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 24,
+    "timestamp": "2026-01-18T22:46:03.142979"
+  },
+  {
+    "job_id": 18,
+    "episode": 624,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1411875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.1411875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1411875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1411875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1411875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1411875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 12,
+    "timestamp": "2026-01-18T22:46:14.624193"
+  },
+  {
+    "job_id": 18,
+    "episode": 650,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1392578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1392578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1392578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1392578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1392578125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T22:46:26.651044"
+  },
+  {
+    "job_id": 18,
+    "episode": 672,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.137625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.137625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.137625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.137625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 11,
+    "timestamp": "2026-01-18T22:46:34.650152"
+  },
+  {
+    "job_id": 18,
+    "episode": 675,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d2",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13740234375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 24,
+    "timestamp": "2026-01-18T22:46:36.261100"
+  },
+  {
+    "job_id": 18,
+    "episode": 700,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.135546875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.135546875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.135546875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.135546875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.135546875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T22:46:47.481756"
+  },
+  {
+    "job_id": 18,
+    "episode": 706,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1351015625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1351015625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1351015625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1351015625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:46:50.640890"
+  },
+  {
+    "job_id": 18,
+    "episode": 718,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13421093750000002,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13421093750000002,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13421093750000002,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.13421093750000002,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d3",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.13421093750000002,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.13421093750000002,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13421093750000002,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 14,
+    "timestamp": "2026-01-18T22:46:56.600385"
+  },
+  {
+    "job_id": 18,
+    "episode": 728,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13346875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13346875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13346875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13346875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.13346875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T22:47:02.276059"
+  },
+  {
+    "job_id": 18,
+    "episode": 732,
+    "moves": [
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.133171875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d3",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.133171875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.133171875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.133171875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.133171875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.133171875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.133171875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.133171875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d2",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 20,
+    "timestamp": "2026-01-18T22:47:03.978791"
+  },
+  {
+    "job_id": 18,
+    "episode": 750,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1318359375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 23,
+    "timestamp": "2026-01-18T22:47:10.971609"
+  },
+  {
+    "job_id": 18,
+    "episode": 800,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d2",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.128125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 32,
+    "timestamp": "2026-01-18T22:47:41.930882"
+  },
+  {
+    "job_id": 18,
+    "episode": 850,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1244140625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1244140625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1244140625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.1244140625,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:48:03.595000"
+  },
+  {
+    "job_id": 18,
+    "episode": 900,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.12070312500000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.12070312500000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.12070312500000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.12070312500000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.12070312500000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 11,
+    "timestamp": "2026-01-18T22:48:25.278437"
+  },
+  {
+    "job_id": 18,
+    "episode": 903,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d3",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.12048046875000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 22,
+    "timestamp": "2026-01-18T22:48:26.641558"
+  },
+  {
+    "job_id": 18,
+    "episode": 947,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.11721484374999999,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 32,
+    "timestamp": "2026-01-18T22:48:44.518414"
+  },
+  {
+    "job_id": 18,
+    "episode": 950,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d3",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1169921875,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 22,
+    "timestamp": "2026-01-18T22:48:45.957489"
+  },
+  {
+    "job_id": 18,
+    "episode": 954,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.11669531250000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.11669531250000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.11669531250000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d3",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.11669531250000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.11669531250000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.11669531250000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.11669531250000001,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 15,
+    "timestamp": "2026-01-18T22:48:47.550153"
+  },
+  {
+    "job_id": 18,
+    "episode": 1000,
+    "moves": [
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.11328125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.11328125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.11328125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:49:04.722675"
+  },
+  {
+    "job_id": 18,
+    "episode": 1050,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1095703125,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "O",
+    "game_length": 20,
+    "timestamp": "2026-01-18T22:49:33.889739"
+  },
+  {
+    "job_id": 18,
+    "episode": 1100,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.105859375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.105859375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.105859375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.105859375,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d4",
+        "epsilon": null,
+        "curriculum_stage": 8,
+        "curriculum_stage_name": "Minimax Depth 4"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T22:49:55.636020"
+  }
+]

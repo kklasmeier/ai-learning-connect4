@@ -1,0 +1,5967 @@
+[
+  {
+    "job_id": 7,
+    "episode": 1,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2623004610416666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2623004610416666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2623004610416666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2623004610416666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:50:32.733023"
+  },
+  {
+    "job_id": 7,
+    "episode": 10,
+    "moves": [
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2605192354166666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2605192354166666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T21:50:32.955563"
+  },
+  {
+    "job_id": 7,
+    "episode": 42,
+    "moves": [
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.25418598875,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.25418598875,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.25418598875,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.25418598875,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.25418598875,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.25418598875,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.25418598875,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 14,
+    "timestamp": "2026-01-18T21:50:34.104802"
+  },
+  {
+    "job_id": 7,
+    "episode": 50,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2526026770833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2526026770833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2526026770833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.2526026770833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.2526026770833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T21:50:34.362208"
+  },
+  {
+    "job_id": 7,
+    "episode": 79,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.24686317229166663,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.24686317229166663,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.24686317229166663,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.24686317229166663,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:50:35.496147"
+  },
+  {
+    "job_id": 7,
+    "episode": 100,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.24270697916666661,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 27,
+    "timestamp": "2026-01-18T21:50:36.251866"
+  },
+  {
+    "job_id": 7,
+    "episode": 134,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2359779045833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2359779045833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2359779045833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.2359779045833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:50:37.632361"
+  },
+  {
+    "job_id": 7,
+    "episode": 150,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.23281128124999995,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.23281128124999995,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.23281128124999995,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:50:38.178320"
+  },
+  {
+    "job_id": 7,
+    "episode": 171,
+    "moves": [
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.22865508812499996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.22865508812499996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.22865508812499996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.22865508812499996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.22865508812499996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.22865508812499996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.22865508812499996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 14,
+    "timestamp": "2026-01-18T21:50:38.942588"
+  },
+  {
+    "job_id": 7,
+    "episode": 200,
+    "moves": [
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2229155833333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2229155833333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.2229155833333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2229155833333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 13,
+    "timestamp": "2026-01-18T21:50:39.994532"
+  },
+  {
+    "job_id": 7,
+    "episode": 202,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.22251975541666663,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.22251975541666663,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.22251975541666663,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.22251975541666663,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T21:50:40.097667"
+  },
+  {
+    "job_id": 7,
+    "episode": 250,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.21301988541666664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 23,
+    "timestamp": "2026-01-18T21:50:41.857690"
+  },
+  {
+    "job_id": 7,
+    "episode": 269,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2092595202083333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2092595202083333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.2092595202083333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2092595202083333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.2092595202083333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 12,
+    "timestamp": "2026-01-18T21:50:42.821958"
+  },
+  {
+    "job_id": 7,
+    "episode": 300,
+    "moves": [
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.20312418749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 18,
+    "timestamp": "2026-01-18T21:50:43.886715"
+  },
+  {
+    "job_id": 7,
+    "episode": 350,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1932284895833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1932284895833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1932284895833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.1932284895833333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:50:45.850903"
+  },
+  {
+    "job_id": 7,
+    "episode": 359,
+    "moves": [
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.19144726395833328,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.19144726395833328,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.19144726395833328,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.19144726395833328,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.19144726395833328,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 11,
+    "timestamp": "2026-01-18T21:50:46.208614"
+  },
+  {
+    "job_id": 7,
+    "episode": 382,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.18689524291666665,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.18689524291666665,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.18689524291666665,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.18689524291666665,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 8,
+    "timestamp": "2026-01-18T21:50:47.190087"
+  },
+  {
+    "job_id": 7,
+    "episode": 400,
+    "moves": [
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.18333279166666666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.18333279166666666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:50:47.816554"
+  },
+  {
+    "job_id": 7,
+    "episode": 408,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.18174947999999996,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 20,
+    "timestamp": "2026-01-18T21:50:48.177938"
+  },
+  {
+    "job_id": 7,
+    "episode": 450,
+    "moves": [
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.17343709375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.17343709375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.17343709375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.17343709375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.17343709375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T21:50:49.949953"
+  },
+  {
+    "job_id": 7,
+    "episode": 492,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16512470749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16512470749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16512470749999997,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:50:51.441798"
+  },
+  {
+    "job_id": 7,
+    "episode": 493,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16492679354166664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16492679354166664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16492679354166664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.16492679354166664,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:50:51.475813"
+  },
+  {
+    "job_id": 7,
+    "episode": 500,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16354139583333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16354139583333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16354139583333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16354139583333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16354139583333333,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 11,
+    "timestamp": "2026-01-18T21:50:51.722163"
+  },
+  {
+    "job_id": 7,
+    "episode": 504,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16274973999999998,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16274973999999998,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.16274973999999998,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16274973999999998,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.16274973999999998,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T21:50:52.161964"
+  },
+  {
+    "job_id": 7,
+    "episode": 550,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.15364569791666666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.15364569791666666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.15364569791666666,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T21:50:54.021401"
+  },
+  {
+    "job_id": 7,
+    "episode": 600,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 12,
+    "timestamp": "2026-01-18T21:50:56.286221"
+  },
+  {
+    "job_id": 7,
+    "episode": 650,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 13,
+    "timestamp": "2026-01-18T21:50:58.100466"
+  },
+  {
+    "job_id": 7,
+    "episode": 658,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 17,
+    "timestamp": "2026-01-18T21:50:58.401355"
+  },
+  {
+    "job_id": 7,
+    "episode": 687,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T21:50:59.523016"
+  },
+  {
+    "job_id": 7,
+    "episode": 700,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:00.038195"
+  },
+  {
+    "job_id": 7,
+    "episode": 718,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 8,
+    "timestamp": "2026-01-18T21:51:00.855349"
+  },
+  {
+    "job_id": 7,
+    "episode": 750,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 11,
+    "timestamp": "2026-01-18T21:51:02.054418"
+  },
+  {
+    "job_id": 7,
+    "episode": 795,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 28,
+    "timestamp": "2026-01-18T21:51:04.168284"
+  },
+  {
+    "job_id": 7,
+    "episode": 800,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 14,
+    "timestamp": "2026-01-18T21:51:04.335759"
+  },
+  {
+    "job_id": 7,
+    "episode": 850,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 12,
+    "timestamp": "2026-01-18T21:51:06.271983"
+  },
+  {
+    "job_id": 7,
+    "episode": 900,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 14,
+    "timestamp": "2026-01-18T21:51:08.408941"
+  },
+  {
+    "job_id": 7,
+    "episode": 933,
+    "moves": [
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T21:51:09.647292"
+  },
+  {
+    "job_id": 7,
+    "episode": 950,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 23,
+    "timestamp": "2026-01-18T21:51:10.472030"
+  },
+  {
+    "job_id": 7,
+    "episode": 962,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 8,
+    "timestamp": "2026-01-18T21:51:11.393677"
+  },
+  {
+    "job_id": 7,
+    "episode": 968,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 15,
+    "timestamp": "2026-01-18T21:51:11.796770"
+  },
+  {
+    "job_id": 7,
+    "episode": 993,
+    "moves": [
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:12.772306"
+  },
+  {
+    "job_id": 7,
+    "episode": 1000,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:13.016364"
+  },
+  {
+    "job_id": 7,
+    "episode": 1018,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 14,
+    "timestamp": "2026-01-18T21:51:14.069434"
+  },
+  {
+    "job_id": 7,
+    "episode": 1050,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 13,
+    "timestamp": "2026-01-18T21:51:15.282902"
+  },
+  {
+    "job_id": 7,
+    "episode": 1055,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 8,
+    "timestamp": "2026-01-18T21:51:15.578500"
+  },
+  {
+    "job_id": 7,
+    "episode": 1100,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:17.352319"
+  },
+  {
+    "job_id": 7,
+    "episode": 1150,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 11,
+    "timestamp": "2026-01-18T21:51:19.351609"
+  },
+  {
+    "job_id": 7,
+    "episode": 1200,
+    "moves": [
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:21.373944"
+  },
+  {
+    "job_id": 7,
+    "episode": 1221,
+    "moves": [
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 16,
+    "timestamp": "2026-01-18T21:51:22.271298"
+  },
+  {
+    "job_id": 7,
+    "episode": 1250,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:23.490671"
+  },
+  {
+    "job_id": 7,
+    "episode": 1262,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 15,
+    "timestamp": "2026-01-18T21:51:24.475753"
+  },
+  {
+    "job_id": 7,
+    "episode": 1285,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:25.478312"
+  },
+  {
+    "job_id": 7,
+    "episode": 1291,
+    "moves": [
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:25.684161"
+  },
+  {
+    "job_id": 7,
+    "episode": 1300,
+    "moves": [
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 18,
+    "timestamp": "2026-01-18T21:51:26.239045"
+  },
+  {
+    "job_id": 7,
+    "episode": 1318,
+    "moves": [
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 6,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 9,
+    "timestamp": "2026-01-18T21:51:26.906467"
+  },
+  {
+    "job_id": 7,
+    "episode": 1324,
+    "moves": [
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "X",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 10,
+    "timestamp": "2026-01-18T21:51:27.122490"
+  },
+  {
+    "job_id": 7,
+    "episode": 1350,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:28.297805"
+  },
+  {
+    "job_id": 7,
+    "episode": 1400,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 7,
+    "timestamp": "2026-01-18T21:51:30.583506"
+  },
+  {
+    "job_id": 7,
+    "episode": 1450,
+    "moves": [
+      {
+        "column": 6,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 2,
+        "player": "X",
+        "action_source": "random_opening"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "X",
+    "game_length": 13,
+    "timestamp": "2026-01-18T21:51:32.446169"
+  },
+  {
+    "job_id": 7,
+    "episode": 1500,
+    "moves": [
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 0,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "O",
+        "action_source": "opponent_random",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 1,
+        "player": "X",
+        "action_source": "agent_random",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 3,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 2,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 4,
+        "player": "X",
+        "action_source": "agent_model",
+        "epsilon": 0.14375,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      },
+      {
+        "column": 5,
+        "player": "O",
+        "action_source": "opponent_minimax_d1",
+        "epsilon": null,
+        "curriculum_stage": 4,
+        "curriculum_stage_name": "Mixed (30% Random, 70% Minimax D1)"
+      }
+    ],
+    "winner": "O",
+    "game_length": 16,
+    "timestamp": "2026-01-18T21:51:34.413640"
+  }
+]
